@@ -1,15 +1,19 @@
 import './Login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/fontawesome-free-solid'; // Import the specific icon
-
+import videoFile from '../assets/vid.mp4';
 //import { useSelector,useDispatch} from "react-redux"
 import { Link } from 'react-router-dom'
 const Login = () => {
   return (
     <div className='container'>
 <div className='image'>
+
 <span className='PingoWay'> Pingoway</span>
 <span className='Welcome'> Welcome</span>
+<video autoPlay loop muted>
+        <source src={videoFile} type="video/mp4" />
+      </video> 
 </div>
     <div className='login'>
       <span className='welcom'>Welcom Back...</span>

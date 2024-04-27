@@ -12,11 +12,12 @@
 }
 
 .image {
-  background: url("../assets/img.svg") no-repeat center center fixed;
+  background: url("../assets/vid.mp4") no-repeat center center fixed;
   background-size: 110%;
   height: 60%;
   width: 100%;
   overflow: hidden;
+  
 }
 
 .login {
@@ -48,6 +49,27 @@
   border: solid 1;
   padding-left: 20px;
 
+}
+input:focus{
+  animation: rotateShadow 2s infinite linear;
+
+}
+@keyframes rotateShadow {
+  0% {
+    box-shadow: -2px -2px 0px 0px #aa00ff, 2px 2px 0px 0px #3700ff;
+  }
+  25% {
+    box-shadow: -2px 2px 0px 0px #aa00ff, 2px -2px 0px 0px #3700ff;
+  }
+  50% {
+    box-shadow: 2px 2px 0px 0px #aa00ff, -2px -2px 0px 0px #3700ff;
+  }
+  75% {
+    box-shadow: 2px -2px 0px 0px #aa00ff, -2px 2px 0px 0px #3700ff;
+  }
+  100% {
+    box-shadow: -2px -2px 0px 0px #aa00ff, 2px 2px 0px 0px #3700ff;
+  }
 }
 .password:hover { 
     transition: 1s;
@@ -169,6 +191,8 @@
   font-size: 50px;
   color: #C8C8C8;
   font-family: 'Times New Roman', Times, serif;
+  text-shadow: 3px 2px 6px rgb(0, 0, 0);
+
 
 }
 
@@ -180,6 +204,8 @@
   font-weight: bold;
   color: #C8C8C8;
   font-family: 'Times New Roman', Times, serif;
+  text-shadow: 3px 2px 6px rgb(0, 0, 0);
+
 
 }
 
