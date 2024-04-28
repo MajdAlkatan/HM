@@ -2,8 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 
+
 export const login = createAsyncThunk(
-    'users/login',
+    'http://127.0.0.1:8000/auth/login/web/',
     async({ email, password }, thunkAPI) => {
         const body = JSON.stringify({
             email,
@@ -11,24 +12,25 @@ export const login = createAsyncThunk(
         });
 
         try {
-            const res = await axios('/auth/login/web/', {
+            const res = await axios('http://127.0.0.1:8000/auth/login/web/', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body,
+                data: body,
             });
 
-            const data = await res.json();
+            const data = res.data;
 
             if (res.status === 200) {
                 return data;
+
             } else {
-                return thunkAPI.rejectWithValue(data);
+                console.log(thunkAPI.rejectWithValue(data));
             }
         } catch (err) {
-            return thunkAPI.rejectWithValue(err.response.data);
+            console.log(thunkAPI.rejectWithValue(err.response.data));
         }
     }
 );
@@ -53,4 +55,5 @@ const loginSlice = createSlice({
         }
     })
     //export const {} = loginSlice.actions;
+
 export default loginSlice.reducer;

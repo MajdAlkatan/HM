@@ -1,8 +1,8 @@
-
-import Login from './Login/Login'
 import './App.css'
-import { BrowserRouter as Router } from 'react-router-dom';
+import Login from './Pages/Login/Login'
+import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import videoFile from './assets/vid.mp4';
+import Home from './Pages/Home/Home';
 
 function App() {
 
@@ -12,8 +12,13 @@ function App() {
      <video autoPlay loop muted>
         <source src={videoFile} type="video/mp4" />
       </video> 
+      
       <Router>
-      <Login />
+      
+     <Routes>
+     <Route path='/' element={<Login/>}/>
+      <Route path='/home' element={<Home/>}/>
+     </Routes>
     </Router>
     </div>
   )
