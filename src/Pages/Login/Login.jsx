@@ -3,7 +3,7 @@ import { useState } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faUser } from '@fortawesome/fontawesome-free-solid';
 import videoFile from '../../assets/vid.mp4';
-import {  useDispatch,useSelector } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { login } from './LoginSlice';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
 
-  const loginState = useSelector(state => state.login.isAuthenticated); // Assuming your login state is stored under 'login'
 
   // const loginState = useSelector(state => state.login);
   const [email, setEmail] = useState('');
@@ -21,20 +20,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState('');
   const navigate = useNavigate();
  
-  const handleLogin =async (e) => {
-     e.preventDefault();
-     try {
-      await dispatch(login({ email, password })).unwrap();
-      // Now that the login action has completed, check the login state and navigate
-      if (loginState) {
-        console.log('success');
-        navigate('/home'); // Navigate to the home page
-      }
-      else{
-        console.log('failed')
-      }
-   } catch (error) {
-      console.error('Login failed:', error);}
+  
 
 
   const handleLogin = (e) => {
@@ -75,6 +61,10 @@ const Login = () => {
   };
 
   return (
+    <>
+    <video autoPlay loop muted>
+    <source src={videoFile} type="video/mp4" />
+  </video> 
     <div className='container'>
       <div className='image'>
         <span className='PingoWay'> Pingoway</span>
@@ -112,7 +102,8 @@ const Login = () => {
         <button className='login-button' onClick={handleLogin} disabled={loading}>Login</button>
       </div>
     </div>
+    </>
   );
 }
-}
+
 export default Login;
