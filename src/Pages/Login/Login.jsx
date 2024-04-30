@@ -9,7 +9,7 @@ import { login } from './LoginSlice';
 import { useNavigate } from 'react-router-dom'; 
 const Login = () => {
   const dispatch = useDispatch();
-  const loginState = useSelector(state => state.login); // Assuming your login state is stored under 'login'
+  const loginState = useSelector(state => state.login.isAuthenticated); // Assuming your login state is stored under 'login'
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -22,6 +22,9 @@ const Login = () => {
       if (loginState) {
         console.log('success');
         navigate('/home'); // Navigate to the home page
+      }
+      else{
+        console.log('failed')
       }
    } catch (error) {
       console.error('Login failed:', error);}
