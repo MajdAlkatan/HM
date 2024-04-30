@@ -20,7 +20,7 @@
 }
 
 .login {
-  height: 40%;
+  height: 45%;
   width: 100%;
   background-color: rgb(45, 45, 45, 0.9);
   padding: 0;
@@ -195,7 +195,12 @@ input:focus {
   /* right: 20%; */
   color: #405ff8;
   text-decoration: none;
-  font-size: small;
+  font-size: 1em;
+}
+.forget-password:hover{
+ color: aqua;
+ transition: 1s;
+
 }
 
 .Welcome {

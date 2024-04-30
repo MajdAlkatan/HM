@@ -3,7 +3,7 @@ import { useState } from 'react';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faUser } from '@fortawesome/fontawesome-free-solid';
 import videoFile from '../../assets/vid.mp4';
-import {  useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { login } from './LoginSlice';
 import { useNavigate } from 'react-router-dom';
@@ -21,23 +21,28 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (loading) return; // Prevent multiple clicks if already loading
-  
+
     // Clear previous error messages
     setEmailError('');
     setPasswordError('');
-  
+
     // Validate email and password
-    if (!email) {
+
+
+    if ((!email && !password)) {
       setEmailError('Please enter your email');
-      return;
-    }
-    if (!password) {
       setPasswordError('Please enter your password');
-      return;
+
+    } else if (!email) {
+      setEmailError('Please enter your email');
+
+    } else if(!password) {
+      setPasswordError('Please enter your password');
     }
-  
+
+
     setLoading(true); // Set loading to true on login attempt
-  
+
     dispatch(login({ email, password }))
       .then((result) => {
         if (result.payload) {
@@ -67,7 +72,7 @@ const Login = () => {
       <div className='login'>
         <span className='welcom'>Welcom Back...</span>
         <div className='inputs'>
-         <input
+          <input
             className='user'
             type="text"
             placeholder='user name'
@@ -75,8 +80,8 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
 
           />
-            {emailError && <h6 className='error'>{emailError}</h6>} 
-            {/* <FontAwesomeIcon className='icon-user' icon={faUser} /> */}
+          {emailError && <h6 className='error'>{emailError}</h6>}
+          {/* <FontAwesomeIcon className='icon-user' icon={faUser} /> */}
           <input
             className='password'
             type="password"
@@ -85,9 +90,9 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
 
           />
-            {/* <FontAwesomeIcon className='icon-password' icon="fa-solid fa-lock" /> */}
-            {passwordError && <h6 className='error'>{passwordError}</h6>}
-          
+          {/* <FontAwesomeIcon className='icon-password' icon="fa-solid fa-lock" /> */}
+          {passwordError && <h6 className='error'>{passwordError}</h6>}
+
           <Link href="/" className='forget-password'>forget your password?</Link>
         </div>
         <button className='login-button' onClick={handleLogin} disabled={loading}>Login</button>
