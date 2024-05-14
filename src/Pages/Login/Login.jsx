@@ -1,7 +1,7 @@
 import './Login.css';
 import { useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faUser } from '@fortawesome/fontawesome-free-solid';
+ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/fontawesome-free-solid';
 import videoFile from '../../assets/vid.mp4';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -46,7 +46,7 @@ const Login = () => {
     }
 
 
-    setLoading(true); // Set loading to true on login attempt
+    setLoading(true); 
 
     dispatch(login({ email, password }))
       .then((result) => {
@@ -90,7 +90,7 @@ const Login = () => {
 
           />
           {emailError && <h6 className='error'>{emailError}</h6>}
-          {/* <FontAwesomeIcon className='icon-user' icon={faUser} /> */}
+          { <FontAwesomeIcon className='icon-user' icon={faUser} /> }
           <input
             className='password'
             type="password"
@@ -99,7 +99,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
 
           />
-          {/* <FontAwesomeIcon className='icon-password' icon="fa-solid fa-lock" /> */}
+          { <FontAwesomeIcon className='icon-password' icon="fa-solid fa-lock" /> }
           {passwordError && <h6 className='error'>{passwordError}</h6>}
 
           <Link href="/" className='forget-password'>forget your password?</Link>

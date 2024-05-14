@@ -1,0 +1,67 @@
+.NavBar {
+    background-color: #141824;
+    width: 15%;
+    height: 100vh;
+    overflow: auto;
+    border: 1px solid #31374A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.NavBar ul {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    padding: 0;
+}
+
+.NavBar ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.NavBar ul li:hover {
+    background-color: #8e8e8e;
+    border-radius: 20px;
+}
+
+hr {
+    width: 50%;
+    padding-left: 20px;
+    border: none;
+    border-top: 0.5px solid #31374A;
+    margin-top: 40px;
+}
+
+.NavBar .language {
+    padding-left: 30%;
+}
+
+.NavBar .language:hover {
+    background-color: transparent;
+}
+
+.NavBar .language-dropdown {
+    padding-left: 50%;
+    border: none;
+}
+
+.NavBar .language-dropdown:hover {
+    background-color: transparent;
+}
+
+.NavBar .language-dropdown select {
+    border: none;
+    background-color: #141824;
+    color: white;
+    font-size: 16px;
+}
