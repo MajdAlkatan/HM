@@ -3,9 +3,9 @@ import './App.css'
 //import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 //import Home from './Pages/Home/Home';
 //import Hotel_Dashboard from './Pages/Hotel_Dashboard/Hotel_Dashboard';
-import Header from './components/Header/Header'
-import NavBar from './components/NavBar/NavBar'
-import Footer from './components/Footer/Footer'
+import Header from './sections/Header/Header'
+import NavBar from './sections/NavBar/NavBar'
+import Footer from './sections/Footer/Footer'
 
 function App() {
 

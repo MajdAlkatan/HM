@@ -1,5 +1,5 @@
 import './Footer.css'
-import imagefooter from './../../assets/2_3 1.svg'
+import imagefooter from './../../assets/footer.svg'
 const Footer = () => {
   return (
     <div className='footer'>

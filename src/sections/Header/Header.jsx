@@ -1,6 +1,6 @@
-import './Header.css'
-import image2 from './../../assets/Ellipse 11.svg'
-import image1 from './../../assets/Ellipse 10 1.svg'
+import './Header.css';
+import image2 from './../../assets/image_profile.svg';
+import image1 from './../../assets/logo.svg';
 import {  FaMoon } from "react-icons/fa6";
 import { IoNotifications } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
