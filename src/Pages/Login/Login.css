@@ -150,7 +150,7 @@ input:focus {
     background-position: 0%;
   }
   100% {
-    background-position: 400%;
+    background-position: 300%;
   }
 }
 
@@ -176,7 +176,7 @@ input:focus {
 }
 
 .login-button:hover::before {
-  filter: blur(20px);
+  filter: blur(10px);
 }
 
 .login-button :active {
@@ -188,6 +188,7 @@ input:focus {
     #4b7193,
     #010d25
   );
+  
 }
 
 .forget-password {
