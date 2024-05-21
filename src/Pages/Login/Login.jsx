@@ -82,9 +82,11 @@ const Login = () => {
         <span className='welcom'>Welcom Back...</span>
         <div className='inputs'>
           <input
+          
             className='user'
             type="text"
-            placeholder='user name'
+            placeholder='Email'
+            inputMode='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
 
@@ -97,7 +99,7 @@ const Login = () => {
             placeholder='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-
+                
           />
           { <FontAwesomeIcon className='icon-password' icon="fa-solid fa-lock" /> }
           {passwordError && <h6 className='error'>{passwordError}</h6>}

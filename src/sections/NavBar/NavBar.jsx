@@ -6,6 +6,7 @@ import { FaCar } from 'react-icons/fa';
 import { IoSettings } from "react-icons/io5";
 import { IoLanguageSharp } from "react-icons/io5";
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const NavBar = () => {
@@ -19,14 +20,22 @@ const NavBar = () => {
   const toggleLanguage = () => {
     setShowLanguage(!showLanguage);
   };
+  let navigate = useNavigate(); 
+
+  const goToHotelPage = () => {
+    navigate('/hotel-dashboad'); // Replace '/add-hotel' with the actual route to your Add Hotel page
+  };
+  const goToHomePage = () => {
+    navigate('/'); // Replace '/add-hotel' with the actual route to your Add Hotel page
+  };
 
   return (
     <div className='NavBar'>
       <ul>
-      <li >
+      <li onClick={goToHomePage} >
           <FaHome className="nav-icon" /> Home
         </li>
-        <li>
+        <li onClick={goToHotelPage}>
           <MdHotel className="nav-icon" /> Hotel
         </li>
         <li>

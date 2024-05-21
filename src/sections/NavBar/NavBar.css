@@ -1,7 +1,7 @@
 .NavBar {
     background-color: #141824;
     width: 15%;
-    height: 100vh;
+    min-height: 100%;
     overflow: auto;
     border: 1px solid #31374A;
     display: flex;

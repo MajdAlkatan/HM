@@ -5,6 +5,7 @@ import {  FaMoon } from "react-icons/fa6";
 import { IoNotifications } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 const Header = () => {
+
   return (
     <div className='header'>
       <div className='logo'>

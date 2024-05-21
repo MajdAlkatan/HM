@@ -1,0 +1,148 @@
+.add-hotel-container {
+    width: 650px;
+    height: 700px;
+    margin: auto;
+    margin-top: 4%;
+    border: 1px solid #757373;
+    border-radius: 5px;
+    background-color: #0F111A;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow: auto;
+    color: white;
+}
+
+.MuiDialog-paper {
+    min-width: 100%!important;
+    max-width: none!important;
+    background-color: transparent!important;
+}
+
+.add-hotel-container .tag {
+    margin: 20px;
+}
+
+.add-hotel-container .tags {
+    margin-left: 10%;
+}
+
+.add-hotel-container .hotel-form {
+    padding-left: 30%;
+}
+
+.radio-buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.radio-button {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.radio-button__input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.radio-button__label {
+    display: inline-block;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    position: relative;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__custom {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #555;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__input:checked+.radio-button__label .radio-button__custom {
+    transform: translateY(-50%) scale(0.9);
+    border: 5px solid #4c8bf5;
+    color: #4c8bf5;
+}
+
+.radio-button__input:checked+.radio-button__label {
+    color: #4c8bf5;
+}
+
+.radio-button__label:hover .radio-button__custom {
+    transform: translateY(-50%) scale(1.2);
+    border-color: #4c8bf5;
+    box-shadow: 0 0 10px #4c8bf580;
+}
+
+
+/*location*/
+
+.location {
+    width: 90%;
+    justify-content: space-between;
+    display: flex;
+    padding: 5%;
+}
+
+.container {
+    width: 30%;
+    height: 200%;
+    background-color: #0F111A;
+    color: white;
+    border-radius: 7px;
+}
+
+
+/*reviews*/
+
+.reviews {
+    display: flex;
+    align-items: center;
+    gap: 10%;
+}
+
+.reviews label {
+    color: white;
+}
+
+.inputs {
+    color: #0F111A;
+}
+
+
+/*services*/
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.service-item {
+    padding: 10px;
+}
+
+.services-grid {
+    padding: 5%;
+}
+
+.rate {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}

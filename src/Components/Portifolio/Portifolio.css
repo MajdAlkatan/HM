@@ -1,0 +1,44 @@
+.cards {
+    display: flex;
+    justify-content: center;
+    /* Centers cards horizontally */
+    flex-wrap: wrap;
+    /* Allows cards to wrap onto new lines if needed */
+    gap: 20px;
+    /* Adds space between cards */
+}
+
+.card {
+    width: 30%;
+    /* Width of each card */
+    height: 40%;
+    /* Height of each card */
+    position: relative;
+    /* Needed for absolutely positioning the image */
+    overflow: hidden;
+    /* Prevents the image from overflowing the card */
+}
+
+.card img {
+    width: 100%;
+    /* Makes the image responsive within the card */
+    height: 100%;
+    /* Makes the image fill the entire card */
+    object-fit: cover;
+    /* Ensures the image covers the entire card without distorting its aspect ratio */
+}
+
+.caption {
+    position: absolute;
+    /* Positions the caption over the image */
+    bottom: 10px;
+    /* Places the caption near the bottom of the card */
+    left: 10px;
+    /* Aligns the caption to the left */
+    color: white;
+    /* Text color */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Semi-transparent background for captions */
+    padding: 10px;
+    /* Adds some padding inside the caption */
+}

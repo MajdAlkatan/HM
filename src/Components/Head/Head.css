@@ -1,0 +1,47 @@
+ .title h1,
+ h2 {
+     color: white;
+ }
+ 
+ .head {
+     height: 10%;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding-left: 5%;
+     padding-right: 5%;
+ }
+ 
+ hr {
+     width: 90%;
+ }
+ 
+ .title {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+ }
+ 
+ .buttons {
+     padding-left: 5%;
+ }
+ 
+ .button {
+     height: 100%;
+     width: 10%;
+ }
+ 
+ .button button {
+     padding: 10%;
+     background-color: #2B3451;
+     color: white;
+     border-radius: 15px;
+     border: none;
+     width: 100%;
+ }
+ 
+ .buttons {
+     display: flex;
+     flex-direction: row;
+     gap: 3%;
+ }
