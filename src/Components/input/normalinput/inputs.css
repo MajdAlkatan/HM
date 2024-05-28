@@ -3,7 +3,7 @@
     flex-direction: column;
     width: fit-content;
     position: static;
-    width: 250px;
+    width: 100%;
 }
 
 .coolinput label.text {
@@ -27,6 +27,19 @@
     color: white;
 }
 
+.coolinput input[type=number].input {
+    padding: 11px 10px;
+    font-size: 0.75rem;
+    border: 1px #7796A9 solid;
+    border-radius: 5px;
+    background: #0F111A;
+    color: white;
+}
+
 .coolinput input[type=text].input:focus {
+    outline: none;
+}
+
+.coolinput input[type=number].input:focus {
     outline: none;
 }

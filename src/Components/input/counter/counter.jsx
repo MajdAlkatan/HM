@@ -1,22 +1,19 @@
-import './counter.css'
-import PropTypes from 'prop-types'; 
+import './counter.css';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 
-
-const Counter = ({placeholder}) => {
-
-    return (
-        <div>
-          <div className="coolinput">
-            <label htmlFor="input" className="text">{placeholder}</label>
-            <input type="text"  name="input" className="input"/>
-          
-           </div>
-           <div/> 
-         </div>
-      );
-    }
-    Counter.propTypes = {
-        placeholder: PropTypes.string.isRequired, 
-      };
-
-export default Counter
+export default function SingleInputDateRangePicker() {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['SingleInputDateRangeField']}>
+        <DateRangePicker
+          slots={{ field: SingleInputDateRangeField }}
+          name="allowedRange"
+        />
+      </DemoContainer>
+    </LocalizationProvider>
+  );
+}
