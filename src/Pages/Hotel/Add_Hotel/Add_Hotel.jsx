@@ -71,8 +71,8 @@ const Add_Hotel = () => {
     <Dialog open={true}   className="dialog">
     <div className="add-hotel-container">
       <div className="hotel-form">
-        <div>
-        <Inputs  type="text" className="name_hotel" placeholder="Enter Hotel Name" />
+        <div className="name_hotel">
+        <Inputs  type="text"  placeholder="Enter Hotel Name" />
         </div>
         <ImageInput className="upload_image" />
       </div>

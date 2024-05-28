@@ -29,7 +29,10 @@
 
 .add-hotel-container .hotel-form {
     padding-left: 30%;
-    width: 40%;
+}
+
+.name_hotel {
+    width: 56%;
 }
 
 .radio-buttons-container {
