@@ -31,6 +31,9 @@ const NavBar = () => {
   const goToActivitiesPage = () => {
     navigate('/activities'); 
   };
+  const gotoCarRentalPage =() =>{
+    navigate('/CarRental_dashboard')
+  }
 
   return (
     <div className='NavBar'>
@@ -44,7 +47,7 @@ const NavBar = () => {
         <li>
           <FaPlane className="nav-icon" /> Flights
         </li>
-        <li>
+        <li onClick={gotoCarRentalPage}>
           <FaCar className="nav-icon" /> Car rental
         </li>
         <li onClick={goToActivitiesPage}>

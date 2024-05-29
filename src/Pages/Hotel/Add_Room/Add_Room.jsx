@@ -54,8 +54,11 @@ import { faCalendar } from '@fortawesome/free-solid-svg-icons'; // Import the sp
         <Inputs  type="number" className="Price" placeholder="Price" />
         </div>
         </div>
-      </Dialog>
-    
+        </Dialog>
+      
+
+   
+
   )
 }
 
