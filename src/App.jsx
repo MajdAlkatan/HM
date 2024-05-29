@@ -15,6 +15,7 @@ import Add_Hotel from './Pages/Hotel/Add_Hotel/Add_Hotel';
 import Home from './Pages/Home/Home';
 import Hotel_Page from './Pages/Hotel/Hotel-Page/Hotel-Page';
 import Add_Room from './Pages/Hotel/Add_Room/Add_Room';
+import Car_rental from './Pages/Cars/Car_rental';
 function App() {
 
 
@@ -38,7 +39,7 @@ function App() {
               <Route path="/add-hotel" element={<Add_Hotel />} />
               <Route path="/hotel-Page" element={<Hotel_Page/>} />
               <Route path="/add-room" element={<Add_Room />} />
-
+               <Route path="/CarRental_dashboard" element={<Car_rental/>}/>
             
             </Routes>
           </Container2>

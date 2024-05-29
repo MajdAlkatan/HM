@@ -4,16 +4,19 @@ import ImageInput from '../../../Components/input/imageinput/imageinput';
 
 const Add_Room = () => {
   return (
-    
-      <Dialog open={true}>
-          <div className="add-room-container">
-            <div  className="upload-image">
-        <ImageInput/>
-        </div>
+
+    <Dialog open={true}>
+      <div className="add-room-container">
      
+
+        <div className="upload-image">
+          <ImageInput />
         </div>
-      </Dialog>
-    
+
+      </div>
+
+    </Dialog>
+
   )
 }
 

@@ -28,6 +28,9 @@ const NavBar = () => {
   const goToHomePage = () => {
     navigate('/'); // Replace '/add-hotel' with the actual route to your Add Hotel page
   };
+  const gotoCarRentalPage =() =>{
+    navigate('/CarRental_dashboard')
+  }
 
   return (
     <div className='NavBar'>
@@ -41,7 +44,7 @@ const NavBar = () => {
         <li>
           <FaPlane className="nav-icon" /> Flights
         </li>
-        <li>
+        <li onClick={gotoCarRentalPage}>
           <FaCar className="nav-icon" /> Car rental
         </li>
         <li>
