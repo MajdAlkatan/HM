@@ -31,6 +31,10 @@
     padding-left: 30%;
 }
 
+.name_hotel {
+    width: 56%;
+}
+
 .radio-buttons-container {
     display: flex;
     align-items: center;

@@ -1,6 +1,6 @@
 .add-room-container {
     width: 650px;
-    height: 700px;
+    height: 1000px;
     margin: auto;
     margin-top: 4%;
     border: 1px solid #757373;
@@ -9,10 +9,49 @@
     display: flex;
     flex-direction: column;
     max-height: 100vh;
-    overflow: auto;
+    overflow: visible;
     color: white;
 }
 
 .upload-image {
     padding-left: 30%;
+}
+
+.inputs1 {
+    display: flex;
+    flex-direction: row;
+    padding: 5%;
+    gap: 5%;
+}
+
+.calender {
+    height: 30px;
+}
+
+.inputs2 {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    padding: 5%;
+    align-items: center;
+}
+
+.select {
+    padding: 11px 10px;
+    font-size: 0.75rem;
+    border: 1px #7796A9 solid;
+    border-radius: 5px;
+    background: #0F111A;
+    color: white;
+    width: 100%;
+}
+
+.add-room-container span {
+    padding-left: 5%;
+}
+
+.iconCalender {
+    position: absolute;
+    right: 27%;
+    top: 53%;
 }

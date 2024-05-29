@@ -1,17 +1,19 @@
 import './inputs.css'; 
 import PropTypes from 'prop-types'; 
-const Inputs = ({placeholder}) => { 
+const Inputs = ({placeholder,type}) => { 
   return (
     <div>
       <div className="coolinput">
         <label htmlFor="input" className="text">{placeholder}</label>
-        <input type="text"  name="input" className="input"/>
+        <input type={type}  name="input" className="input"/>
         </div>
-       <div/> 
-     </div>
+      <div/> 
+    </div>
   );
 }
 Inputs.propTypes = {
-    placeholder: PropTypes.string.isRequired, // Define PropTypes
+    placeholder: PropTypes.string.isRequired, 
+    type: PropTypes.string.isRequired, 
+
   };
-export default Inputs; // Exporting the component
+export default Inputs; 
