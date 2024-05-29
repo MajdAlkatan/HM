@@ -23,10 +23,13 @@ const NavBar = () => {
   let navigate = useNavigate(); 
 
   const goToHotelPage = () => {
-    navigate('/hotel-dashboad'); // Replace '/add-hotel' with the actual route to your Add Hotel page
+    navigate('/hotel-dashboad'); 
   };
   const goToHomePage = () => {
-    navigate('/'); // Replace '/add-hotel' with the actual route to your Add Hotel page
+    navigate('/'); 
+  };
+  const goToActivitiesPage = () => {
+    navigate('/activities'); 
   };
 
   return (
@@ -44,7 +47,7 @@ const NavBar = () => {
         <li>
           <FaCar className="nav-icon" /> Car rental
         </li>
-        <li>
+        <li onClick={goToActivitiesPage}>
           <FaCar className="nav-icon" /> Activites
         </li>
         <hr />

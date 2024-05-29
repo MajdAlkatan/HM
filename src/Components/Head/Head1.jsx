@@ -1,36 +1,45 @@
-import { useNavigate } from 'react-router-dom'; 
 import './Head.css'
-import hotel_dashboard from './../../assets/hotel-dashboard.svg'
-function Head() {
-  let navigate = useNavigate(); // Use the useNavigate hook
+import PropTypes from 'prop-types'; 
 
-  const goToAddHotelPage = () => {
-    navigate('/add-hotel'); // Replace '/add-hotel' with the actual route to your Add Hotel page
-  };
+function Head1({image,Title,subTitle,titleButton1,onClickNavigation}) {
+
+
+
   return (
     <>
-    <div className="head">
-      <div className="title">
-        <div>
-        <h1>Hotels Dashboard</h1>
-        <h2>Here’s what’s going on at your business right now</h2>
+      <div className="head">
+        <div className="titlebuttons">
+          <div className="title">
+            <div>
+              <h1>{Title}</h1>
+              <h2>{subTitle}</h2>
+            </div>
+          </div>
+          <div className='buttons'>
+            <div className='button'>
+              <button onClick={onClickNavigation}>{titleButton1}</button>
+            </div>
+            
+          </div>
         </div>
-      
+        <div className="image-head">
+          <img src={image} alt="" />
+        </div>
       </div>
-      <div className="image">
-        <img src={hotel_dashboard} alt="" />
-
-      </div>
-
-    </div>
-    <div className='buttons'>
-    <div className='button'> 
-        <button onClick={goToAddHotelPage}>Add Hotel</button>
-        </div>
-        </div>
-    <hr />
+      <hr />
     </>
-  )
+  );
 }
 
-export default Head
+
+Head1.propTypes = {
+  image: PropTypes.string.isRequired, 
+  Title: PropTypes.string.isRequired, 
+  subTitle: PropTypes.string.isRequired, 
+  titleButton1: PropTypes.string.isRequired, 
+ onClickNavigation: PropTypes.func.isRequired,
+
+
+
+};
+export default Head1

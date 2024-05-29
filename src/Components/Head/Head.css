@@ -12,6 +12,12 @@
      padding-right: 5%;
  }
  
+ .titlebuttons {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+ }
+ 
  hr {
      width: 90%;
  }
@@ -23,12 +29,14 @@
  }
  
  .buttons {
-     padding-left: 5%;
+     display: flex;
+     flex-direction: row;
+     gap: 3%;
  }
  
  .button {
      height: 100%;
-     width: 10%;
+     width: 20%;
  }
  
  .button button {
@@ -40,8 +48,12 @@
      width: 100%;
  }
  
- .buttons {
-     display: flex;
-     flex-direction: row;
-     gap: 3%;
+ .image-head {
+     height: 100%;
+     width: 25%;
+ }
+ 
+ .image-head img {
+     height: 100%;
+     scale: 1.2;
  }
