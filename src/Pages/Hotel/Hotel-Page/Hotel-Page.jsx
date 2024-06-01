@@ -1,13 +1,16 @@
 import "./Hotel-Page.css";
 import Head2 from "../../../Components/Head/Head2";
-import { Portfolio } from "../../../Components";
-import s2 from "./../../../assets/hotel-page.svg";
+import s2 from "../../../assets/hotel-page.svg";
+import s3 from './../../../assets/hotel-dashboard.svg'
+import { useNavigate } from 'react-router-dom'
+
 
 import {
   Statistics4,
   Statistics2,
   Statistics3,
   Statistics1,
+  Portfolio
 } from "../../../Components";
 const Hotel_Page = () => {
   // Define an array of portfolio items
@@ -16,10 +19,20 @@ const Hotel_Page = () => {
     s2, // Second portfolio item
     // Add more items as needed
   ];
+  let navigate = useNavigate();
+
+  const goToAddHotel = () => {
+    navigate('/add-room'); }
   return (
     <div>
-      <Head2 />
-      <Portfolio images={portfolioItems} />
+<Head2
+       image={s3}
+       Title='Hotels Dashboard' 
+       subTitle='Here’s what’s going on at your business right now'
+       titleButton1='Add Room'
+       titleButton2='Delete Room'
+
+       onClickNavigation={goToAddHotel}/>      <Portfolio images={portfolioItems} />
       <div className="statistics">
         <Statistics1
           series1={10} series2={20} series3={30} series4={40} series5={50} series6={60}

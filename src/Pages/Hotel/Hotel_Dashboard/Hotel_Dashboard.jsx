@@ -1,17 +1,30 @@
 import './Hotel_Dashboard.css'
 import s1 from './../../../assets/shuffle-01.jpg'
-import Head1 from './../../../Components/Head/Head1'
-import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from './../../../Components'
+import s2 from './../../../assets/hotel-dashboard.svg'
+import Head2 from './../../../Components/Head/Head2'
+import { useNavigate } from 'react-router-dom'
+import {  Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from './../../../Components/index'
 const Hotel_Dashboard = () => {
-  // Define an array of portfolio items
   const portfolioItems = [
     s1, // First portfolio item
-    s1  // Second portfolio item
+    s1, // Second portfolio item
     // Add more items as needed
   ];
+  let navigate = useNavigate();
+
+  const goToAddHotel = () => {
+    navigate('/add-hotel'); 
+  };
   return (
     <div>
-      <Head1 />
+     <Head2
+       image={s2}
+       Title='Hotels Dashboard' 
+       subTitle='Here’s what’s going on at your business right now'
+       titleButton1='Add Hotel'
+       titleButton2='Delete Hotel'
+
+       onClickNavigation={goToAddHotel}/>
       <Portfolio images={portfolioItems} />
       <div className='statistics'>
       <Statistics1

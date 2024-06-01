@@ -1,7 +1,7 @@
 import './Car_rental.css'
-import Head1 from '../../Components/Head/Head1'
-import { Portfolio, Statistics4, Statistics2, Statistics3, Statistics1 } from '../../Components/index'
-import s3 from '../../assets/Car_rental2.jpg'
+import Head1 from '../../../Components/Head/Head1'
+import { Portfolio, Statistics4, Statistics2, Statistics3, Statistics1 } from '../../../Components/index'
+import s3 from '../../../assets/Car_rental2.jpg'
 function Car_rental() {
     // Define an array of portfolio items
     const portfolioItems = [

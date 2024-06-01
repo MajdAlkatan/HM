@@ -1,8 +1,8 @@
-import './Activites.css'
-import { Statistics4, Statistics2, Statistics3, Statistics1, ActivitesPortfolio } from '../../Components/index'
-import image from '../../assets/cinema.svg'
-import imags from '../../assets/car.svg'
-function Activites() {
+import './Activities.css'
+import { Statistics4, Statistics2, Statistics3, Statistics1, ActivitesPortfolio } from '../../../Components/index'
+import image from '../../../assets/cinema.svg'
+import imags from '../../../assets/car.svg'
+function Activities() {
   const images = [
     image, image, image, image, image, image, image, image, image, image, image, image,
   ];
@@ -66,4 +66,4 @@ function Activites() {
 }
 //     
 
-export default Activites
+export default Activities

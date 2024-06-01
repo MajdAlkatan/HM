@@ -1,7 +1,6 @@
 import './NavBar.css'
 import { FaHome } from 'react-icons/fa';
 import { MdHotel } from 'react-icons/md';
-import { FaPlane } from 'react-icons/fa';
 import { FaCar } from 'react-icons/fa';
 import { IoSettings } from "react-icons/io5";
 import { IoLanguageSharp } from "react-icons/io5";
@@ -23,17 +22,20 @@ const NavBar = () => {
   let navigate = useNavigate(); 
 
   const goToHotelPage = () => {
-    navigate('/hotel-dashboad'); // Replace '/add-hotel' with the actual route to your Add Hotel page
+    navigate('/hotel-dashboad'); 
   };
   const goToHomePage = () => {
-    navigate('/'); // Replace '/add-hotel' with the actual route to your Add Hotel page
+    navigate('/'); 
+  };
+  const goToActivitiesPage = () => {
+    navigate('/activities'); 
   };
   const gotoCarRentalPage =() =>{
     navigate('/CarRental_dashboard')
   }
-  const gotoActivitiesPage =() =>{
-    navigate('/Activities_dashboard')
-  }
+  // const gotoActivitiesPage =() =>{
+  //   navigate('/Activities_dashboard')
+  // }
 
   return (
     <div className='NavBar'>
@@ -44,14 +46,12 @@ const NavBar = () => {
         <li onClick={goToHotelPage}>
           <MdHotel className="nav-icon" /> Hotel
         </li>
-        <li>
-          <FaPlane className="nav-icon" /> Flights
-        </li>
+     
         <li onClick={gotoCarRentalPage}>
           <FaCar className="nav-icon" /> Car rental
         </li>
-        <li onClick={gotoActivitiesPage}>
-          <FaCar className="nav-icon"  /> Activites
+        <li onClick={goToActivitiesPage}>
+          <FaCar className="nav-icon" /> Activites
         </li>
         <hr />
         <li onClick={toggleLanguageDropdown}>
