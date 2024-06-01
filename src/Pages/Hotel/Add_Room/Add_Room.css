@@ -26,6 +26,9 @@
 
 .calender {
     height: 30px;
+    display: inline-flex;
+    align-items: baseline;
+    flex-direction: row;
 }
 
 .inputs2 {
@@ -51,7 +54,6 @@
 }
 
 .iconCalender {
-    position: absolute;
-    right: 27%;
-    top: 53%;
+    position: relative;
+    right: 10%;
 }

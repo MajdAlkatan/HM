@@ -1,13 +1,13 @@
-import { useNavigate } from 'react-router-dom'; 
+// import { useNavigate } from 'react-router-dom'; 
 import './Head.css'
 import Car_Rental from './../../assets/Car_rental.svg'
 
 function CarrentalHead() {
-    let navigate = useNavigate(); // Use the useNavigate hook
+    // let navigate = useNavigate(); // Use the useNavigate hook
 
-    const goToAddHotelPage = () => {
-      navigate('/add-hotel'); // Replace '/add-hotel' with the actual route to your Add Hotel page
-    };
+    // const goToAddHotelPage = () => {
+    //   navigate('/add-hotel'); // Replace '/add-hotel' with the actual route to your Add Hotel page
+    // };
     return (
       <>
       <div className="head">
@@ -26,7 +26,7 @@ function CarrentalHead() {
       </div>
       <div className='buttons'>
       <div className='button'> 
-          <button onClick={goToAddHotelPage}>Add Car</button>
+          <button onClick={''}>Add Car</button>
           </div>
           </div>
       <hr />

@@ -1,64 +1,34 @@
-import './Portfolio.css'
-import { useNavigate } from 'react-router-dom';
+// Portfolio.jsx
 import PropTypes from "prop-types";
+import './Portfolio.css';
 
-function Portfolio({image}) {
-  let navigate = useNavigate(); 
-  const goToHotelPage = () => {
-    navigate('/hotel-Page'); // Replace '/add-hotel' with the actual route to your Add Hotel page
-  };
+function Portfolio({ images }) {
+  // Check if images is an array
+  if (!Array.isArray(images)) {
+    console.error('Expected images prop to be an array');
+    return null; // Or render a fallback UI
+  }
 
   return (
     <div className="portfolio">
-      <div className="imgs-container" onClick={goToHotelPage}>
-        <div className="box" >
-          <img src={image} alt="" />
-          <div className="caption">
-            <h4>Awesome Image</h4>
-            <p>Photography</p>
+      <div className="imgs-container">
+        {images.map((image, index) => (
+          <div key={index} className="box" onClick={() => window.location.href = `/hotel-Page`}> {/* Adjust navigation as needed */}
+            <img src={image} alt={`Image ${index}`} />
+            <div className="caption">
+              <h4>Awesome Image {index + 1}</h4>
+              <p>Photography</p>
+            </div>
           </div>
-        </div>
-        <div className="box">
-          <img src={image} alt="" />
-          <div className="caption">
-            <h4>Awesome Image</h4>
-            <p>Photography</p>
-          </div>
-        </div>
-        <div className="box">
-          <img src={image} alt="" />
-          <div className="caption">
-            <h4>Awesome Image</h4>
-            <p>Photography</p>
-          </div>
-        </div>
-        <div className="box">
-          <img src={image} alt="" />
-          <div className="caption">
-            <h4>Awesome Image</h4>
-            <p>Photography</p>
-          </div>
-        </div>
-        <div className="box">
-          <img src={image} alt="" />
-          <div className="caption">
-            <h4>Awesome Image</h4>
-            <p>Photography</p>
-          </div>
-        </div>
-        <div className="box">
-          <img src={image} alt="" />
-          <div className="caption">
-            <h4>Awesome Image</h4>
-            <p>Photography</p>
-          </div>
-        </div>
+        ))}
       </div>
       <a href="#cd" className="more">More</a>
     </div>
-  )
+  );
 }
+
 Portfolio.propTypes = {
-  image: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
-export default Portfolio
+
+export default Portfolio;
