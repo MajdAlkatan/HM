@@ -2,16 +2,20 @@ import './Add_Room.css'
 import { Dialog } from "@mui/material";
 import ImageInput from '../../../Components/input/imageinput/imageinput';
 import Inputs from './../../../Components/input/normalinput/inputs';
-import { useState } from 'react';
 import { Calendar } from 'primereact/calendar';
 import "primereact/resources/themes/lara-dark-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons'; // Import the specific icon
+import { useState } from 'react';
+
+import PriceInput from '../../../Components/input/PriceInput/PriceInput';
 
         const Add_Room = () => {
-          const[daterange,setdaterange]=useState(null)
+          const [dates, setDates] = useState(null); // Initialize with null for both start and end dates
+
+          const handleCalendarChange = (e) => {
+              setDates(e.value);
+          };
 
   return (
     
@@ -42,24 +46,22 @@ import { faCalendar } from '@fortawesome/free-solid-svg-icons'; // Import the sp
     <div className='inputs2'>
     
         
-              <Inputs  type="number" className="Price" placeholder="Price" />
-              <div className='calender'>
-              <Calendar baseZIndex={2000}  value={daterange} onChange={(event)=>setdaterange(event.value)}  selectionMode="range"/>
-              {<FontAwesomeIcon className='iconCalender'icon={faCalendar}/>  }   
-                             </div>
+    <div className='calendar-container'>
+       <label className='calendar-border-label'>Date</label>
+       <Calendar value={dates} onChange={handleCalendarChange} baseZIndex={2000} selectionMode="range"/>
+               
+       </div>
+       <PriceInput/>                           
         </div>
         <span className="tag">Paid Services</span>
         <div className='inputs2'>
         <Inputs  type="text" className="room-number" placeholder="Services" />
-        <Inputs  type="number" className="Price" placeholder="Price" />
+        <PriceInput/>                           
+
         </div>
         </div>
         </Dialog>
-      
-
-   
-
-  )
+     )
 }
 
 export default Add_Room

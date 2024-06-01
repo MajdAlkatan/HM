@@ -18,22 +18,12 @@ const PriceInput = () => {
 
   return (
     
-      // <div className="price-input-wrapper">
-      //   <input
-
-      //     type="text"
-      //     className="price-input"
-      //     onInput={(e) => {
-      //       e.target.value = e.target.value.replace(/[^0-9.]/g, '');
-      //     }}
-      //   />
-      //           <label htmlFor=''>Price</label>
-
-     
-      // </div>
+   
       <div className="inputGroup">
+     
+        <label >Price</label>
       <input type="text" />
-      <label >Name</label>
+      
       <span className="price-icon">{selectedCurrency}</span>
         <span className="price-arrow" onClick={toggleDropdown}>&#9660;</span>
         {isDropdownVisible && (
@@ -50,3 +40,16 @@ const PriceInput = () => {
 };
 
 export default PriceInput;
+   // <div className="price-input-wrapper">
+      //   <input
+
+      //     type="text"
+      //     className="price-input"
+      //     onInput={(e) => {
+      //       e.target.value = e.target.value.replace(/[^0-9.]/g, '');
+      //     }}
+      //   />
+      //           <label htmlFor=''>Price</label>
+
+     
+      // </div>

@@ -1,7 +1,6 @@
 import './NavBar.css'
 import { FaHome } from 'react-icons/fa';
 import { MdHotel } from 'react-icons/md';
-import { FaPlane } from 'react-icons/fa';
 import { FaCar } from 'react-icons/fa';
 import { IoSettings } from "react-icons/io5";
 import { IoLanguageSharp } from "react-icons/io5";
@@ -44,9 +43,7 @@ const NavBar = () => {
         <li onClick={goToHotelPage}>
           <MdHotel className="nav-icon" /> Hotel
         </li>
-        <li>
-          <FaPlane className="nav-icon" /> Flights
-        </li>
+     
         <li onClick={gotoCarRentalPage}>
           <FaCar className="nav-icon" /> Car rental
         </li>

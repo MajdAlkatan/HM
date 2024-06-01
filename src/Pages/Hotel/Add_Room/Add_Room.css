@@ -24,10 +24,6 @@
     gap: 5%;
 }
 
-.calender {
-    height: 30px;
-}
-
 .inputs2 {
     display: flex;
     flex-direction: row;
@@ -47,11 +43,5 @@
 }
 
 .add-room-container span {
-    padding-left: 5%;
-}
-
-.iconCalender {
-    position: absolute;
-    right: 27%;
-    top: 53%;
+    padding-left: 1%;
 }

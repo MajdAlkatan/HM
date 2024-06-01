@@ -1,7 +1,7 @@
 import './Head.css'
 import PropTypes from 'prop-types'; 
 
-function Head2({image,Title,subTitle,titleButton1,onClickNavigation,titleButton2}) {
+function Head2({image,Title,subTitle,titleButton1,onClickNavigation,titleButton2,onClickNavigation2}) {
 
 
 
@@ -20,7 +20,7 @@ function Head2({image,Title,subTitle,titleButton1,onClickNavigation,titleButton2
               <button onClick={onClickNavigation}>{titleButton1}</button>
             </div>
             <div className='button'>
-              <button>{titleButton2}</button>
+              <button onClick={onClickNavigation2}>{titleButton2}</button>
             </div>
           </div>
         </div>
@@ -41,6 +41,8 @@ Head2.propTypes = {
   titleButton1: PropTypes.string.isRequired, 
   titleButton2: PropTypes.string.isRequired, 
  onClickNavigation: PropTypes.func.isRequired,
+ onClickNavigation2: PropTypes.func.isRequired,
+
 
 
 
