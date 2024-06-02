@@ -6,13 +6,16 @@ import PriceInput from '../../../Components/input/PriceInput/PriceInput'
 import { Calendar } from 'primereact/calendar'
 import { useState } from 'react'
 import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
-
+import { useNavigate } from 'react-router-dom'
 
 function Add_Trip() {
   const [open, setOpen] = useState(true); 
+  let navigate = useNavigate();
 
   const handleClose = () => {
     setOpen(false);
+    navigate('/activities'); 
+
   };
     const [dates, setDates] = useState(null); 
     const handleCalendarChange = (e) => {

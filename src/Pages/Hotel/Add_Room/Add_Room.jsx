@@ -10,8 +10,10 @@ import { useState } from 'react';
 import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
 
 import PriceInput from '../../../Components/input/PriceInput/PriceInput';
+import { useNavigate } from 'react-router-dom';
 
         const Add_Room = () => {
+          let navigate=useNavigate()
           const [dates, setDates] = useState(null); // Initialize with null for both start and end dates
 
           const handleCalendarChange = (e) => {
@@ -21,6 +23,7 @@ import PriceInput from '../../../Components/input/PriceInput/PriceInput';
 
           const handleClose = () => {
             setOpen(false);
+            navigate('/hotel-Page')
           };
 
   return (

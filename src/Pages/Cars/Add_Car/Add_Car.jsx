@@ -5,13 +5,16 @@ import Inputs from '../../../Components/input/normalinput/inputs'
 import PriceInput from '../../../Components/input/PriceInput/PriceInput'
 import { useState } from 'react'
 import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
-
+import { useNavigate } from 'react-router-dom'
 
 const Add_Car = () => {
+  let navigate = useNavigate();
+
   const [open, setOpen] = useState(true); 
 
   const handleClose = () => {
     setOpen(false);
+    navigate('/CarRental_dashboard')
   };
   const [reviewOptions, setReviewOptions] = useState([]);
   const handleCheckboxChange = (event) => {
