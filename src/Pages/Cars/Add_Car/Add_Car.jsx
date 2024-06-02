@@ -4,8 +4,15 @@ import ImageInput from '../../../Components/input/imageinput/imageinput'
 import Inputs from '../../../Components/input/normalinput/inputs'
 import PriceInput from '../../../Components/input/PriceInput/PriceInput'
 import { useState } from 'react'
+import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
+
 
 const Add_Car = () => {
+  const [open, setOpen] = useState(true); 
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const [reviewOptions, setReviewOptions] = useState([]);
   const handleCheckboxChange = (event) => {
     if (event.target.checked) {
@@ -17,7 +24,7 @@ const Add_Car = () => {
     }
   };
   return (
-    <Dialog open={true} className='dialog'>
+    <Dialog open={open} className='dialog'>
     <div className='add_rentalcar'>
     <div  className="upload-image">
         <ImageInput/>
@@ -74,7 +81,10 @@ const Add_Car = () => {
           />{" "}
           </label>
         </div>
+        <div className='footer_dialog2'>
+       <Footer_Dialog onClick1={handleClose}/>
         </div>
+       </div>
     </Dialog>
   )
 }

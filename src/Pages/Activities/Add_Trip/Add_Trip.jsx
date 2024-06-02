@@ -5,8 +5,15 @@ import ImageInput from '../../../Components/input/imageinput/imageinput'
 import PriceInput from '../../../Components/input/PriceInput/PriceInput'
 import { Calendar } from 'primereact/calendar'
 import { useState } from 'react'
+import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
+
 
 function Add_Trip() {
+  const [open, setOpen] = useState(true); 
+
+  const handleClose = () => {
+    setOpen(false);
+  };
     const [dates, setDates] = useState(null); 
     const handleCalendarChange = (e) => {
         setDates(e.value);
@@ -22,7 +29,7 @@ function Add_Trip() {
       }
     };
   return (
-    <Dialog open={true} scroll="paper">
+    <Dialog open={open} scroll="paper">
     <div className='trip_container'>
         <div className='name_and_image'>
        <Inputs placeholder='Enter site name' type='text'/>
@@ -60,7 +67,11 @@ function Add_Trip() {
           />{''}
           </label>
         </div>
+        <div className='footer_dialog2'>
+       <Footer_Dialog onClick1={handleClose}/>
+       </div>
     </div>
+   
    </Dialog>
   )
 }

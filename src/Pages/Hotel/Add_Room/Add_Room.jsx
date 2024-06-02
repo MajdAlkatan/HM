@@ -7,6 +7,7 @@ import "primereact/resources/themes/lara-dark-indigo/theme.css"
 import "primereact/resources/primereact.min.css"
 import "primeicons/primeicons.css"
 import { useState } from 'react';
+import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
 
 import PriceInput from '../../../Components/input/PriceInput/PriceInput';
 
@@ -16,10 +17,15 @@ import PriceInput from '../../../Components/input/PriceInput/PriceInput';
           const handleCalendarChange = (e) => {
               setDates(e.value);
           };
+          const [open, setOpen] = useState(true); 
+
+          const handleClose = () => {
+            setOpen(false);
+          };
 
   return (
     
-      <Dialog open={true} className='dialog'>
+      <Dialog open={open} className='dialog'>
         
           <div className="add-room-container"  style={{position: 'relative', z_Index: 1500}}>
             <div  className="upload-image">
@@ -58,6 +64,9 @@ import PriceInput from '../../../Components/input/PriceInput/PriceInput';
         <Inputs  type="text" className="room-number" placeholder="Services" />
         <PriceInput/>                           
 
+        </div>
+        <div className='footer_dialog2'>
+       <Footer_Dialog onClick1={handleClose}/>
         </div>
         </div>
         </Dialog>

@@ -6,9 +6,15 @@ import PriceInput from '../../../Components/input/PriceInput/PriceInput'
 import { Calendar } from 'primereact/calendar'
 import { useState } from 'react'
 
+import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
 
 function Add_Site() {
-  const [dates, setDates] = useState(null); // Initialize with null for both start and end dates
+  const [open, setOpen] = useState(true); 
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [dates, setDates] = useState(null);
 
   const handleCalendarChange = (e) => {
       setDates(e.value);
@@ -24,8 +30,10 @@ function Add_Site() {
       }
     };
   return (
-   <Dialog open={true} >
+   <Dialog open={open} onClose={handleClose}>
+    
     <div className='site_container'>
+    
         <div className='name_and_image'>
        <Inputs placeholder='Enter site name' type='text'/>
        <ImageInput/>
@@ -50,7 +58,14 @@ function Add_Site() {
           />{''}
           </label>
         </div>
+       <div className='footer_dialog'>
+       <Footer_Dialog onClick1={handleClose}/>
+       </div>
+    
+  
+     
     </div>
+ 
    </Dialog>
   )
 }

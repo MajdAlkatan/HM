@@ -23,8 +23,15 @@ import roomservice from "./../../../assets/room services.svg";
 import pool from "./../../../assets/pool.svg";
 import halls from "./../../../assets/halls.svg";
 import { Dialog } from "@mui/material";
+import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
+
 
 const Add_Hotel = () => {
+  const [open, setOpen] = useState(true); 
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const icons = [
     { key: "1", icon: gym, text: "GYM" },
     { key: "2", icon: tv, text: "TV" },
@@ -68,7 +75,7 @@ const Add_Hotel = () => {
   const [value, setValue] = useState(0);
 
   return (
-    <Dialog open={true}   className="dialog">
+    <Dialog open={open}   className="dialog">
     <div className="add-hotel-container">
       <div className="hotel-form">
         <div className="name_hotel">
@@ -211,6 +218,9 @@ const Add_Hotel = () => {
           ))}
         </div>
       </div>
+      <div className='footer_dialog2'>
+       <Footer_Dialog onClick1={handleClose}/>
+        </div>
     </div>
     </Dialog>
   );
