@@ -2,7 +2,13 @@ import './Car_rental.css'
 import Head1 from '../../../Components/Head/Head1'
 import { Portfolio, Statistics4, Statistics2, Statistics3, Statistics1 } from '../../../Components/index'
 import s3 from '../../../assets/Car_rental2.jpg'
+import { useNavigate } from 'react-router-dom'
+import car_rental from './../../../assets/Car_rental.svg'
 function Car_rental() {
+    const navigate=useNavigate();
+    const goToAddCar = () => {
+        navigate('/add_car'); 
+      };
     // Define an array of portfolio items
     const portfolioItems = [
         s3, // First portfolio item
@@ -11,7 +17,14 @@ function Car_rental() {
     ];
     return (
         <div>
-            <Head1 />
+            <Head1 
+             image={car_rental}
+             Title='Cars Dashboard' 
+             subTitle='Here’s what’s going on at your business right now'
+             titleButton1='Add Car'
+             onClickNavigation={goToAddCar}
+            
+            />
 
             <Portfolio images={portfolioItems} />
             <div className='statistics'>

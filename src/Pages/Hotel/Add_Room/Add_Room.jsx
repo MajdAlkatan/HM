@@ -45,13 +45,13 @@ import PriceInput from '../../../Components/input/PriceInput/PriceInput';
     </div>
     <div className='inputs2'>
     
-        
+    <PriceInput/>   
     <div className='calendar-container'>
        <label className='calendar-border-label'>Date</label>
        <Calendar value={dates} onChange={handleCalendarChange} baseZIndex={2000} selectionMode="range"/>
                
        </div>
-       <PriceInput/>                           
+                                
         </div>
         <span className="tag">Paid Services</span>
         <div className='inputs2'>

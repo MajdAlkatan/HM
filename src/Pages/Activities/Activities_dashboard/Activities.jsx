@@ -2,7 +2,18 @@ import './Activities.css'
 import { Statistics4, Statistics2, Statistics3, Statistics1, ActivitesPortfolio } from '../../../Components/index'
 import image from '../../../assets/cinema.svg'
 import imags from '../../../assets/car.svg'
+import Head2 from '../../../Components/Head/Head2';
+import activity_imag from './../../../assets/activities.svg'
+import { useNavigate } from 'react-router-dom';
 function Activities() {
+  let navigate = useNavigate();
+
+  const goToAddTrip = () => {
+    navigate('/add_trip'); 
+  };
+  const goToAddSite = () => {
+    navigate('/add_site'); 
+  };
   const images = [
     image, image, image, image, image, image, image, image, image, image, image, image,
   ];
@@ -11,6 +22,16 @@ function Activities() {
   ];
   return (
     <div>
+    <Head2
+      image={activity_imag}
+      Title='Hotels Dashboard' 
+      subTitle='Here’s what’s going on at your business right now'
+      titleButton1='Add Trip'
+      titleButton2='Add Site'
+      onClickNavigation2={goToAddSite}
+      onClickNavigation={goToAddTrip}
+    />
+    
       <ActivitesPortfolio images={images} />
       <ActivitesPortfolio images={imagse} />
 
@@ -60,8 +81,10 @@ function Activities() {
         <Statistics4
           uv1={-15.69} uv2={-20.63} uv3={89.22} uv4={190.67} uv5={286.69} uv6={76.63} uv7={31.47}
         />
-      </div>
+      
     </div>
+    </div>
+
   )
 }
 //     
