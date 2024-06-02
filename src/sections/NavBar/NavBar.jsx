@@ -33,6 +33,9 @@ const NavBar = () => {
   const gotoCarRentalPage =() =>{
     navigate('/CarRental_dashboard')
   }
+  // const gotoActivitiesPage =() =>{
+  //   navigate('/Activities_dashboard')
+  // }
 
   return (
     <div className='NavBar'>
