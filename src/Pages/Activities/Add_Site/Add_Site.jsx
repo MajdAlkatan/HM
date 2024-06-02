@@ -38,7 +38,7 @@ function Add_Site() {
                
        </div>
 </div>
-<div className="guid">
+<div className="Guid">
         <span className="tag">with Guid </span>
 
         <label>
