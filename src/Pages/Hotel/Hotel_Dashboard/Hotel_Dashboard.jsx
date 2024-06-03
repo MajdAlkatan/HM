@@ -15,6 +15,9 @@ const Hotel_Dashboard = () => {
   const goToAddHotel = () => {
     navigate('/add-hotel'); 
   };
+  const goToHotelpage = () => {
+    navigate("/hotel-Page"); 
+  };
   return (
     <div>
      <Head2
@@ -25,7 +28,7 @@ const Hotel_Dashboard = () => {
        titleButton2='Delete Hotel'
 
        onClickNavigation={goToAddHotel}/>
-      <Portfolio images={portfolioItems} />
+      <Portfolio images={portfolioItems}  onClickNavigation={goToHotelpage}/>
       <div className='statistics'>
       <Statistics1
           series1={10}

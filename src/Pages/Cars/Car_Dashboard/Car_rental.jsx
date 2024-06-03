@@ -26,7 +26,7 @@ function Car_rental() {
             
             />
 
-            <Portfolio images={portfolioItems} />
+            <Portfolio images={portfolioItems} onClickNavigation={'#ff'} />
             <div className='statistics'>
                 <Statistics1
                     series1={10}
