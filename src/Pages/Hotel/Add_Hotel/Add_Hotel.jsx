@@ -24,13 +24,15 @@ import pool from "./../../../assets/pool.svg";
 import halls from "./../../../assets/halls.svg";
 import { Dialog } from "@mui/material";
 import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
+import { useNavigate } from "react-router-dom";
 
 
 const Add_Hotel = () => {
   const [open, setOpen] = useState(true); 
-
+  let navigate=useNavigate()
   const handleClose = () => {
     setOpen(false);
+    navigate('/hotel-dashboad')
   };
   const icons = [
     { key: "1", icon: gym, text: "GYM" },

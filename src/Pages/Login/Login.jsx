@@ -1,13 +1,13 @@
 import './Login.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/fontawesome-free-solid';
 import videoFile from '../../assets/vid.mp4';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from './LoginSlice';
+import { loginUser } from './LoginSlice';
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 const Login = () => {
   const dispatch = useDispatch();
 
@@ -15,55 +15,21 @@ const Login = () => {
   // const loginState = useSelector(state => state.login);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false); // Add loading state
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
  
   
 
+  const handleLogin = () => {
+    dispatch(loginUser({email,password}))
+};
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (loading) return; // Prevent multiple clicks if already loading
-
-    // Clear previous error messages
-    setEmailError('');
-    setPasswordError('');
-
-    // Validate email and password
-
-
-    if ((!email && !password)) {
-      setEmailError('Please enter your email');
-      setPasswordError('Please enter your password');
-
-    } else if (!email) {
-      setEmailError('Please enter your email');
-
-    } else if(!password) {
-      setPasswordError('Please enter your password');
+useEffect(() => {
+    if (isAuthenticated) {
+        navigate('/hotel-Page'); 
     }
-
-
-    setLoading(true); 
-
-    dispatch(login({ email, password }))
-      .then((result) => {
-        if (result.payload) {
-          console.log('Login successful');
-          navigate('/home');
-        } else {
-          console.log('Invalid email or password');
-        }
-      })
-      .catch((error) => {
-        console.error('Login failed:', error);
-      })
-      .finally(() => {
-        setLoading(false); // Reset loading state regardless of success or failure
-      });
-  };
+}, [isAuthenticated, navigate]);
 
   return (
     <>
@@ -91,7 +57,6 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
 
           />
-          {emailError && <h6 className='error'>{emailError}</h6>}
           { <FontAwesomeIcon className='icon-user' icon={faUser} /> }
           <input
             className='password'
@@ -102,11 +67,10 @@ const Login = () => {
                 
           />
           { <FontAwesomeIcon className='icon-password' icon="fa-solid fa-lock" /> }
-          {passwordError && <h6 className='error'>{passwordError}</h6>}
 
           <Link href="/" className='forget-password'>forget your password?</Link>
         </div>
-        <button className='login-button' onClick={handleLogin} disabled={loading}>Login</button>
+        <button className='login-button' onClick={handleLogin} >Login</button>
       </div>
     </div>
     </>

@@ -5,14 +5,19 @@ import ImageInput from '../../../Components/input/imageinput/imageinput'
 import PriceInput from '../../../Components/input/PriceInput/PriceInput'
 import { Calendar } from 'primereact/calendar'
 import { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
 
 function Add_Site() {
   const [open, setOpen] = useState(true); 
+  let navigate = useNavigate();
+
 
   const handleClose = () => {
     setOpen(false);
+    navigate('/activities'); 
+
+    
   };
   const [dates, setDates] = useState(null);
 
