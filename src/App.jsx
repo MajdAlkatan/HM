@@ -6,8 +6,6 @@ import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
 import Header from './sections/Header/Header'
 import NavBar from './sections/NavBar/NavBar'
 import Footer from './sections/Footer/Footer'
-
-
 import Container from './sections/Container/Container'
 import Container2 from './sections/Container2/Container2'
 import Hotel_Dashboard from './Pages/Hotel/Hotel_Dashboard/Hotel_Dashboard'
@@ -16,7 +14,6 @@ import Home from './Pages/Home/Home';
 import Hotel_Page from './Pages/Hotel/Hotel-Page/Hotel-Page';
 import Add_Room from './Pages/Hotel/Add_Room/Add_Room';
 import Activities from './Pages/Activities/Activities_dashboard/Activities';
-
 import Car_rental from './Pages/Cars/Car_Dashboard/Car_rental';
 import Add_Car from './Pages/Cars/Add_Car/Add_Car';
 import Add_Site from './Pages/Activities/Add_Site/Add_Site';
