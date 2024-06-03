@@ -1,8 +1,8 @@
 import './Activities.css'
 import { Statistics4, Statistics2, Statistics3, Statistics1, ActivitesPortfolio } from '../../../Components/index'
+import Head2 from '../../../Components/Head/Head2';
 import image from '../../../assets/cinema.svg'
 import imags from '../../../assets/car.svg'
-import Head2 from '../../../Components/Head/Head2';
 import activity_imag from './../../../assets/activities.svg'
 import { useNavigate } from 'react-router-dom';
 function Activities() {
