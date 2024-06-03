@@ -6,8 +6,11 @@ import imags from '../../../assets/car.svg'
 import activity_imag from './../../../assets/activities.svg'
 import { useNavigate } from 'react-router-dom';
 function Activities() {
-  let navigate = useNavigate();
 
+  let navigate = useNavigate();
+  const goTosite=()=>{
+    navigate('/Site')
+  };
   const goToAddTrip = () => {
     navigate('/add_trip'); 
   };
@@ -32,8 +35,8 @@ function Activities() {
       onClickNavigation={goToAddTrip}
     />
     
-      <ActivitesPortfolio images={images} />
-      <ActivitesPortfolio images={imagse} />
+      <ActivitesPortfolio images={images} onClick={goTosite}/>
+      <ActivitesPortfolio images={imagse} onClick={''}/>
 
       <div className='statistics'>
         <Statistics1

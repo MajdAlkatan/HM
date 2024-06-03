@@ -42,7 +42,7 @@ function Portfolio({ images,onClickNavigation }) {
     <div className="portfolio">
       <Slider {...settings} className="imgs-container">
         {images.map((image, index) => (
-          <div key={index} className="box" onClick={() =>{onClickNavigation}}> {/* Adjust navigation as needed */}
+          <div key={index} className="box" onClick={onClickNavigation}> {/* Adjust navigation as needed */}
             <img src={image} alt={`Image ${index}`} />
             <div className="caption">
               <h4>Awesome Image {index + 1}</h4>

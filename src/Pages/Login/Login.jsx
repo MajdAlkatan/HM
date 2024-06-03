@@ -15,8 +15,7 @@ const Login = () => {
   // const loginState = useSelector(state => state.login);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+
   const navigate = useNavigate();
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
  
@@ -58,7 +57,6 @@ useEffect(() => {
             onChange={(e) => setEmail(e.target.value)}
 
           />
-          {emailError && <h6 className='error'>{emailError}</h6>}
           { <FontAwesomeIcon className='icon-user' icon={faUser} /> }
           <input
             className='password'
@@ -69,7 +67,6 @@ useEffect(() => {
                 
           />
           { <FontAwesomeIcon className='icon-password' icon="fa-solid fa-lock" /> }
-          {passwordError && <h6 className='error'>{passwordError}</h6>}
 
           <Link href="/" className='forget-password'>forget your password?</Link>
         </div>

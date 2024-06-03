@@ -4,7 +4,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './ActivitesPortfolio.css';
 
-function Home({ images }) {
+function Home({ images,onClick }) {
+ 
   if (!Array.isArray(images)) {
     console.error('Expected images prop to be an array');
     return null; // Or render a fallback UI
@@ -41,7 +42,7 @@ function Home({ images }) {
       <div className="img-container">
         <Slider {...settings}>
           {images.map((image, index) => (
-            <div key={index} className="boxs" >
+            <div key={index} className="boxs" onClick={onClick}>
               <img src={image} alt={`Image ${index}`} />
               <div className="caption">
                 <h4>Awesome Image {index + 1}</h4>
@@ -58,6 +59,7 @@ function Home({ images }) {
 
 Home.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onClick:PropTypes.func.isRequired
 };
 
 export default Home;
