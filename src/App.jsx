@@ -27,6 +27,7 @@ function App() {
 
 
 <Router>
+
       <div>
         <Header />
         <Container>
@@ -57,7 +58,7 @@ function App() {
         </Container>
         <Footer />
       </div>
-    </Router>
+    </Router> 
   )
 }
 

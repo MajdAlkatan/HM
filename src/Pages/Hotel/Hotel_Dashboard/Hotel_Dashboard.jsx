@@ -23,6 +23,7 @@ const Hotel_Dashboard = () => {
        subTitle='Here’s what’s going on at your business right now'
        titleButton1='Add Hotel'
        titleButton2='Delete Hotel'
+       onClickNavigation2={goToAddHotel}
 
        onClickNavigation={goToAddHotel}/>
       <Portfolio images={portfolioItems} />

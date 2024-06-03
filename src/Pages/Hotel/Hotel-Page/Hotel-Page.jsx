@@ -1,5 +1,5 @@
 import "./Hotel-Page.css";
-import Head2 from "../../../Components/Head/Head2";
+import Head1 from "../../../Components/Head/Head1";
 import s2 from "../../../assets/hotel-page.svg";
 import s3 from './../../../assets/hotel-dashboard.svg'
 import { useNavigate } from 'react-router-dom'
@@ -25,12 +25,11 @@ const Hotel_Page = () => {
     navigate('/add-room'); }
   return (
     <div>
-<Head2
+<Head1
        image={s3}
        Title='Hotels Dashboard' 
        subTitle='Here’s what’s going on at your business right now'
        titleButton1='Add Room'
-       titleButton2='Delete Room'
 
        onClickNavigation={goToAddHotel}/>      <Portfolio images={portfolioItems} />
       <div className="statistics">

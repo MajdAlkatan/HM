@@ -8,7 +8,7 @@ function Portfolio({ images }) {
   // Check if images is an array
   if (!Array.isArray(images)) {
     console.error('Expected images prop to be an array');
-    return null; // Or render a fallback UI
+    return null; 
   }
 
   // Slider settings
