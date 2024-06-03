@@ -10,13 +10,13 @@ const Hotel_Dashboard = () => {
     s1, // Second portfolio item
     // Add more items as needed
   ];
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const goToAddHotel = () => {
     navigate('/add-hotel'); 
   };
   const goToHotelpage = () => {
-    navigate("/hotel-Page"); 
+    navigate("/Hotel-Page"); 
   };
   return (
     <div>
@@ -26,9 +26,8 @@ const Hotel_Dashboard = () => {
        subTitle='Here’s what’s going on at your business right now'
        titleButton1='Add Hotel'
        titleButton2='Delete Hotel'
-
        onClickNavigation={goToAddHotel}/>
-      <Portfolio images={portfolioItems}  onClickNavigation={goToHotelpage}/>
+      <Portfolio images={portfolioItems}  onClickNav={goToHotelpage}/>
       <div className='statistics'>
       <Statistics1
           series1={10}

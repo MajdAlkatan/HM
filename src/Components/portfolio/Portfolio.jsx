@@ -4,7 +4,7 @@ import './Portfolio.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Portfolio({ images,onClickNavigation }) {
+function Portfolio({ images, onClickNav }) {
   // Check if images is an array
   if (!Array.isArray(images)) {
     console.error('Expected images prop to be an array');
@@ -40,9 +40,9 @@ function Portfolio({ images,onClickNavigation }) {
 
   return (
     <div className="portfolio">
-      <Slider {...settings} className="imgs-container">
+      <Slider {...settings} className="imgs-container" >
         {images.map((image, index) => (
-          <div key={index} className="box" onClick={() =>{onClickNavigation}}> {/* Adjust navigation as needed */}
+          <div key={index} className="box"onClick={() => onClickNav()}> {/* Adjust navigation as needed */}
             <img src={image} alt={`Image ${index}`} />
             <div className="caption">
               <h4>Awesome Image {index + 1}</h4>
@@ -58,7 +58,7 @@ function Portfolio({ images,onClickNavigation }) {
 
 Portfolio.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClickNavigation:PropTypes.string.isRequired
+  onClickNav: PropTypes.func.isRequired
 };
 
 export default Portfolio;
