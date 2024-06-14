@@ -40,7 +40,7 @@ function Car_rental() {
             
             />
 
-            <Portfolio images={portfolioItems.map(items => items.url)} onClickNav={'#ff'}  />
+            <Portfolio images={portfolioItems} onClickNav={'#ff'}  />
             <div className='statistics'>
                 <Statistics1
                     series1={10}
