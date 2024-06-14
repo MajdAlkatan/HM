@@ -19,6 +19,7 @@ function Activities() {
   };
   const images = [
     image, image, image, image, image, image, image, image, image, image, image, image,
+    
   ];
   const imagse = [
     imags, imags, imags, imags, imags, imags, imags, imags, imags, imags, imags, imags,
