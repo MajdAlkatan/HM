@@ -9,7 +9,7 @@ import axios from 'axios';
 
 const Hotel_Dashboard = () => {
   const navigate = useNavigate();
-  const [portfolioItems, setPortfolioItems] = useState([]); // State to hold fetched images
+  const [hotelsData, setPortfolioItems] = useState([]); // State to hold fetched images
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,14 +38,14 @@ const Hotel_Dashboard = () => {
     <div>
       <Head2
         image={s2}
-        Title='Hotels Dashboard'
-        subTitle='Here’s what’s going on at your business right now'
-        titleButton1='Add Hotel'
-        titleButton2='Delete Hotel'
+        Title="Hotels Dashboard"
+        subTitle="Here’s what’s going on at your business right now"
+        titleButton1="Add Hotel"
+        titleButton2="Delete Hotel"
         onClickNavigation={goToAddHotel}
       />
-      <Portfolio images={portfolioItems.map(items => items.url)} onClickNav={goToHotelpage} captionLabel={portfolioItems.map(item => item.id)} captionText={portfolioItems.map(item => item.title)} />
-      <div className='statistics'>
+      {<Portfolio images={hotelsData} onClickNav={goToHotelpage} />}
+      <div className="statistics">
         <Statistics1
           series1={10}
           series2={30}
@@ -65,11 +65,11 @@ const Hotel_Dashboard = () => {
           value2={200}
           value3={300}
           value4={500}
-          label1={'Group A'}
-          label2={'Group B'}
-          label3={'Group C'}
-          label4={'Group D'}
-        />
+          label1={"Group A"}
+          label2={"Group B"}
+          label3={"Group C"}
+          label4={"Group D"}
+        />{" "}
         <Statistics3
           a1={2}
           a2={3}

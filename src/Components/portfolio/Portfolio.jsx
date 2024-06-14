@@ -4,17 +4,20 @@ import './Portfolio.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Portfolio({ images, onClickNav, captionText, captionLabel }) {
+function Portfolio({ images, onClickNav }) {
   // Check if images is an array
-
+  if (!Array.isArray(images)) {
+    console.error('Expected images prop to be an array', images);
+    return null; 
+  }
 
   // Slider settings
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 4,
+    slidesToScroll: 2,
     responsive: [
       {
         breakpoint: 1024,
@@ -28,8 +31,8 @@ function Portfolio({ images, onClickNav, captionText, captionLabel }) {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToShow: 2,
+          slidesToScroll: 2
         }
       }
     ]
@@ -37,14 +40,13 @@ function Portfolio({ images, onClickNav, captionText, captionLabel }) {
 
   return (
     <div className="portfolio">
-      <Slider {...settings} className="imgs-container" >
-        {images.map((image, index) => (
-          <div key={index} className="box" onClick={() => onClickNav()}>
-            <img src={image} alt={`Image ${index}`} />
+      <Slider {...settings} className="imgs-container">
+        {images.map((image) => (
+          <div key={image.id} className="box" onClick={onClickNav}>
+            <img src={image.url} alt={image.title} />
             <div className="caption">
-              
-              <h4>{captionText[index]}</h4>
-              <p>{captionLabel[index]}</p>
+              <h4>{image.title}</h4>
+              <p>Album ID: {image.albumId}</p>
             </div>
           </div>
         ))}
@@ -55,10 +57,13 @@ function Portfolio({ images, onClickNav, captionText, captionLabel }) {
 }
 
 Portfolio.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  images: PropTypes.arrayOf(PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    albumId: PropTypes.number.isRequired,
+  })).isRequired,
   onClickNav: PropTypes.func.isRequired,
-  captionText: PropTypes.string, // New prop for h4 text
-  captionLabel: PropTypes.string // New prop for p text
 };
+
 
 export default Portfolio;
