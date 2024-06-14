@@ -1,20 +1,34 @@
 import './Car_rental.css'
 import Head1 from '../../../Components/Head/Head1'
 import { Portfolio, Statistics4, Statistics2, Statistics3, Statistics1 } from '../../../Components/index'
-import s3 from '../../../assets/Car_rental2.jpg'
 import { useNavigate } from 'react-router-dom'
 import car_rental from './../../../assets/Car_rental.svg'
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+
 function Car_rental() {
+    const [portfolioItems, setPortfolioItems] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axios.get('https://jsonplaceholder.typicode.com/photos'); // Fetching photos
+            // Slice the array to get only the first 5 items
+            const firstFiveItems = response.data.slice(0, 100);
+            setPortfolioItems(firstFiveItems);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
     const navigate=useNavigate();
     const goToAddCar = () => {
         navigate('/add_car'); 
       };
     // Define an array of portfolio items
-    const portfolioItems = [
-        s3, // First portfolio item
-        s3  // Second portfolio item
-        // Add more items as needed
-    ];
+
     return (
         <div>
             <Head1 
@@ -26,7 +40,7 @@ function Car_rental() {
             
             />
 
-            <Portfolio images={portfolioItems} onClickNavigation={'#ff'} />
+            <Portfolio images={portfolioItems.map(items => items.url)} onClickNav={'#ff'} captionLabel={portfolioItems.map(item => item.id)} captionText={portfolioItems.map(item => item.title)} />
             <div className='statistics'>
                 <Statistics1
                     series1={10}

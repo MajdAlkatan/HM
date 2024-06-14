@@ -4,20 +4,17 @@ import './Portfolio.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Portfolio({ images, onClickNav }) {
+function Portfolio({ images, onClickNav, captionText, captionLabel }) {
   // Check if images is an array
-  if (!Array.isArray(images)) {
-    console.error('Expected images prop to be an array');
-    return null; 
-  }
+
 
   // Slider settings
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     responsive: [
       {
         breakpoint: 1024,
@@ -42,11 +39,12 @@ function Portfolio({ images, onClickNav }) {
     <div className="portfolio">
       <Slider {...settings} className="imgs-container" >
         {images.map((image, index) => (
-          <div key={index} className="box"onClick={() => onClickNav()}> {/* Adjust navigation as needed */}
+          <div key={index} className="box" onClick={() => onClickNav()}>
             <img src={image} alt={`Image ${index}`} />
             <div className="caption">
-              <h4>Awesome Image {index + 1}</h4>
-              <p>Photography</p>
+              
+              <h4>{captionText[index]}</h4>
+              <p>{captionLabel[index]}</p>
             </div>
           </div>
         ))}
@@ -58,7 +56,9 @@ function Portfolio({ images, onClickNav }) {
 
 Portfolio.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClickNav: PropTypes.func.isRequired
+  onClickNav: PropTypes.func.isRequired,
+  captionText: PropTypes.string, // New prop for h4 text
+  captionLabel: PropTypes.string // New prop for p text
 };
 
 export default Portfolio;
