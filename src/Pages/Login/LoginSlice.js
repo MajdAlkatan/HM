@@ -16,6 +16,7 @@ export const loginUser = createAsyncThunk(
                     headers: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
+                        Authorization: localStorage.getItem('token'),
                     },
                 }
             );
@@ -39,22 +40,29 @@ const loginSlice = createSlice({
     initialState: {
         isAuthenticated: false,
         loading: false,
-        user: null, // Add a user field to store user data or token
+        user: null,
+        token: "" // Add a user field to store user data or token
     },
     reducers: {
         setUser: (state, action) => {
             state.user = action.payload; // Set the user data or token
             state.isAuthenticated = true; // Mark the user as authenticated
         },
+        AddToken: (state, action) => {
+            state.token = localStorage;
+        }
     },
     extraReducers: (builder) => {
         builder
             .addCase(loginUser.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(loginUser.fulfilled, (state, action) => {
+            .addCase(loginUser.fulfilled, (state, { payload: { user, token } }) => {
+                state.token = token,
+                    state.user = user
+                localStorage.getItem("token", JSON.stringify(token))
+                localStorage.getItem("user", JSON.stringify(user))
                 state.loading = false;
-                state.user = action.payload; // Set the user data or token
                 state.isAuthenticated = true; // Mark the user as authenticated
             })
             .addCase(loginUser.rejected, (state) => {

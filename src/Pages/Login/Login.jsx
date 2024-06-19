@@ -27,7 +27,7 @@ const Login = () => {
 
 useEffect(() => {
     if (isAuthenticated) {
-        navigate('/hotel-Page'); 
+        navigate('/home-Page'); 
     }
 }, [isAuthenticated, navigate]);
 

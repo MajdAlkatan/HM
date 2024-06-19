@@ -25,8 +25,10 @@ function Site() {
       onClickNavigation2={goToAddSite}
       onClickNavigation={goToAddTrip}
     />
+  
     <div className="statistics">
         <Statistics5/>
+      
     </div>
     </div>
   )

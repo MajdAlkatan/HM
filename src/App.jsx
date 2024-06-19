@@ -20,6 +20,7 @@ import Add_Site from './Pages/Activities/Add_Site/Add_Site';
 import Add_Trip from './Pages/Activities/Add_Trip/Add_Trip';
 import Site from './Pages/Activities/Site/Site'
 import Userpage from './Pages/Userpage/Userpage'
+import Login from './Pages/Login/Login';
 function App() {
 
 
@@ -30,13 +31,15 @@ function App() {
     <Router>
 
       <div>
+       
         <Header />
         <Container>
           <NavBar />
           <Container2>
 
             <Routes>
-              <Route path="/" element={<Home />} />
+                <Route path='/' element={<Login/>}/>
+              <Route path="/home-Page" element={<Home />} />
 
 
               <Route path="/hotel-dashboad" element={<Hotel_Dashboard />} />
