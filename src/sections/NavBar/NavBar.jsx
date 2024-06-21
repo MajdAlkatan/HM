@@ -25,7 +25,7 @@ const NavBar = () => {
     navigate('/hotel-dashboad'); 
   };
   const goToHomePage = () => {
-    navigate('/'); 
+    navigate('/home-Page'); 
   };
   const goToActivitiesPage = () => {
     navigate('/activities'); 

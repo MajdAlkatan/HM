@@ -24,8 +24,10 @@ export const loginUser = createAsyncThunk(
             const data = res.data;
 
             if (res.status === 200) {
-                console.log(res.data);
-                return data; // Return the user data or token
+                localStorage.setItem('token', res.data.access);
+
+                console.log(res.data.access);
+                return data;
             } else {
                 throw new Error('Login failed');
             }
@@ -48,7 +50,7 @@ const loginSlice = createSlice({
             state.user = action.payload; // Set the user data or token
             state.isAuthenticated = true; // Mark the user as authenticated
         },
-        AddToken: (state, action) => {
+        AddToken: (state) => {
             state.token = localStorage;
         }
     },
