@@ -1,14 +1,20 @@
-import { Dialog } from '@mui/material'
 import './Add_Site.css'
+import { Dialog } from '@mui/material'
 import Inputs from '../../../Components/input/normalinput/inputs'
 import ImageInput from '../../../Components/input/imageinput/imageinput'
-import PriceInput from '../../../Components/input/PriceInput/PriceInput'
-import { Calendar } from 'primereact/calendar'
+import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
+import { addSite } from './Add_SiteSlice'
 
 function Add_Site() {
+  const [photo, setPhoto] = useState(null); 
+  const [name, setName] = useState(''); 
+  const [description, setDescription] = useState(''); 
+  const [address, setAddress] = useState(''); 
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(true); 
   let navigate = useNavigate();
 
@@ -16,55 +22,50 @@ function Add_Site() {
   const handleClose = () => {
     setOpen(false);
     navigate('/activities'); 
-
+    
     
   };
-  const [dates, setDates] = useState(null);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("handleSubmit called");
 
-  const handleCalendarChange = (e) => {
-      setDates(e.value);
+    console.log(
+
+      name,
+        photo,
+       address,
+        description,
+    );
+    dispatch(
+      addSite({
+      
+        name,
+        photo,
+       address,
+        description,
+      
+        
+      })
+    );
   };
-    const [reviewOptions, setReviewOptions] = useState([]);
-    const handleCheckboxChange = (event) => {
-      if (event.target.checked) {
-        setReviewOptions([...reviewOptions, event.target.value]);
-      } else {
-        setReviewOptions(
-          reviewOptions.filter((option) => option !== event.target.value)
-        );
-      }
-    };
+
   return (
    <Dialog open={open} onClose={handleClose}>
     
     <div className='site_container'>
     
         <div className='name_and_image'>
-       <Inputs placeholder='Enter site name' type='text'/>
-       <ImageInput/>
+       <Inputs placeholder='Enter site name' type='text' onChange={(e)=>setName(e.target.value)}/>
+       <ImageInput onFilesSelected={(e)=>setPhoto(e.target.files[0])}/>
        </div>
-       <div className='inputs'>
-<PriceInput />
-<div className='calendar-container'>
-       <label className='calendar-border-label'>Date</label>
-       <Calendar value={dates} onChange={handleCalendarChange} baseZIndex={2000} selectionMode="range"/>
-               
-       </div>
-</div>
-<div className="Guid">
-        <span className="tag">with Guid </span>
+       <div className='inputss'>
+<Inputs type='text' placeholder='description' onChange={(e)=>setDescription(e.target.value)}/>
+<Inputs type='text' placeholder='address' onChange={(e)=>setAddress(e.target.value)}/>
 
-        <label>
-          <input
-            className="inputs"
-            type="checkbox"
-            value="Option 1"
-            onChange={handleCheckboxChange} 
-          />{''}
-          </label>
-        </div>
+       </div>
+
        <div className='footer_dialog'>
-       <Footer_Dialog onClick1={handleClose}/>
+       <Footer_Dialog onClick1={handleClose} onClick2={handleSubmit}/>
        </div>
     
   

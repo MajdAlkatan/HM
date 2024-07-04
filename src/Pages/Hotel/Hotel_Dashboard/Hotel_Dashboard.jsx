@@ -1,39 +1,28 @@
-import { useState, useEffect } from 'react';
 import './Hotel_Dashboard.css';
-// import s1 from './../../../assets/shuffle-01.jpg';
 import s2 from './../../../assets/hotel-dashboard.svg';
 import Head2 from './../../../Components/Head/Head2';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
 import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from './../../../Components/index';
-import axios from 'axios';
-
-const Hotel_Dashboard = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import {HotelPage} from './HotelPage';
+import { useEffect } from 'react';
+const Hotel_Dashboard = () => {                            
   const navigate = useNavigate();
-  const [hotelsData, setPortfolioItems] = useState([]); // State to hold fetched images
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/photos'); // Fetching photos
-        // Slice the array to get only the first 5 items
-        const firstFiveItems = response.data.slice(0, 100);
-        setPortfolioItems(firstFiveItems);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const dispatch=useDispatch();
+ 
+  const hotelsData=useSelector((state) => state.hotel.data);
+   console.log(hotelsData)
   const goToAddHotel = () => {
-    navigate('/add-hotel');
-  };
+  navigate('/add-hotel');
+};
 
   const goToHotelpage = () => {
     navigate("/Hotel-Page");
-  };
-
-
+  };  
+  useEffect(() => {
+    dispatch(HotelPage());
+  }, [dispatch]);
+  
   return (
     <div>
       <Head2

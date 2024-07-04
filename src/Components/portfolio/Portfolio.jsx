@@ -5,13 +5,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Portfolio({ images, onClickNav }) {
-  // Check if images is an array
   if (!Array.isArray(images)) {
     console.error('Expected images prop to be an array', images);
     return null; 
   }
 
-  // Slider settings
   const settings = {
     dots: true,
     infinite: false,
@@ -43,10 +41,10 @@ function Portfolio({ images, onClickNav }) {
       <Slider {...settings} className="imgs-container">
         {images.map((image) => (
           <div key={image.id} className="box" onClick={onClickNav}>
-            <img src={image.url} alt={image.title} />
+            <img src={image.photo} alt={''} />
             <div className="caption">
-              <h4>{image.title}</h4>
-              <p>Album ID: {image.albumId}</p>
+              <h4>{''}</h4>
+              <p>Album ID: {''}</p>
             </div>
           </div>
         ))}

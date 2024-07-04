@@ -2,8 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-export const HotelPage = createAsyncThunk(
-    'hotel/HotelPage',
+export const ActivitesPage = createAsyncThunk(
+    'activites/ActivitesPage',
     async() => {
         try {
             const response = await axios.get("http://localhost:8000/services/activities/sites/", {
@@ -14,19 +14,15 @@ export const HotelPage = createAsyncThunk(
             const data = response.data;
             console.log(data)
             return data;
-
-
-
         } catch (error) {
             console.error("Error fetching data:", error);
             throw error;
         }
-
     }
 );
 
-const HotelSlice = createSlice({
-    name: "hotel",
+const ActivitesSlice = createSlice({
+    name: "activites",
     initialState: {
         data: [],
         loading: false
@@ -36,15 +32,15 @@ const HotelSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(HotelPage.pending, (state, action) => {
+            .addCase(ActivitesPage.pending, (state, action) => {
                 console.log(action);
                 state.loading = true;
             })
-            .addCase(HotelPage.fulfilled, (state, action) => {
+            .addCase(ActivitesPage.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
             })
-            .addCase(HotelPage.rejected, (state) => {
+            .addCase(ActivitesPage.rejected, (state) => {
                 state.loading = false;
                 state.error = "Error fetching data";
             });
@@ -52,4 +48,4 @@ const HotelSlice = createSlice({
 });
 
 
-export default HotelSlice.reducer;
+export default ActivitesSlice.reducer;

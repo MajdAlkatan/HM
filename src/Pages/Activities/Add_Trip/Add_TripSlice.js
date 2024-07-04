@@ -5,27 +5,38 @@ export const addTour = createAsyncThunk(
     "tours/addTour",
     async({ name, photos, duration, refund_rate, description, allow_points, guid_id, takeoff_date }, thunkAPI) => {
         const formData = new FormData();
-        const token = thunkAPI.getState().auth.token;
-        console.log(token)
-        formData.append("name", name);
-        formData.append("duration", duration.toString());
-        formData.append("refund_rate", refund_rate.toString());
-        formData.append("description", description);
-        formData.append("allow_points", JSON.stringify(allow_points));
-        formData.append("guid_id", guid_id);
-        formData.append("takeoff_date", takeoff_date);
 
+        formData.append("name", name);
+        formData.append("duration", duration);
+        formData.append("refund_rate", refund_rate);
+        formData.append("description", description);
+        formData.append("allow_points", allow_points);
+        formData.append("guide_id", guid_id);
+        formData.append("takeoff_date", takeoff_date);
         photos.forEach((photo, index) => {
-            formData.append(`photos[${index}]`, photo);
+            formData.append(`photos[${index}]image`, photo);
         });
 
+
+
+
+
+
+        console.log(`JWT ${localStorage.getItem('token')}`)
+
+
+
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
         try {
             const res = await axios.post(
                 "http://localhost:8000/services/activities/tours/",
                 formData, {
                     headers: {
-                        'Accept': "application/json",
-                        // Authorization: `JWT ${`token`}`,
+                        Authorization: `JWT ${localStorage.getItem('token')}`,
+
+
                     },
 
                 }
@@ -37,19 +48,26 @@ export const addTour = createAsyncThunk(
                 console.log(res.data);
                 return data;
             } else {
-                throw new Error('make tour failed');
+                throw new Error('Failed to make tour');
             }
         } catch (err) {
-            return thunkAPI.rejectWithValue(err.message || 'An unknown error occurred');
+            if (err.response && err.response.status === 400) {
+                console.error(`Status: ${err.response.status}, Status Text: ${err.response.statusText}`);
+                console.error(err.response.data);
+            } else {
+                const errorMessage = err.response && err.response.data ? err.response.data.message : err.message;
+                console.error(errorMessage);
+            }
+            return thunkAPI.rejectWithValue('error');
         }
-    }
-);
+    });
+
 
 const TourSlice = createSlice({
     name: "tours",
     initialState: {
         loading: false,
-        tours: null,
+        tours: [],
         isAuthenticated: false,
         token: null,
     },
@@ -71,8 +89,10 @@ const TourSlice = createSlice({
                 state.token = localStorage.getItem('token');
                 state.tours.push(action.payload);
             })
-            .addCase(addTour.rejected, (state) => {
+            .addCase(addTour.rejected, (state, action) => {
                 state.loading = false;
+                console.error('Failed to add tour:', action.error.message);
+
             });
     },
 });

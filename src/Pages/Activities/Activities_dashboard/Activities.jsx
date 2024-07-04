@@ -1,30 +1,33 @@
 import './Activities.css'
-import { Statistics4, Statistics2, Statistics3, Statistics1, ActivitesPortfolio } from '../../../Components/index'
+import { Statistics4, Statistics2, Statistics3, Statistics1,ActivitesPortfolio } from '../../../Components/index'
 import Head2 from '../../../Components/Head/Head2';
-import image from '../../../assets/cinema.svg'
-import imags from '../../../assets/car.svg'
 import activity_imag from './../../../assets/activities.svg'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { ActivitesPage } from '../Activities_dashboard/Activites_Page';
 function Activities() {
 
   let navigate = useNavigate();
-  const goTosite=()=>{
-    navigate('/Site')
-  };
+ 
   const goToAddTrip = () => {
     navigate('/add_trip'); 
   };
   const goToAddSite = () => {
     navigate('/add_site'); 
   };
-  const images = [
-    image, image, image, image, image, image, image, image, image, image, image, image,
-    
-  ];
-  const imagse = [
-    imags, imags, imags, imags, imags, imags, imags, imags, imags, imags, imags, imags,
-  ];
-  return (
+  const goToSite = () => {
+    navigate('/Site'); 
+  };
+
+  const Sites=useSelector((state)=>state.activites.data);
+  console.log(Sites)
+  const dispatch=useDispatch();
+  useEffect(() => {
+    dispatch(ActivitesPage());
+  }, [dispatch]);
+  
+    return (
     <div>
     <Head2
       image={activity_imag}
@@ -35,9 +38,8 @@ function Activities() {
       onClickNavigation2={goToAddSite}
       onClickNavigation={goToAddTrip}
     />
-    
-      <ActivitesPortfolio images={images} onClick={goTosite}/>
-      <ActivitesPortfolio images={imagse} onClick={''}/>
+      <ActivitesPortfolio images={Sites} onClickNav={goToSite}/>
+      <ActivitesPortfolio images={Sites} onClickNav={goToAddSite}/>
 
       <div className='statistics'>
         <Statistics1

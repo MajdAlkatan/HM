@@ -62,3 +62,24 @@
         padding-left: 5%;
         padding-top: 5%;
     }
+    
+    .custom-dropdown {
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 300px;
+        position: relative;
+    }
+    
+    .dropdown-item {
+        cursor: pointer;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .guide-avatar {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 50%;
+    }

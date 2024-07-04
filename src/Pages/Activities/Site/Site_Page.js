@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-export const HotelPage = createAsyncThunk(
-    'hotel/HotelPage',
+export const SitePage = createAsyncThunk(
+    'site/SitePage',
     async() => {
         try {
-            const response = await axios.get("http://localhost:8000/services/activities/sites/", {
+            const response = await axios.get("http://localhost:8000/services/activities/sites/13", {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem('token')}`,
                 }
@@ -14,19 +14,15 @@ export const HotelPage = createAsyncThunk(
             const data = response.data;
             console.log(data)
             return data;
-
-
-
         } catch (error) {
             console.error("Error fetching data:", error);
             throw error;
         }
-
     }
 );
 
-const HotelSlice = createSlice({
-    name: "hotel",
+const SiteSlice = createSlice({
+    name: "site",
     initialState: {
         data: [],
         loading: false
@@ -36,15 +32,15 @@ const HotelSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(HotelPage.pending, (state, action) => {
+            .addCase(SitePage.pending, (state, action) => {
                 console.log(action);
                 state.loading = true;
             })
-            .addCase(HotelPage.fulfilled, (state, action) => {
+            .addCase(SitePage.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload;
             })
-            .addCase(HotelPage.rejected, (state) => {
+            .addCase(SitePage.rejected, (state) => {
                 state.loading = false;
                 state.error = "Error fetching data";
             });
@@ -52,4 +48,4 @@ const HotelSlice = createSlice({
 });
 
 
-export default HotelSlice.reducer;
+export default SiteSlice.reducer;

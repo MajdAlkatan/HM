@@ -25,6 +25,7 @@
     border-radius: 5px;
     background: #0F111A;
     color: white;
+    width: 250px;
 }
 
 .coolinput input[type=number].input {
