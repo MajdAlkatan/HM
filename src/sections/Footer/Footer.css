@@ -1,0 +1,27 @@
+.footer {
+    background-color: #141824;
+    width: 100%;
+    height: 13vh;
+    overflow: auto;
+    border: 1px solid #31374A;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    overflow: hidden;
+}
+
+.footer span {
+    color: white;
+    font-size: 24px;
+    padding-left: 30%;
+}
+
+.imagee img {
+    padding-top: 20px;
+}
+.imagee{
+    height: 100%;
+    width: 10%;
+    overflow: hidden;
+    position: relative;
+}

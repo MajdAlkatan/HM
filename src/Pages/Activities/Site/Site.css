@@ -1,0 +1,22 @@
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    width: 100%;
+    height: 100%;
+}
+
+.Detailses {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10%;
+}
+
+.hr1 {
+    transform: rotate(90deg);
+}
+
+.hh {
+    width: 100%;
+}
