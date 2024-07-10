@@ -2,31 +2,29 @@ import './Activities.css'
 import { Statistics4, Statistics2, Statistics3, Statistics1,ActivitesPortfolio } from '../../../Components/index'
 import Head2 from '../../../Components/Head/Head2';
 import activity_imag from './../../../assets/activities.svg'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { ActivitesPage } from '../Activities_dashboard/Activites_Page';
 function Activities() {
+  const Sites=useSelector((state)=>state.activites.data);
 
   let navigate = useNavigate();
- 
   const goToAddTrip = () => {
-    navigate('/add_trip'); 
+    navigate('/add_trip');    
   };
   const goToAddSite = () => {
     navigate('/add_site'); 
   };
-  const goToSite = () => {
-    navigate('/Site'); 
+  const goToSite = (id) => {
+    navigate(`/Site/${id}`);
   };
-
-  const Sites=useSelector((state)=>state.activites.data);
   console.log(Sites)
   const dispatch=useDispatch();
   useEffect(() => {
     dispatch(ActivitesPage());
   }, [dispatch]);
-  
+
     return (
     <div>
     <Head2
@@ -38,8 +36,8 @@ function Activities() {
       onClickNavigation2={goToAddSite}
       onClickNavigation={goToAddTrip}
     />
-      <ActivitesPortfolio images={Sites} onClickNav={goToSite}/>
-      <ActivitesPortfolio images={Sites} onClickNav={goToAddSite}/>
+<ActivitesPortfolio images={Sites} onClickNav={ goToSite} />
+<ActivitesPortfolio images={Sites} onClickNav={goToAddSite}/>
 
       <div className='statistics'>
         <Statistics1

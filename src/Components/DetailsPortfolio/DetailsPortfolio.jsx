@@ -13,10 +13,8 @@ function DetailsPortfolio({ images }) {
 // Adjust PropTypes to expect a single image object
 DetailsPortfolio.propTypes = {
   images: PropTypes.shape({
- 
-    photo: PropTypes.string.isRequired,
-    
-  }).isRequired,
+   photo: PropTypes.string.isRequired,
+    }).isRequired,
   onClickNav: PropTypes.func.isRequired,
 };
 

@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import './ActivitesPortfolio.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 function ActivitesPortfolio({ images, onClickNav }) {
   if (!Array.isArray(images)) {
     console.error('Expected images prop to be an array', images);
@@ -40,7 +39,8 @@ function ActivitesPortfolio({ images, onClickNav }) {
     <div className="portfolio">
       <Slider {...settings} className="imgs-container">
         {images.map((image) => (
-          <div key={image.id} className="box" onClick={onClickNav}>
+          <div key={image.id} className="box" onClick={() => onClickNav(image.id)}>
+            
             <img src={image.photo} alt={''} />
             <div className="caption">
               <h4>{''}</h4>
@@ -56,9 +56,8 @@ function ActivitesPortfolio({ images, onClickNav }) {
 
 ActivitesPortfolio.propTypes = {
   images: PropTypes.arrayOf(PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    albumId: PropTypes.number.isRequired,
+    photo: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   })).isRequired,
   onClickNav: PropTypes.func.isRequired,
 };

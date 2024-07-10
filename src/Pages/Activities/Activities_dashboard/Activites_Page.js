@@ -32,8 +32,7 @@ const ActivitesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(ActivitesPage.pending, (state, action) => {
-                console.log(action);
+            .addCase(ActivitesPage.pending, (state) => {
                 state.loading = true;
             })
             .addCase(ActivitesPage.fulfilled, (state, action) => {

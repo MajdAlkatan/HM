@@ -2,7 +2,7 @@ import './Site.css';
 import activity_imag from '../../../assets/activities.svg';
 import { Statistics5 } from '../../../Components/index';
 import Head2 from '../../../Components/Head/Head2';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import DetailsPortfolio from '../../../Components/DetailsPortfolio/DetailsPortfolio';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 
 function Site() {
     let navigate = useNavigate();
+const params=useParams()
 
     const goToAddTrip = () => {
       navigate('/add_trip'); 
@@ -19,11 +20,11 @@ function Site() {
       navigate('/add_site'); 
     };
     const Data = useSelector(state => state.site.data);
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
     useEffect(() => {
-      dispatch(SitePage());
-    }, [dispatch]);
+      dispatch(SitePage(params.id));
+    }, [dispatch,params.id]);
 
     return (
         <div className='hh'>

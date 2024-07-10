@@ -1,12 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 export const SitePage = createAsyncThunk(
     'site/SitePage',
-    async() => {
+    async(id) => {
         try {
-            const response = await axios.get("http://localhost:8000/services/activities/sites/13", {
+            const response = await axios.get(`http://localhost:8000/services/activities/sites/${id}`, {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem('token')}`,
                 }
