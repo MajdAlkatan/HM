@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { ActivitesPage } from '../Activities_dashboard/Activites_Page';
 function Activities() {
-  const Sites=useSelector((state)=>state.activites.data);
+  const Sites=useSelector((state)=>state.activites.data.results);
 
   let navigate = useNavigate();
   const goToAddTrip = () => {
@@ -36,8 +36,10 @@ function Activities() {
       onClickNavigation2={goToAddSite}
       onClickNavigation={goToAddTrip}
     />
+    Sites
 <ActivitesPortfolio images={Sites} onClickNav={ goToSite} />
-<ActivitesPortfolio images={Sites} onClickNav={goToAddSite}/>
+Tours
+<ActivitesPortfolio images={Sites} onClickNav={goToSite}/>
 
       <div className='statistics'>
         <Statistics1
