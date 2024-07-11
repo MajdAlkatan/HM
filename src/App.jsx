@@ -21,6 +21,8 @@ import Add_Trip from "./Pages/Activities/Add_Trip/Add_Trip";
 import Site from "./Pages/Activities/Site/Site";
 import Userpage from "./Pages/Userpage/Userpage";
 import Login from "./Pages/Login/Login";
+import Profile from "./Pages/Profile/Profile";
+import ProfileDialoge from "./Pages/Profile/ProfileDialoge";
 function App() {
   return (
     <Router>
@@ -32,6 +34,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/home-Page" element={<Home />} />
+              <Route path="/profile" element={<Profile />}/>
+              <Route path="/Edit_profile" element={<ProfileDialoge />}/>
+
 
               <Route path="/hotel-dashboad" element={<Hotel_Dashboard />} />
 

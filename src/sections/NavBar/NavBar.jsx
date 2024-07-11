@@ -30,13 +30,13 @@ const NavBar = () => {
   const goToActivitiesPage = () => {
     navigate('/activities'); 
   };
-  const gotoCarRentalPage =() =>{
-    navigate('/CarRental_dashboard')
-  }
+
   const gotoUserPage =() =>{
     navigate('/UserProfile')
   }
-
+  const gotoAdminPage =() =>{
+    navigate('/profile')
+  }
   return (
     <div className='NavBar'>
       <ul>
@@ -47,14 +47,15 @@ const NavBar = () => {
           <MdHotel className="nav-icon" /> Hotel
         </li>
      
-        <li onClick={gotoCarRentalPage}>
-          <FaCar className="nav-icon" /> Car rental
-        </li>
+    
         <li onClick={goToActivitiesPage}>
           <FaCar className="nav-icon" /> Activites
         </li>
         <li onClick={gotoUserPage}>
           <FaCar className="nav-icon" /> Users
+        </li>
+        <li onClick={gotoAdminPage}>
+          <FaCar className="nav-icon" /> Profile
         </li>
         <hr />
         <li onClick={toggleLanguageDropdown}>

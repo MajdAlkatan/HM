@@ -21,7 +21,7 @@ function ActivitesPortfolio({ images, onClickNav }) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
           dots: true
         }
       },
@@ -44,12 +44,11 @@ function ActivitesPortfolio({ images, onClickNav }) {
             <img src={image.photo} alt={''} />
             <div className="caption">
               <h4>{''}</h4>
-              <p>Album ID: {''}</p>
+              <p>{''}</p>
             </div>
           </div>
         ))}
       </Slider>
-      <a href="#cd" className="more">More</a>
     </div>
   );
 }
