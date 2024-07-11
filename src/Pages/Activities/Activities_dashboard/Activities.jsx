@@ -36,7 +36,9 @@ function Activities() {
       onClickNavigation2={goToAddSite}
       onClickNavigation={goToAddTrip}
     />
+    Sites
 <ActivitesPortfolio images={Sites} onClickNav={ goToSite} />
+Tours
 <ActivitesPortfolio images={Sites} onClickNav={goToSite}/>
 
       <div className='statistics'>

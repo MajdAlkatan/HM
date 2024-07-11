@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className='footer'>
       <span>Copyright©2024 Pingoway Company All rights reserved.</span>
-     <div className='image'>
+     <div className='imagee'>
          <img src={imagefooter} alt="" />
      </div>
     </div>

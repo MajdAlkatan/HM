@@ -10,10 +10,7 @@ body {
 }
 
 #root {
-    min-width: 100%;
-    min-height: 100%;
-    width: 100vw;
-    height: 100vh;
+  
     position: relative;
     box-sizing: border-box;
 }

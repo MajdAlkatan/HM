@@ -1,4 +1,11 @@
-.container {
+.login-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .container {
     width: 600px;
     height: 600px;
     position: absolute;
@@ -9,24 +16,33 @@
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     border-radius: 18px;
-}
-
-.image {
-    background: url("../assets/vid.mp4") no-repeat center center fixed;
-    background-size: 110%;
+    background-color: rgba(255, 255, 255, 0.1); /* Add a semi-transparent background */
+  }
+  
+  .image {
     height: 60%;
     width: 100%;
     overflow: hidden;
-}
-
-.login {
+    position: relative;
+  }
+  
+  .image video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .login {
     height: 45%;
     width: 100%;
-    background-color: rgb(45, 45, 45, 0.9);
+    background-color: rgba(45, 45, 45, 0.9);
     padding: 0;
-}
-
-.inputs {
+  }
+  
+  .inputs {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -34,89 +50,65 @@
     left: 25%;
     top: 10%;
     transition: all;
-}
-
-.error {
+  }
+  
+  .error {
     color: red;
     margin: 0;
     text-align: start;
-}
-
-.input-container {
+  }
+  
+  .input-container {
     width: 100%;
-}
-
-.inputs .password {
+  }
+  
+  .inputs .password, .inputs .user {
     height: 30px;
     width: 100%;
-    margin-top: 5%;
     background-color: #2b2b2b;
     border-radius: 15px;
     caret-color: white;
     color: white;
-    border: solid 1;
+    border: solid 1px;
     padding-left: 20px;
-}
-
-input:focus {
+    margin-top: 5%;
+  }
+  
+  .inputs .password:focus, .inputs .user:focus {
     animation: rotateShadow 2s infinite linear;
-}
-
-@keyframes rotateShadow {
+  }
+  
+  @keyframes rotateShadow {
     0% {
-        box-shadow: -2px -2px 0px 0px #aa00ff, 2px 2px 0px 0px #3700ff;
+      box-shadow: -2px -2px 0px 0px #aa00ff, 2px 2px 0px 0px #3700ff;
     }
     25% {
-        box-shadow: -2px 2px 0px 0px #aa00ff, 2px -2px 0px 0px #3700ff;
+      box-shadow: -2px 2px 0px 0px #aa00ff, 2px -2px 0px 0px #3700ff;
     }
     50% {
-        box-shadow: 2px 2px 0px 0px #aa00ff, -2px -2px 0px 0px #3700ff;
+      box-shadow: 2px 2px 0px 0px #aa00ff, -2px -2px 0px 0px #3700ff;
     }
     75% {
-        box-shadow: 2px -2px 0px 0px #aa00ff, -2px 2px 0px 0px #3700ff;
+      box-shadow: 2px -2px 0px 0px #aa00ff, -2px 2px 0px 0px #3700ff;
     }
     100% {
-        box-shadow: -2px -2px 0px 0px #aa00ff, 2px 2px 0px 0px #3700ff;
+      box-shadow: -2px -2px 0px 0px #aa00ff, 2px 2px 0px 0px #3700ff;
     }
-}
-
-.password:hover {
+  }
+  
+  .password:hover, .user:hover {
     transition: 1s;
     border-color: aqua;
-}
-
-.inputs .user {
-    height: 30px;
-    width: 100%;
-    background-color: #2b2b2b;
-    border-radius: 15px;
-    caret-color: white;
-    color: white;
-    border: solid 1;
-    padding-left: 20px;
-}
-
-.user:hover {
-    transition: 1s;
-    border-color: aqua;
-}
-
-.inputs .user:placeholder-shown {
-    padding-left: 10px;
-}
-
-.inputs .password:placeholder-shown {
-    padding-left: 10px;
-}
-
-.welcom {
+  }
+  
+  .welcom {
     position: relative;
     top: 3%;
     color: white;
     font-size: 20px;
-}
-
-.login-button {
+  }
+  
+  .login-button {
     text-decoration: none;
     position: relative;
     border: none;
@@ -128,34 +120,28 @@ input:focus {
     height: 3em;
     line-height: 2em;
     text-align: center;
-    background: linear-gradient( 80deg, #010d25, #416885, #03a9f4, #4b7193, #010d25);
+    background: linear-gradient(80deg, #010d25, #416885, #03a9f4, #4b7193, #010d25);
     background-size: 300%;
     border-radius: 30px;
     z-index: 1;
     top: 20%;
-}
-
-.login-button:hover {
+  }
+  
+  .login-button:hover {
     animation: ani 8s linear infinite;
     border: none;
-}
-
-@keyframes ani {
-  0% {
-    background-position: 0%;
   }
-  100% {
-    background-position: 300%;
-  }
+  
+  @keyframes ani {
     0% {
-        background-position: 0%;
+      background-position: 0%;
     }
     100% {
-        background-position: 400%;
+      background-position: 300%;
     }
-}
-
-.login-button:before {
+  }
+  
+  .login-button:before {
     content: "";
     position: absolute;
     top: -5px;
@@ -163,47 +149,34 @@ input:focus {
     right: -5px;
     bottom: -5px;
     z-index: -1;
-    background: linear-gradient( 60deg, #010d25, #416885, #03a9f4, #4b7193, #010d25);
+    background: linear-gradient(60deg, #010d25, #416885, #03a9f4, #4b7193, #010d25);
     background-size: 400%;
     border-radius: 35px;
     transition: 1s;
-}
-
-.login-button:hover::before {
-  filter: blur(10px);
-}
-
-.login-button :active {
-  background: linear-gradient(
-    82deg,
-    #010d25,
-    #416885,
-    #03a9f4,
-    #4b7193,
-    #010d25
-  );
+  }
   
+  .login-button:hover::before {
+    filter: blur(10px);
+  }
+  
+  .login-button:active {
+    background: linear-gradient(82deg, #010d25, #416885, #03a9f4, #4b7193, #010d25);
     filter: blur(20px);
-}
-
-.login-button :active {
-    background: linear-gradient( 82deg, #010d25, #416885, #03a9f4, #4b7193, #010d25);
-}
-
-.forget-password {
+  }
+  
+  .forget-password {
     position: relative;
-    /* right: 20%; */
     color: #405ff8;
     text-decoration: none;
     font-size: 1em;
-}
-
-.forget-password:hover {
+  }
+  
+  .forget-password:hover {
     color: aqua;
     transition: 1s;
-}
-
-.Welcome {
+  }
+  
+  .Welcome {
     position: relative;
     right: 12%;
     top: 50%;
@@ -211,9 +184,9 @@ input:focus {
     color: #c8c8c8;
     font-family: "Times New Roman", Times, serif;
     text-shadow: 3px 2px 6px rgb(0, 0, 0);
-}
-
-.PingoWay {
+  }
+  
+  .PingoWay {
     position: relative;
     top: 39%;
     left: 20%;
@@ -222,29 +195,26 @@ input:focus {
     color: #c8c8c8;
     font-family: "Times New Roman", Times, serif;
     text-shadow: 3px 2px 6px rgb(0, 0, 0);
-}
-
-.icon-user {
+  }
+  
+  .icon-user {
     position: absolute;
-    left: 90%;
-    bottom: 78%;
-}
-
-.icon-password {
+    right: 20px;
+    top: 25px;
+  }
+  
+  .icon-password {
     position: absolute;
-    left: 90%;
-    top: 55%;
-}
-
-.vid {
+    right: 20px;
+    top: 75px;
+  }
+  
+  .vid {
     width: 100%;
     height: 100%;
-    background: url(../../assets/vid.mp4) no-repeat center center fixed;
-    background-size: cover;
-    overflow: hidden;
-}
-
-.vid video {
-    width: 100%;
-    height: min-content;
-}
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+  }
+  
