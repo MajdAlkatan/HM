@@ -20,11 +20,30 @@ export const ActivitesPage = createAsyncThunk(
         }
     }
 );
+export const ToursPage = createAsyncThunk(
+    'tours/ToursPage',
+    async() => {
+        try {
+            const response = await axios.get("http://localhost:8000/services/activities/tours/", {
+                headers: {
+                    Authorization: `JWT ${localStorage.getItem('token')}`,
+                }
+            });
+            const data = response.data;
+            console.log(data)
+            return data;
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            throw error;
+        }
+    }
+);
 
 const ActivitesSlice = createSlice({
     name: "activites",
     initialState: {
         data: [],
+        tours: [],
         loading: false
     },
     reducers: {
@@ -42,7 +61,19 @@ const ActivitesSlice = createSlice({
             .addCase(ActivitesPage.rejected, (state) => {
                 state.loading = false;
                 state.error = "Error fetching data";
+            })
+            .addCase(ToursPage.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(ToursPage.fulfilled, (state, action) => {
+                state.loading = false;
+                state.tours = action.payload;
+            })
+            .addCase(ToursPage.rejected, (state) => {
+                state.loading = false;
+                state.error = "Error fetching data";
             });
+
     },
 });
 

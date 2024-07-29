@@ -21,7 +21,11 @@ import Add_Trip from "./Pages/Activities/Add_Trip/Add_Trip";
 import Site from "./Pages/Activities/Site/Site";
 import Userpage from "./Pages/Userpage/Userpage";
 import Login from "./Pages/Login/Login";
-
+import Profile from './Pages/Profile/Profile'
+import ProfileDialoge from "./Pages/Profile/ProfileDialoge";
+import Services from './Pages/Services/Services'
+import Category from './Pages/Services/Tags/Category/Category'
+import Tags from './Pages/Services/Tags/Tags'
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
 
@@ -43,6 +47,8 @@ function App() {
             <Container2>
               <Routes>
                 <Route path="/home-Page" element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
+
                 <Route path="/hotel-dashboad" element={<Hotel_Dashboard />} />
                 <Route path="/add-hotel" element={<Add_Hotel />} />
                 <Route path="/hotel-Page" element={<Hotel_Page />} />
@@ -53,6 +59,12 @@ function App() {
                 <Route path="/add_car" element={<Add_Car />} />
                 <Route path="/add_site" element={<Add_Site />} />
                 <Route path="/add_trip" element={<Add_Trip />} />
+                <Route path="/Edit_profile" element={<ProfileDialoge/>} />
+                <Route path="/services" element={<Services/>} />
+                <Route path="/add_category" element={<Category/>} />
+                <Route path="/add_tag" element={<Tags/>} />
+
+
                 <Route path="/UserProfile" element={<Userpage />} />
                 <Route path="*" element={<Navigate to="/home-Page" />} />
               </Routes>

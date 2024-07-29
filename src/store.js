@@ -5,6 +5,7 @@ import TourSlice from './Pages/Activities/Add_Trip/Add_TripSlice'
 import SitesSlice from './Pages/Activities/Add_Site/Add_SiteSlice'
 import ActivitesSlice from "./Pages/Activities/Activities_dashboard/Activites_Page";
 import SiteSlice from './Pages/Activities/Site/Site_Page'
+import ServicesSlice from './Pages/Services/ServicesSlice'
 export default configureStore({
     reducer: {
         site: SiteSlice,
@@ -13,7 +14,7 @@ export default configureStore({
         tours: TourSlice,
         sites: SitesSlice,
         activites: ActivitesSlice,
-
+        services: ServicesSlice
     },
 
 

@@ -10,7 +10,7 @@
     flex-direction: column;
     max-height: 100vh;
     overflow: auto;
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .MuiDialog-paper {
@@ -103,7 +103,7 @@
     padding: 5%;
 }
 
-.container {
+.containerr {
     width: 30%;
     height: 200%;
     background-color: #0F111A;
@@ -149,4 +149,16 @@
     display: flex;
     align-items: center;
     gap: 5%;
+}
+
+
+/* Add_Hotel.css */
+
+.MuiRating-root .MuiSvgIcon-root {
+    color: yellow;
+    /* Change the color of the star itself */
+}
+
+.MuiRating-iconEmpty {
+    color: yellow !important;
 }

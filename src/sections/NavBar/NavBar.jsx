@@ -1,11 +1,17 @@
 import './NavBar.css';
-import { FaHome, FaCar } from 'react-icons/fa';
+import { FaHome, FaCar,FaUsers } from 'react-icons/fa';
 import { MdHotel } from 'react-icons/md';
 import { IoSettings, IoLanguageSharp } from "react-icons/io5";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Pages/Login/LoginSlice';
+import { CgProfile } from "react-icons/cg";
+import { IoMdPricetags } from "react-icons/io";
+import { TbLogout2 } from "react-icons/tb";
+
+
+
 
 const NavBar = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
@@ -33,8 +39,11 @@ const NavBar = () => {
     navigate('/activities'); 
   };
   
-  const gotoCarRentalPage = () => {
-    navigate('/CarRental_dashboard');
+  const gotoEventPage = () => {
+    navigate('/services');
+  };
+  const gotoAdminPage = () => {
+    navigate('/profile');
   };
 
   const gotoUserPage = () => {
@@ -60,19 +69,22 @@ const NavBar = () => {
         <li onClick={goToHotelPage}>
           <MdHotel className="nav-icon" /> Hotel
         </li>
-        <li onClick={gotoCarRentalPage}>
-          <FaCar className="nav-icon" /> Car rental
-        </li>
+
         <li onClick={goToActivitiesPage}>
           <FaCar className="nav-icon" /> Activities
         </li>
         <li onClick={gotoUserPage}>
-          <FaCar className="nav-icon" /> Users
+          <FaUsers className="nav-icon" /> Users
         </li>
-        <li onClick={''}>
-          <FaCar className="nav-icon" /> Profile
+        <li onClick={gotoAdminPage}>
+          <CgProfile className="nav-icon" /> Profile
         </li>
         <hr />
+        <li onClick={gotoEventPage}>
+          <IoMdPricetags className="nav-icon" /> Services
+        </li>
+        <hr />
+
         <li onClick={toggleLanguageDropdown}>
           <IoSettings className="nav-icon" /> Settings
         </li>
@@ -89,9 +101,10 @@ const NavBar = () => {
             </select>
           </li>
         )}
+   
         <hr />
         <li onClick={handleLogout}>
-          <FaCar className="nav-icon" /> Logout
+          <TbLogout2 className="nav-icon" /> Logout
         </li>
       </ul>
     </div>

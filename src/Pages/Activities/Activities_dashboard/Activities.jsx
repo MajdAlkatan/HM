@@ -6,8 +6,12 @@ import { useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { ActivitesPage } from '../Activities_dashboard/Activites_Page';
+import { ToursPage } from '../Activities_dashboard/Activites_Page';
+import  ActivitesPortfolio2 from '../../../Components/ActivitesPortfolio/ActivitesPortfolio2' 
 function Activities() {
   const Sites=useSelector((state)=>state.activites.data.results);
+  const Tours=useSelector((state)=>state.activites.tours.results);
+
 
   let navigate = useNavigate();
   const goToAddTrip = () => {
@@ -20,13 +24,19 @@ function Activities() {
     navigate(`/Site/${id}`);
   };
   console.log(Sites)
+  console.log(Tours)
+
   const dispatch=useDispatch();
   useEffect(() => {
     dispatch(ActivitesPage());
   }, [dispatch]);
+  useEffect(() => {
+    dispatch(ToursPage());
+  }, [dispatch]);
 
     return (
-    <div>
+    <div className='acitivity'>
+    
     <Head2
       image={activity_imag}
       Title='Hotels Dashboard' 
@@ -36,10 +46,11 @@ function Activities() {
       onClickNavigation2={goToAddSite}
       onClickNavigation={goToAddTrip}
     />
-    Sites
+   
+   <span>Sites</span> 
 <ActivitesPortfolio images={Sites} onClickNav={ goToSite} />
-Tours
-<ActivitesPortfolio images={Sites} onClickNav={goToSite}/>
+<span>Tours</span> 
+<ActivitesPortfolio2 activities={Tours} onClickNav={goToSite}/>
 
       <div className='statistics'>
         <Statistics1
