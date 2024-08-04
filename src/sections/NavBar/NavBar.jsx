@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Pages/Login/LoginSlice';
-
+import Logout from '../../Components/logout/logout'
 const NavBar = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
   const [showLanguage, setShowLanguage] = useState(false);
@@ -40,6 +40,12 @@ const NavBar = () => {
   const gotoUserPage = () => {
     navigate('/UserProfile');
   };
+  const gotoGuidPage = () => {
+    navigate('/Guidspage');
+  };
+  const gotoEvents = () => {
+    navigate('/EventDash');
+  };
 
   const handleLogout = () => {
     // إزالة البيانات من localStorage
@@ -69,6 +75,12 @@ const NavBar = () => {
         <li onClick={gotoUserPage}>
           <FaCar className="nav-icon" /> Users
         </li>
+        <li onClick={gotoGuidPage}>
+          <FaCar className="nav-icon" /> Guid
+        </li>
+        <li onClick={gotoEvents}>
+          <FaCar className="nav-icon" /> Events
+        </li>
         <hr />
         <li onClick={toggleLanguageDropdown}>
           <IoSettings className="nav-icon" /> Settings
@@ -88,7 +100,7 @@ const NavBar = () => {
         )}
         <hr />
         <li onClick={handleLogout}>
-          <FaCar className="nav-icon" /> Logout
+          <Logout/>
         </li>
       </ul>
     </div>

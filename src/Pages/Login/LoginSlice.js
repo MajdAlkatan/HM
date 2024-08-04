@@ -21,6 +21,7 @@ export const loginUser = createAsyncThunk(
           },
         }
       );
+      console.log("Response:", res.data); // This line prints the response data
 
       const data = res.data;
 
@@ -44,7 +45,9 @@ const loginSlice = createSlice({
     loading: false,
     user: null,
     token: localStorage.getItem('token') || ""
+    
   },
+  
   reducers: {
     setUser: (state, action) => {
       state.user = action.payload;

@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 const Add_Car = () => {
   let navigate = useNavigate();
 
-  const [open, setOpen] = useState(true); 
+  const [open, setOpen] = useState(true);
 
   const handleClose = () => {
     setOpen(false);
@@ -28,66 +28,66 @@ const Add_Car = () => {
   };
   return (
     <Dialog open={open} className='dialog'>
-    <div className='add_rentalcar'>
-    <div  className="upload-image">
-        <ImageInput/>
-        </div>  
-        <div className='grid-container'>
-        <Inputs placeholder='number of car' type="number"/>
-        <Inputs placeholder='Car Type' type="text"/>
-         <PriceInput/>
-         <div className="coolinput">
-     <label htmlFor="input" className="text">Location</label>
-
-     <select
-          className="select"
-          value={''}
-          onChange={''}
-        >
-          <option value="option1">{''}</option>
-          <option value="option1">Family room</option>
-          <option value="option2">individual room</option>
-        </select>     
+      <div className='add_rentalcar'>
+        <div className="upload-image">
+          <ImageInput />
         </div>
-        </div>  
+        <div className='grid-container'>
+          <Inputs placeholder='number of car' type="number" />
+          <Inputs placeholder='Car Type' type="text" />
+          <PriceInput />
+          <div className="coolinput">
+            <label htmlFor="input" className="text">Location</label>
+
+            <select
+              className="select"
+              value={''}
+              onChange={''}
+            >
+              <option value="option1">{''}</option>
+              <option value="option1">Family room</option>
+              <option value="option2">individual room</option>
+            </select>
+          </div>
+        </div>
         <div className="reviews">
-        <span className="tag">Reviews :</span>
+          <span className="tag">Reviews :</span>
 
-        <label>
-          <input
-            className="inputs"
-            type="checkbox"
-            value="Option 1"
-            onChange={handleCheckboxChange} 
-          />{" "}
-          Rating
-        </label>
-        <label>
-          <input
-            className="inputs"
-            type="checkbox"
-            value="Option 2"
-            onChange={handleCheckboxChange}
-          />{" "}
-          Comments
-        </label>
-      </div>
-      <div className="reviews">
-        <span className="tag">with Driver :</span>
+          <label>
+            <input
+              className="inputs"
+              type="checkbox"
+              value="Option 1"
+              onChange={handleCheckboxChange}
+            />{" "}
+            Rating
+          </label>
+          <label>
+            <input
+              className="inputs"
+              type="checkbox"
+              value="Option 2"
+              onChange={handleCheckboxChange}
+            />{" "}
+            Comments
+          </label>
+        </div>
+        <div className="reviews">
+          <span className="tag">with Driver :</span>
 
-        <label>
-          <input
-            className="inputs"
-            type="checkbox"
-            value="Option 1"
-            onChange={handleCheckboxChange} 
-          />{" "}
+          <label>
+            <input
+              className="inputs"
+              type="checkbox"
+              value="Option 1"
+              onChange={handleCheckboxChange}
+            />{" "}
           </label>
         </div>
         <div className='footer_dialog2'>
-       <Footer_Dialog onClick1={handleClose}/>
+          <Footer_Dialog onClick1={handleClose} />
         </div>
-       </div>
+      </div>
     </Dialog>
   )
 }

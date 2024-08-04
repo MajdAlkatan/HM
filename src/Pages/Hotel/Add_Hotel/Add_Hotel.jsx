@@ -154,7 +154,7 @@ const Add_Hotel = () => {
       <span className="tag">Location</span>
       <div className="location">
         <select
-          className="container"
+          className="containerm"
           value={selectedValue}
           onChange={(e) => setSelectedValue(e.target.value)}
         >
@@ -163,7 +163,7 @@ const Add_Hotel = () => {
           <option value="option3">Iraq</option>
         </select>
         <select
-          className="container"
+          className="containerm"
           value={selectedValue}
           onChange={(e) => setSelectedValue(e.target.value)}
         >
@@ -172,7 +172,7 @@ const Add_Hotel = () => {
           <option value="option3">Bagdad</option>
         </select>
         <select
-          className="container"
+          className="containerm"
           value={selectedValue}
           onChange={(e) => setSelectedValue(e.target.value)}
         >

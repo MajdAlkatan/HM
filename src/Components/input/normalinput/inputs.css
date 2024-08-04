@@ -6,7 +6,7 @@
     width: 100%;
 }
 
-.coolinput label.text {
+.coolinput label.textsc {
     font-size: 0.75rem;
     color: #7796A9;
     font-weight: 700;
@@ -27,6 +27,15 @@
     color: white;
     width: 250px;
 }
+.coolinput input[type=email].input {
+    padding: 11px 10px;
+    font-size: 0.75rem;
+    border: 1px #7796A9 solid;
+    border-radius: 5px;
+    background: #0F111A;
+    color: white;
+    width: 250px;
+}
 
 .coolinput input[type=number].input {
     padding: 11px 10px;
@@ -38,6 +47,9 @@
 }
 
 .coolinput input[type=text].input:focus {
+    outline: none;
+}
+.coolinput input[type=email].input:focus {
     outline: none;
 }
 

@@ -39,7 +39,7 @@ Head2.propTypes = {
   Title: PropTypes.string.isRequired, 
   subTitle: PropTypes.string.isRequired, 
   titleButton1: PropTypes.string.isRequired, 
-  titleButton2: PropTypes.string.isRequired, 
+  titleButton2: PropTypes.string, 
  onClickNavigation: PropTypes.func.isRequired,
  onClickNavigation2: PropTypes.func,
 

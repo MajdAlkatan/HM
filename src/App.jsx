@@ -21,7 +21,12 @@ import Add_Trip from "./Pages/Activities/Add_Trip/Add_Trip";
 import Site from "./Pages/Activities/Site/Site";
 import Userpage from "./Pages/Userpage/Userpage";
 import Login from "./Pages/Login/Login";
-
+import Guidspage from "./Pages/Guid/Guidspage";
+import Add_Guid from "./Pages/Guid/addguid/guid"
+import GuidDetailsPage from "./Pages/Guid/GuidsDetailse"
+import EventsDash from "./Pages/Events/EventsDash";
+import AddEvent from "./Pages/Events/AddEvent/AddEvent"
+import UserDetailPage  from "./Pages/Userpage/UserDetailPage"
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
 
@@ -53,8 +58,14 @@ function App() {
                 <Route path="/add_car" element={<Add_Car />} />
                 <Route path="/add_site" element={<Add_Site />} />
                 <Route path="/add_trip" element={<Add_Trip />} />
+                <Route path="/Add_Guid" element={<Add_Guid />} />
                 <Route path="/UserProfile" element={<Userpage />} />
+                <Route path="/Guidspage" element={<Guidspage />} />
+                <Route path="/guid/:id" element={<GuidDetailsPage />} /> 
+                <Route  path="/EventDash" element={<EventsDash />} />
+                <Route path="/Add_Event" element={< AddEvent/>} />
                 <Route path="*" element={<Navigate to="/home-Page" />} />
+                <Route path="/user/:id" element={<UserDetailPage />} />
               </Routes>
             </Container2>
           </Container>
