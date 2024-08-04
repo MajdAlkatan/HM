@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Pages/Login/LoginSlice';
-import { CgProfile } from "react-icons/cg";
 import { IoMdPricetags } from "react-icons/io";
 import { TbLogout2 } from "react-icons/tb";
 
@@ -42,9 +41,7 @@ const NavBar = () => {
   const gotoEventPage = () => {
     navigate('/services');
   };
-  const gotoAdminPage = () => {
-    navigate('/profile');
-  };
+
 
   const gotoUserPage = () => {
     navigate('/UserProfile');
@@ -76,9 +73,7 @@ const NavBar = () => {
         <li onClick={gotoUserPage}>
           <FaUsers className="nav-icon" /> Users
         </li>
-        <li onClick={gotoAdminPage}>
-          <CgProfile className="nav-icon" /> Profile
-        </li>
+      
         <hr />
         <li onClick={gotoEventPage}>
           <IoMdPricetags className="nav-icon" /> Services

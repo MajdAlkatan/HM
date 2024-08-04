@@ -26,6 +26,13 @@ import ProfileDialoge from "./Pages/Profile/ProfileDialoge";
 import Services from './Pages/Services/Services'
 import Category from './Pages/Services/Tags/Category/Category'
 import Tags from './Pages/Services/Tags/Tags'
+import DeleteDialog from "./Pages/Delete/DeleteDialog";
+import  Tour  from './Pages/Activities/Tour/Tour';
+import AddSites from "./Pages/Activities/Tour/AddSites";
+import Ticket from "./Pages/Ticket/Ticket";
+import EditSite from "./Pages/Activities/Site/EditSite";
+import AddTags from "./Pages/Activities/Tour/Add_tags";
+import FavouritPage from "./Pages/Activities/Tour/Favourit";
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
 
@@ -63,6 +70,17 @@ function App() {
                 <Route path="/services" element={<Services/>} />
                 <Route path="/add_category" element={<Category/>} />
                 <Route path="/add_tag" element={<Tags/>} />
+                <Route path="/delete/:id" element={<DeleteDialog/>} />
+                <Route path="/tour/:id" element={<Tour/>} />
+                <Route path="/tour/:id/addSites" element={<AddSites/>} />
+                <Route path="/tour/:id/add-ticket" element={<Ticket/>} />
+                <Route path="Site/:id/EditSite/:id" element={<EditSite />} />
+                <Route path="tour/:id/add_tags/:id" element={<AddTags/>} />
+                <Route path="tour/:id/favourit" element={<FavouritPage/>} />
+
+
+
+
 
 
                 <Route path="/UserProfile" element={<Userpage />} />

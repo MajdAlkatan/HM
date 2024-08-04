@@ -23,6 +23,9 @@ function Activities() {
   const goToSite = (id) => {
     navigate(`/Site/${id}`);
   };
+  const goToTour = (id) => {
+    navigate(`/tour/${id}`);
+  };
   console.log(Sites)
   console.log(Tours)
 
@@ -50,7 +53,7 @@ function Activities() {
    <span>Sites</span> 
 <ActivitesPortfolio images={Sites} onClickNav={ goToSite} />
 <span>Tours</span> 
-<ActivitesPortfolio2 activities={Tours} onClickNav={goToSite}/>
+<ActivitesPortfolio2 activities={Tours} onClickNav={goToTour}/>
 
       <div className='statistics'>
         <Statistics1

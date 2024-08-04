@@ -8,16 +8,25 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { SitePage } from './Site_Page';
 import { useEffect } from 'react';
+import { Delete, Refund } from '../../Delete/DeleteSlice';
+import { Cancel } from '../../Delete/DeleteSlice';
 
 function Site() {
+  
+    const handleDelete = () => {
+        
+            dispatch(Delete());
+            dispatch(Cancel());
+            dispatch(Refund());
+        }   ;
     let navigate = useNavigate();
 const params=useParams()
 
-    const goToAddTrip = () => {
-      navigate('/add_trip'); 
-    };
+    // const goToAddTrip = () => {
+    //   navigate('/delete'); 
+    // };
     const goToAddSite = () => {
-      navigate('/add_site'); 
+      navigate(`/Site/${params.id}/EditSite/${params.id}`); 
     };
     const Data = useSelector(state => state.site.data);
 
@@ -35,7 +44,7 @@ const params=useParams()
                 titleButton1='Delete Site'
                 titleButton2='Edit Site'
                 onClickNavigation2={goToAddSite}
-                onClickNavigation={goToAddTrip}
+                onClickNavigation={handleDelete}
             />
             <DetailsPortfolio images={Data} onClickNav={''}/>
             <hr className="hr" />

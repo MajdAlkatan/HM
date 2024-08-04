@@ -21,7 +21,9 @@ function Add_Trip() {
   const [guid_id, setGuid_Id] = useState("");
   const [allow_points, setAllowPoints] = useState("");
   const [photos, setPhotos] = useState("");
+  const [points_gift, setPointGift] = useState("");
 
+  
   const [open, setOpen] = useState(true);
   let navigate = useNavigate();
 
@@ -37,7 +39,7 @@ function Add_Trip() {
   };
 
   const handleOptionChange = (event) => {
-
+    
     const idAndName = event.target.value.split(' '); 
     const guidId = idAndName[0]; 
     setGuid_Id(guidId);
@@ -48,7 +50,7 @@ function Add_Trip() {
     setName(event.target.value);
     console.log(event.target.value);
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("handleSubmit called");
@@ -74,6 +76,7 @@ function Add_Trip() {
         takeoff_date,
         allow_points,
         guid_id,
+        points_gift
         
       })
     );
@@ -126,6 +129,11 @@ function Add_Trip() {
             placeholder="refund rate"
             type="number"
             onChange={(e) => setRefundRate(e.target.value)}
+          />
+              <Inputs
+            placeholder="point gift"
+            type="number"
+            onChange={(e) => setPointGift(e.target.value)}
           />
           <Inputs
             placeholder="Description"

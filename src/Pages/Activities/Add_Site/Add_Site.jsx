@@ -33,26 +33,23 @@ function Add_Site() {
     console.log("handleSubmit called");
 
     console.log(
-
-      name,
+        name,
         photo,
-       address,
+        address,
         description,
         route,
         street
     );
     dispatch(
       addSite({
-      
         name,
         photo,
-       address,
+        address,
         description,
         route,
         street
       
-        
-      })
+         })
     );
   };
 

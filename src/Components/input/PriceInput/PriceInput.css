@@ -34,18 +34,21 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background: #1e1e1e;
-    border: 1px solid #8a8a8a;
+    background: #0F111A;
+    border: 1px solid #35373f;
     border-radius: 5px;
     list-style: none;
     padding: 0;
     margin: 5px 0 0;
-    width: 50px;
+    width: 100px;
     z-index: 10;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+    max-height: 100px;
+    /* Adjust based on your preference */
+    overflow-y: auto;
 }
 
 .dropdown-list li {
@@ -55,18 +58,24 @@
 }
 
 .dropdown-list li:hover {
-    background: #333;
+    background: #0F111A;
+}
+
+.inputGroup {
+    margin: 0em 0 0em 0 !important;
+    max-width: 250px !important;
+    position: relative;
 }
 
 .inputGroup input {
-    font-size: 100%;
-    padding: 0.7em;
+    font-size: 0.75rem;
+    padding: 11px 10px;
     outline: none;
     border: 1px solid #7796A9;
     background-color: transparent;
     border-radius: 7px;
-    width: 100%;
-    -webkit-border-radius: 7px;
+    width: 250px;
+    -webkit-border-radius: 4px;
     -moz-border-radius: 7px;
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
@@ -126,6 +135,7 @@
   margin-left: 1.3em;
   padding: 0.4em;
   /* background-color: #e8e8e8; }*/
+
 
 /* .inputGroup input:focus {
   border-color: rgb(150, 150, 200);
