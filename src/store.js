@@ -7,6 +7,9 @@ import ActivitesSlice from "./Pages/Activities/Activities_dashboard/Activites_Pa
 import SiteSlice from './Pages/Activities/Site/Site_Page'
 import GuidSlice from './Pages/Guid/addguid/guidSlice'
 import EventSlice from './Pages/Events/AddEvent/AddEventSlice'
+import ServicesSlice from './Pages/Services/ServicesSlice'
+import DeleteSlice from "./Pages/Delete/DeleteSlice";
+import TicketSlice from "./Pages/Ticket/TicketSlice";
 export default configureStore({
     reducer: {
         site: SiteSlice,
@@ -16,8 +19,10 @@ export default configureStore({
         sites: SitesSlice,
         activites: ActivitesSlice,
         Guid:GuidSlice,
-        event:EventSlice
-
+        event:EventSlice,
+        services: ServicesSlice,
+        delete: DeleteSlice,
+        ticket: TicketSlice
     },
 
 

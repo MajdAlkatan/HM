@@ -3,11 +3,14 @@ import axios from "axios";
 
 export const addSite = createAsyncThunk(
     "sites/addSite",
-    async({ name, photo, address, description }, thunkAPI) => {
+    async({ name, photo, address, description, route, street }, thunkAPI) => {
         const formData = new FormData();
 
         formData.append("name", name);
         formData.append("address.raw", address);
+        formData.append("address.route", route);
+        formData.append("address.street_number", street);
+
         formData.append("description", description);
         formData.append("photo", photo);
 

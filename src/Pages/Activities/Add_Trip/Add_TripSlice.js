@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const addTour = createAsyncThunk(
     "tours/addTour",
-    async({ name, photos, duration, refund_rate, description, allow_points, guid_id, takeoff_date }, thunkAPI) => {
+    async({ name, photos, duration, refund_rate, description, points_gift, allow_points, guid_id, takeoff_date }, thunkAPI) => {
         const formData = new FormData();
 
         formData.append("name", name);
@@ -13,6 +13,8 @@ export const addTour = createAsyncThunk(
         formData.append("allow_points", allow_points);
         formData.append("guide_id", guid_id);
         formData.append("takeoff_date", takeoff_date);
+        formData.append("points_gift", points_gift);
+
         photos.forEach((photo, index) => {
             formData.append(`photos[${index}]image`, photo);
         });

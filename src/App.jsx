@@ -27,6 +27,18 @@ import GuidDetailsPage from "./Pages/Guid/GuidsDetailse"
 import EventsDash from "./Pages/Events/EventsDash";
 import AddEvent from "./Pages/Events/AddEvent/AddEvent"
 import UserDetailPage  from "./Pages/Userpage/UserDetailPage"
+import Profile from './Pages/Profile/Profile'
+import ProfileDialoge from "./Pages/Profile/ProfileDialoge";
+import Services from './Pages/Services/Services'
+import Category from './Pages/Services/Tags/Category/Category'
+import Tags from './Pages/Services/Tags/Tags'
+import DeleteDialog from "./Pages/Delete/DeleteDialog";
+import  Tour  from './Pages/Activities/Tour/Tour';
+import AddSites from "./Pages/Activities/Tour/AddSites";
+import Ticket from "./Pages/Ticket/Ticket";
+import EditSite from "./Pages/Activities/Site/EditSite";
+import AddTags from "./Pages/Activities/Tour/Add_tags";
+import FavouritPage from "./Pages/Activities/Tour/Favourit";
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
 
@@ -48,6 +60,8 @@ function App() {
             <Container2>
               <Routes>
                 <Route path="/home-Page" element={<Home />} />
+                <Route path="/profile" element={<Profile />} />
+
                 <Route path="/hotel-dashboad" element={<Hotel_Dashboard />} />
                 <Route path="/add-hotel" element={<Add_Hotel />} />
                 <Route path="/hotel-Page" element={<Hotel_Page />} />
@@ -59,6 +73,23 @@ function App() {
                 <Route path="/add_site" element={<Add_Site />} />
                 <Route path="/add_trip" element={<Add_Trip />} />
                 <Route path="/Add_Guid" element={<Add_Guid />} />
+                <Route path="/Edit_profile" element={<ProfileDialoge/>} />
+                <Route path="/services" element={<Services/>} />
+                <Route path="/add_category" element={<Category/>} />
+                <Route path="/add_tag" element={<Tags/>} />
+                <Route path="/delete/:id" element={<DeleteDialog/>} />
+                <Route path="/tour/:id" element={<Tour/>} />
+                <Route path="/tour/:id/addSites" element={<AddSites/>} />
+                <Route path="/tour/:id/add-ticket" element={<Ticket/>} />
+                <Route path="Site/:id/EditSite/:id" element={<EditSite />} />
+                <Route path="tour/:id/add_tags/:id" element={<AddTags/>} />
+                <Route path="tour/:id/favourit" element={<FavouritPage/>} />
+
+
+
+
+
+
                 <Route path="/UserProfile" element={<Userpage />} />
                 <Route path="/Guidspage" element={<Guidspage />} />
                 <Route path="/guid/:id" element={<GuidDetailsPage />} /> 

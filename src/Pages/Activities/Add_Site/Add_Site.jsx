@@ -13,6 +13,9 @@ function Add_Site() {
   const [name, setName] = useState(''); 
   const [description, setDescription] = useState(''); 
   const [address, setAddress] = useState(''); 
+  const [street, setStreet] = useState(''); 
+  const [route, setRoute] = useState(''); 
+
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(true); 
@@ -30,22 +33,23 @@ function Add_Site() {
     console.log("handleSubmit called");
 
     console.log(
-
-      name,
+        name,
         photo,
-       address,
+        address,
         description,
+        route,
+        street
     );
     dispatch(
       addSite({
-      
         name,
         photo,
-       address,
+        address,
         description,
+        route,
+        street
       
-        
-      })
+         })
     );
   };
 
@@ -60,7 +64,10 @@ function Add_Site() {
        </div>
        <div className='inputss'>
 <Inputs type='text' placeholder='description' onChange={(e)=>setDescription(e.target.value)}/>
-<Inputs type='text' placeholder='address' onChange={(e)=>setAddress(e.target.value)}/>
+<Inputs type='text' placeholder='route' onChange={(e)=>setAddress(e.target.value)}/>
+<Inputs type='text' placeholder='raw' onChange={(e)=>setRoute(e.target.value)}/>
+<Inputs type='text' placeholder='street number' onChange={(e)=>setStreet(e.target.value)}/>
+
 
        </div>
 

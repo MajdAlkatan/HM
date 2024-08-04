@@ -15,7 +15,7 @@ const ImageInput = ({ onFilesSelected }) => {
           <p>Upload images</p>
           <span className="browse-button">Browse file</span>
         </div>
-        <input id="file" multiple type="file"   onChange={onFilesSelected} />
+        <input  id="file" multiple type="file"   onChange={onFilesSelected} />
       </label>
     </form>
   );
@@ -23,6 +23,7 @@ const ImageInput = ({ onFilesSelected }) => {
 
 ImageInput.propTypes = {
   onFilesSelected: PropTypes.func.isRequired,
+
 };
 
 export default ImageInput;

@@ -13,21 +13,20 @@
         color: white;
     }
     
-    .input {
-        padding: 5%;
-        display: grid;
-        grid-template-columns: 2fr 2fr;
-        grid-template-rows: 3 3;
-        gap: 5%;
-        align-items: center;
-    }
-    
     .guid {
         padding-left: 5%;
         display: flex;
         flex-direction: row;
         align-items: center;
         gap: 2%;
+    }
+    
+    .inputss {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 20px;
+        padding: 5%;
     }
     
     .p-calendar .p-inputtext {

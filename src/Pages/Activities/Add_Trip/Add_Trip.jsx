@@ -19,16 +19,18 @@ function Add_Trip() {
   const dispatch = useDispatch();
   const [optionsData, setOptionsData] = useState([]);
   const [guid_id, setGuid_Id] = useState("");
-  const [allow_points, setAllowPoints] = useState(false);
+  const [allow_points, setAllowPoints] = useState("");
   const [photos, setPhotos] = useState("");
+  const [points_gift, setPointGift] = useState("");
 
+  
   const [open, setOpen] = useState(true);
   let navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/services/activities/guides/")
       .then((response) => response.json())
-      .then((data) => setOptionsData(data));
+      .then((data) => setOptionsData(data.results));
   }, []);
 
   const handleClose = () => {
@@ -37,7 +39,7 @@ function Add_Trip() {
   };
 
   const handleOptionChange = (event) => {
-
+    
     const idAndName = event.target.value.split(' '); 
     const guidId = idAndName[0]; 
     setGuid_Id(guidId);
@@ -48,7 +50,7 @@ function Add_Trip() {
     setName(event.target.value);
     console.log(event.target.value);
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("handleSubmit called");
@@ -74,13 +76,13 @@ function Add_Trip() {
         takeoff_date,
         allow_points,
         guid_id,
+        points_gift
         
       })
     );
   };
 
   const onFilesSelected = (event) => {
-    // Update the photos state with the selected files
     setPhotos(Array.from(event.target.files));
   };
   
@@ -88,7 +90,7 @@ function Add_Trip() {
 
   const handleDateChange = (e) => {
     const date = new Date(e.value);
-    const formattedDate = `${date.toISOString().split('T')[0]}T00:00`; // Example format: 2024-06-29T00:00
+    const formattedDate = `${date.toISOString().split('T')[0]}T00:00`;
     setTakeoffDate(formattedDate);
   };
   
@@ -113,12 +115,12 @@ function Add_Trip() {
 
 
         </div>
-        <div className="input">
+        <div className="inputss">
         <div className='calendar-container'>
        <label className='calendar-border-label'>Date</label>
        <Calendar  onChange={handleDateChange}  dateFormat="dd-mm-yy" baseZIndex={2000} selectionMode="range"/>
                
-       </div>          <Inputs
+       </div> <Inputs
             placeholder="number of days"
             type="number"
             onChange={(e) => setDuration(e.target.value)}
@@ -127,6 +129,11 @@ function Add_Trip() {
             placeholder="refund rate"
             type="number"
             onChange={(e) => setRefundRate(e.target.value)}
+          />
+              <Inputs
+            placeholder="point gift"
+            type="number"
+            onChange={(e) => setPointGift(e.target.value)}
           />
           <Inputs
             placeholder="Description"
@@ -143,10 +150,11 @@ function Add_Trip() {
               
               onChange={handleOptionChange}
             >
-              {optionsData.map((option) => (
+              {optionsData?.map((option) => (
                 <option key={option.id} value={option.id} >{option.name}</option>
               ))}
             </select>
+          </div>
           </div>
           <div className="guid">
             <span className="tag">Allow Points</span>
@@ -162,7 +170,7 @@ function Add_Trip() {
           <div className="footer_dialog2">
             <Footer_Dialog onClick1={handleClose} onClick2={handleSubmit} />
           </div>
-        </div>
+       
       </div>
     </Dialog>
   );

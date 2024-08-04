@@ -3,7 +3,7 @@
     flex-direction: column;
     width: fit-content;
     position: static;
-    width: 100%;
+    width: 250px;
 }
 
 .coolinput label.textsc {
@@ -44,6 +44,7 @@
     border-radius: 5px;
     background: #0F111A;
     color: white;
+    width: 250px;
 }
 
 .coolinput input[type=text].input:focus {

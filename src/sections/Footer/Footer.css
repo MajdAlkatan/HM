@@ -19,8 +19,9 @@
 .imagee img {
     padding-top: 20px;
 }
-.imagee{
-    height: 100%;
+
+.imagee {
+    height: 142%;
     width: 10%;
     overflow: hidden;
     position: relative;

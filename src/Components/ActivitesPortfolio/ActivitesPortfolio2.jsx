@@ -3,9 +3,10 @@ import Slider from "react-slick";
 import './ActivitesPortfolio.css';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-function ActivitesPortfolio({ images, onClickNav }) {
-  if (!Array.isArray(images)) {
-    console.error('Expected images prop to be an array', images);
+
+function ActivitesPortfolio2({ activities, onClickNav }) {
+  if (!Array.isArray(activities)) {
+    console.error('Expected activities prop to be an array', activities);
     return null; 
   }
 
@@ -38,13 +39,14 @@ function ActivitesPortfolio({ images, onClickNav }) {
   return (
     <div className="portfolio">
       <Slider {...settings} className="imgs-container">
-        {images.map((image) => (
-          <div key={image.id} className="box" onClick={() => onClickNav(image.id)}>
-            
-            <img src={image.photo} alt={''} />
+        {activities.map((activity) => (
+          <div key={activity.id} className="box" onClick={() => onClickNav(activity.id)}>
+            {activity.photos.length > 0 && (
+              <img src={activity.photos[0].image} alt="" key={activity.photos[0].id} />
+            )}
             <div className="caption">
-              <h4>{''}</h4>
-              <p>{''}</p>
+              <h4>{activity.name}</h4>
+              <p>{activity.description}</p>
             </div>
           </div>
         ))}
@@ -53,13 +55,17 @@ function ActivitesPortfolio({ images, onClickNav }) {
   );
 }
 
-ActivitesPortfolio.propTypes = {
-  images: PropTypes.arrayOf(PropTypes.shape({
-    photo: PropTypes.string.isRequired,
+ActivitesPortfolio2.propTypes = {
+  activities: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    photos: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+    })),
   })).isRequired,
   onClickNav: PropTypes.func.isRequired,
 };
 
-
-export default ActivitesPortfolio;
+export default ActivitesPortfolio2;
