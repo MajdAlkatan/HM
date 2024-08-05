@@ -3,7 +3,7 @@
 import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import './UserDetailPage.css'; // Updated CSS file
-
+import Spiner from "../../Components/Spiner_loding/Spiner"
 function UserDetailPage() {
   const { id } = useParams();
   const location = useLocation();
@@ -12,11 +12,11 @@ function UserDetailPage() {
   // Find the user by ID
   const user = profiles.find(profile => profile.user === parseInt(id, 10));
 
-  if (!user) return <p>User not found</p>;
+  if (!user) return <p className='spiner'><Spiner/></p>;
 
   return (
-    <div className="user-detail-page">
-      <div className="avatar-container">
+    <div className="user-detail-pages">
+      <div className="avatar-containers">
         <img
           src={user.avatar || 'https://via.placeholder.com/150'}
           alt={user.user_name}
