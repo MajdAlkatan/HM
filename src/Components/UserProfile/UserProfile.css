@@ -2,7 +2,6 @@
 
 .user_block {
     padding: 20px;
-    background-color: #121212; /* Dark background for contrast */
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -18,7 +17,7 @@
   
   .avatar {
     border-radius: 10px; /* Slightly rounded corners */
-    /* background: linear-gradient(135deg, #1f2236, #2c2f45); */
+    background: linear-gradient(135deg, #1f2236, #2c2f45);
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     text-align: center;
@@ -31,7 +30,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
   }
   
-  .img {
+  .imgs {
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -40,7 +39,7 @@
     transition: border-color 0.3s;
   }
   
-  .img:hover {
+  .imgs:hover {
     border-color: #4caf50; /* Green border on hover */
   }
   

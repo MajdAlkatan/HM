@@ -10,7 +10,7 @@ function UserProfile({ images, names, ids, navigate }) {
             <img
               src={imageUrl}
               alt={`Profile Picture ${index}`}
-              className="img"
+              className="imgs"
               onClick={() => navigate(ids[index])} // Ensure this calls the correct navigate function
             />
             <h4>{names[index]}</h4>
