@@ -1,17 +1,15 @@
 import './NavBar.css';
-import { FaHome, FaCar,FaUsers } from 'react-icons/fa';
+import { FaHome, FaCar, FaUsers } from 'react-icons/fa';
 import { MdHotel } from 'react-icons/md';
 import { IoSettings, IoLanguageSharp } from "react-icons/io5";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Pages/Login/LoginSlice';
-import Logout from '../../Components/logout/logout'
+import Logout from '../../Components/logout/logout';
 import { IoMdPricetags } from "react-icons/io";
-// import { TbLogout2 } from "react-icons/tb";
-
-
-
+// Import the new icons you want to use
+import { FaMapSigns, FaCalendarAlt, FaTags } from 'react-icons/fa'; // Added FaTags
 
 const NavBar = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
@@ -43,7 +41,6 @@ const NavBar = () => {
     navigate('/services');
   };
 
-
   const gotoUserPage = () => {
     navigate('/UserProfile');
   };
@@ -52,6 +49,9 @@ const NavBar = () => {
   };
   const gotoEvents = () => {
     navigate('/EventDash');
+  };
+  const gotoDiscountpage = () => {
+    navigate('/Discountpage');
   };
 
   const handleLogout = () => {
@@ -86,10 +86,13 @@ const NavBar = () => {
           <IoMdPricetags className="nav-icon" /> Services
         </li>
         <li onClick={gotoGuidPage}>
-          <FaCar className="nav-icon" /> Guid
+          <FaMapSigns className="nav-icon" /> Guid
         </li>
         <li onClick={gotoEvents}>
-          <FaCar className="nav-icon" /> Events
+          <FaCalendarAlt className="nav-icon" /> Events
+        </li>
+        <li onClick={gotoDiscountpage}>
+          <FaTags className="nav-icon" /> Discount
         </li>
         <hr />
 

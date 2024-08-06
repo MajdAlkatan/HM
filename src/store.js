@@ -10,6 +10,7 @@ import EventSlice from './Pages/Events/AddEvent/AddEventSlice'
 import ServicesSlice from './Pages/Services/ServicesSlice'
 import DeleteSlice from "./Pages/Delete/DeleteSlice";
 import TicketSlice from "./Pages/Ticket/TicketSlice";
+import makediscountReducer from "./Pages/Discount/MakeDiscount/MakediscountSlice"
 export default configureStore({
     reducer: {
         site: SiteSlice,
@@ -22,7 +23,8 @@ export default configureStore({
         event:EventSlice,
         services: ServicesSlice,
         delete: DeleteSlice,
-        ticket: TicketSlice
+        ticket: TicketSlice,
+        discount: makediscountReducer
     },
 
 

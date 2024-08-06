@@ -98,7 +98,7 @@ function GuidsDetailse() {
   };
 
   if (!guideDetails) {
-    return <div><Spiner/></div>; // Show a loading indicator
+    return <div className=' spiner_cntainer_s'><Spiner/></div>; // Show a loading indicator
   }
 
   return (

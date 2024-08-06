@@ -31,6 +31,7 @@
     "axios": "^1.7.2",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
+    "firebase": "^10.12.5",
     "framer-motion": "^11.3.2",
     "primeicons": "^7.0.0",
     "primereact": "^10.6.6",

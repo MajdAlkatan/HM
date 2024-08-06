@@ -39,8 +39,13 @@ import Ticket from "./Pages/Ticket/Ticket";
 import EditSite from "./Pages/Activities/Site/EditSite";
 import AddTags from "./Pages/Activities/Tour/Add_tags";
 import FavouritPage from "./Pages/Activities/Tour/Favourit";
+import Discountpage from "./Pages/Discount/Discountpage"
+import MakeDiscount from "./Pages/Discount/MakeDiscount/Makedicount"
+import useNotifications from './Pages/Notification/useNotifications'; // Import the custom hook
+
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
+  useNotifications(); // Call the hook to handle notifications
 
   useEffect(() => {
     // Check if user is authenticated and redirect accordingly
@@ -73,6 +78,7 @@ function App() {
                 <Route path="/add_site" element={<Add_Site />} />
                 <Route path="/add_trip" element={<Add_Trip />} />
                 <Route path="/Add_Guid" element={<Add_Guid />} />
+
                 <Route path="/Edit_profile" element={<ProfileDialoge/>} />
                 <Route path="/services" element={<Services/>} />
                 <Route path="/add_category" element={<Category/>} />
@@ -86,10 +92,8 @@ function App() {
                 <Route path="tour/:id/favourit" element={<FavouritPage/>} />
 
 
-
-
-
-
+                <Route path="/MakeDiscount" element={<MakeDiscount />} />
+                <Route path="/Discountpage" element={<Discountpage />} />
                 <Route path="/UserProfile" element={<Userpage />} />
                 <Route path="/Guidspage" element={<Guidspage />} />
                 <Route path="/guid/:id" element={<GuidDetailsPage />} /> 

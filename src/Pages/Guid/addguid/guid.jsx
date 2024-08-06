@@ -19,8 +19,8 @@ function Guid() {
   const [emailError, setEmailError] = useState("");
 
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(true);
   let navigate = useNavigate();
+  const [open, setOpen] = useState(true);
 
   const handleClose = () => {
     setOpen(false);

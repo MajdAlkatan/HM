@@ -9,6 +9,8 @@ export { default as ActivitesPortfolio } from "./ActivitesPortfolio/ActivitesPor
 export {default as Spiner} from "./Spiner_loding/Spiner";
 export {default as logout} from "./logout/logout";
 export {default as Delete} from "./DetleteButton/Delete";
+export {default as DiscountDetails} from "./DiscountDetails/DiscountDetails";
+
 
 
 export {default as Bio} from "./Bio/Bio";
