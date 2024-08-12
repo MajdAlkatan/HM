@@ -2,27 +2,34 @@ import './NavBar.css';
 import { FaHome, FaCar, FaUsers } from 'react-icons/fa';
 import { MdHotel } from 'react-icons/md';
 import { IoSettings, IoLanguageSharp } from "react-icons/io5";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../Pages/Login/LoginSlice';
 import Logout from '../../Components/logout/logout';
 import { IoMdPricetags } from "react-icons/io";
-// Import the new icons you want to use
 import { FaMapSigns, FaCalendarAlt, FaTags } from 'react-icons/fa'; // Added FaTags
+import { t, setLanguage } from '../../../translationUtility';
 
 const NavBar = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
-  const [showLanguage, setShowLanguage] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [currentLanguage, setCurrentLanguage] = useState('en'); // Initialize current language state
+
+  useEffect(() => {
+    setLanguage(currentLanguage); // Update the global language state when currentLanguage changes
+  }, [currentLanguage]);
 
   const toggleLanguageDropdown = () => {
     setShowLanguageDropdown(!showLanguageDropdown);
   };
 
-  const toggleLanguage = () => {
-    setShowLanguage(!showLanguage);
+  const toggleLanguage = (event) => {
+    const selectedLanguage = event.target.value.toLowerCase(); // Get the selected language from the dropdown
+    setCurrentLanguage(selectedLanguage); // Update the current language
+    setLanguage(selectedLanguage); // Update the translation utility's language
+    setShowLanguageDropdown(false); // Close the dropdown after selecting a language
   };
 
   const goToHotelPage = () => {
@@ -37,7 +44,7 @@ const NavBar = () => {
     navigate('/activities'); 
   };
   
-  const gotoEventPage = () => {
+  const gotoservicestPage = () => {
     navigate('/services');
   };
 
@@ -55,12 +62,9 @@ const NavBar = () => {
   };
 
   const handleLogout = () => {
-    // إزالة البيانات من localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('isAuthenticated');
-    // تحديث حالة المصادقة في Redux
     dispatch(setUser(null));
-    // إعادة التوجيه إلى صفحة تسجيل الدخول
     navigate('/login');
   };
 
@@ -68,53 +72,53 @@ const NavBar = () => {
     <div className='NavBar'>
       <ul>
         <li onClick={goToHomePage}>
-          <FaHome className="nav-icon" /> Home
+          <FaHome className="nav-icon" /> {t('home')}
         </li>
         <li onClick={goToHotelPage}>
-          <MdHotel className="nav-icon" /> Hotel
+          <MdHotel className="nav-icon" /> {t('hotel')}
         </li>
 
         <li onClick={goToActivitiesPage}>
-          <FaCar className="nav-icon" /> Activities
+          <FaCar className="nav-icon" /> {t('activities')}
         </li>
         <li onClick={gotoUserPage}>
-          <FaUsers className="nav-icon" /> Users
+          <FaUsers className="nav-icon" /> {t('users')}
         </li>
       
         <hr />
-        <li onClick={gotoEventPage}>
-          <IoMdPricetags className="nav-icon" /> Services
+        <li onClick={gotoservicestPage}>
+          <IoMdPricetags className="nav-icon" /> {t('services')}
         </li>
         <li onClick={gotoGuidPage}>
-          <FaMapSigns className="nav-icon" /> Guid
+          <FaMapSigns className="nav-icon" /> {t('guid')}
         </li>
         <li onClick={gotoEvents}>
-          <FaCalendarAlt className="nav-icon" /> Events
+          <FaCalendarAlt className="nav-icon" /> {t('events')}
         </li>
         <li onClick={gotoDiscountpage}>
-          <FaTags className="nav-icon" /> Discount
+          <FaTags className="nav-icon" />  {t('discount')}
         </li>
         <hr />
 
         <li onClick={toggleLanguageDropdown}>
-          <IoSettings className="nav-icon" /> Settings
+          <IoSettings className="nav-icon" />  {t('settings')}
         </li>
         {showLanguageDropdown && (
-          <li className='language' onClick={toggleLanguage}>
-            <IoLanguageSharp className="nav-icon" /> Language
-          </li>
-        )}
-        {showLanguage && (
-          <li className="language-dropdown">
-            <select>
-              <option value="En">En</option>
-              <option value="Ar">Ar</option>
-            </select>
-          </li>
+          <>
+            <li className='language' onClick={toggleLanguage}>
+              <IoLanguageSharp className="nav-icon" /> {t('language')}
+            </li>
+            <li className="language-dropdown">
+              <select onChange={toggleLanguage} value={currentLanguage.toUpperCase()}>
+                <option value="en">EN</option>
+                <option value="ar">AR</option>
+              </select>
+            </li>
+          </>
         )}
    
         <hr />
-        <li onClick={handleLogout}>
+        <li className='logoutm' onClick={handleLogout}>
           <Logout/>
         </li>
       </ul>

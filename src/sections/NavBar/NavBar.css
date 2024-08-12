@@ -27,11 +27,14 @@
     padding: 10px;
     cursor: pointer;
     justify-content: center;
+    &:hover {
+        background-color: #8e8e8e;
+        border-radius: 20px;
+    }
 }
 
-.NavBar ul li:hover {
-    background-color: #8e8e8e;
-    border-radius: 20px;
+.NavBar ul li.logoutm:hover {
+    background-color: transparent !important;
 }
 
 hr {
