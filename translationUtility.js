@@ -1,4 +1,3 @@
-// translationUtility.js
 import { translations } from './translations';
 
 let currentLanguage = 'en'; // Default language
@@ -8,5 +7,13 @@ export function setLanguage(lang) {
 }
 
 export function t(key) {
-  return translations[currentLanguage].navbar[key];
+  const keys = key.split('.');
+  let result = translations[currentLanguage];
+
+  for (let k of keys) {
+    result = result[k];
+    if (!result) return key; // Return key if translation is missing
+  }
+
+  return result;
 }
