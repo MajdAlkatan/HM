@@ -58,13 +58,13 @@ function DeleteDialog() {
   return (
     <Dialog open={DialogOpen}>
       <div className="deleteservice">
-        <span className="icon" style={{ cursor: "pointer" }}>
+        <div className="icon" style={{ cursor: "pointer" }}>
           <FontAwesomeIcon
             icon={["fas", "times"]}
             style={{ color: "white", fontSize: "24px", paddingTop: "20px" }}
             onClick={handleClose}
           />
-        </span>
+        </div>
         {isCancelled && (
           <div className="refund">
             <div className="imagee">

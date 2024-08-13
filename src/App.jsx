@@ -39,6 +39,7 @@ import Ticket from "./Pages/Ticket/Ticket";
 import EditSite from "./Pages/Activities/Site/EditSite";
 import AddTags from "./Pages/Activities/Tour/Add_tags";
 import FavouritPage from "./Pages/Activities/Tour/Favourit";
+import Listing from './Pages/Activities/Listing/Listings'
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
 
@@ -84,6 +85,8 @@ function App() {
                 <Route path="Site/:id/EditSite/:id" element={<EditSite />} />
                 <Route path="tour/:id/add_tags/:id" element={<AddTags/>} />
                 <Route path="tour/:id/favourit" element={<FavouritPage/>} />
+                <Route path="Site/:id/Listing" element={<Listing/>} />
+
 
 
 

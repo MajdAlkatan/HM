@@ -65,11 +65,89 @@ export const addTour = createAsyncThunk(
     });
 
 
+export const Listing = createAsyncThunk(
+    "listing/Listing",
+    async({
+        name,
+        photos,
+
+        refund_rate,
+        description,
+        allow_points,
+        points_gift,
+        site_id,
+        time,
+        Website,
+        work_hours
+    }, thunkAPI) => {
+        const formData = new FormData();
+
+        formData.append("name", name);
+        formData.append("site_id", site_id);
+        formData.append("refund_rate", refund_rate);
+        formData.append("description", description);
+        formData.append("allow_points", allow_points);
+        formData.append("website", Website);
+        formData.append("work_hours", work_hours);
+        formData.append("opens_at", time);
+        formData.append("points_gift", points_gift);
+
+        photos.forEach((photo, index) => {
+            formData.append(`photos[${index}]image`, photo);
+        });
+
+
+
+
+
+
+        console.log(`JWT ${localStorage.getItem('token')}`)
+
+
+
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+        try {
+            const res = await axios.post(
+                "http://localhost:8000/services/activities/listings/",
+                formData, {
+                    headers: {
+                        Authorization: `JWT ${localStorage.getItem('token')}`,
+
+
+                    },
+
+                }
+            );
+
+            const data = res.data;
+
+            if (res.status === 201) {
+                console.log(res.data);
+                return data;
+            } else {
+                throw new Error('Failed to make tour');
+            }
+        } catch (err) {
+            if (err.response && err.response.status === 400) {
+                console.error(`Status: ${err.response.status}, Status Text: ${err.response.statusText}`);
+                console.error(err.response.data);
+            } else {
+                const errorMessage = err.response && err.response.data ? err.response.data.message : err.message;
+                console.error(errorMessage);
+            }
+            return thunkAPI.rejectWithValue('error');
+        }
+    });
+
+
 const TourSlice = createSlice({
     name: "tours",
     initialState: {
         loading: false,
         tours: [],
+        listing: [],
         isAuthenticated: false,
         token: null,
     },

@@ -17,7 +17,7 @@
     margin-top: 4%;
     border: 1px solid #757373;
     border-radius: 5px;
-    background-color: #0F111A;
+    background-color: #0f111a;
     display: flex;
     flex-direction: column;
     max-height: 100vh;
@@ -43,28 +43,76 @@
     display: flex;
     flex-direction: row;
     width: 95%;
-    height: 15%;
+    height: 10%;
     gap: 50px;
-    background-color: rgb(217 59 59);
+    background-color: rgb(0 0 0 / 16%);
     border-radius: 30px;
     border: 1px solid white;
     margin-top: 50px;
     justify-content: space-between;
+    margin-left: 10px;
     align-items: center;
 }
 
 .favourit img {
-    padding-left: 18px;
-    width: 100px;
+    width: 19%;
+    height: auto;
+    object-fit: cover;
     border-radius: 50%;
+    padding-left: 1px;
 }
 
 .favourit .prof {
     display: flex;
     flex-direction: row;
     gap: 24px;
+    align-items: center;
 }
 
 .favourit .date {
     padding-right: 20px;
+}
+
+.add_tag {
+    width: 500px;
+    height: 300px;
+    margin: auto;
+    margin-top: 4%;
+    border: 1px solid #757373;
+    border-radius: 5px;
+    background-color: #0f111a;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow: auto;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.my-custom-dialog {
+    overflow-y: hidden !important;
+    position: static !important;
+}
+
+.iconn {
+    padding-left: 32px;
+    cursor: pointer;
+}
+
+.favourit_container {
+    width: 400px;
+    height: 500px;
+    margin: auto;
+    margin-top: 4%;
+    border: 1px solid #757373;
+    border-radius: 65px;
+    background-color: #0F111A;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    overflow-y: hidden;
+    color: white;
+    position: static;
 }

@@ -1,7 +1,7 @@
 import './Site.css';
 import activity_imag from '../../../assets/activities.svg';
 import { Statistics5 } from '../../../Components/index';
-import Head2 from '../../../Components/Head/Head2';
+import Head33 from '../../../Components/Head/Head33';
 import { useNavigate, useParams } from 'react-router-dom';
 import DetailsPortfolio from '../../../Components/DetailsPortfolio/DetailsPortfolio';
 import { useDispatch } from 'react-redux';
@@ -28,6 +28,9 @@ const params=useParams()
     const goToAddSite = () => {
       navigate(`/Site/${params.id}/EditSite/${params.id}`); 
     };
+    const goToListing = () => {
+        navigate(`/Site/${params.id}/Listing`); 
+      };
     const Data = useSelector(state => state.site.data);
 
     const dispatch = useDispatch();
@@ -37,14 +40,17 @@ const params=useParams()
 
     return (
         <div className='hh'>
-            <Head2
+            <Head33
                 image={activity_imag}
                 Title={Data.name} 
                 subTitle='Here’s what’s going on at your business right now'
                 titleButton1='Delete Site'
                 titleButton2='Edit Site'
+                titleButton3='make Listing'
+
                 onClickNavigation2={goToAddSite}
                 onClickNavigation={handleDelete}
+                onClickNavigation3={goToListing}
             />
             <DetailsPortfolio images={Data} onClickNav={''}/>
             <hr className="hr" />

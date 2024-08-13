@@ -32,8 +32,8 @@ function AddTags() {
       };
       const Tags=useSelector(state=>state.services.tagsData.results?.filter(tag => tag.category === 2))
       return (
-    <Dialog open={open}>
-       <div className="add_site ">
+    <Dialog open={open} classes={{ paper: 'my-custom-dialog' }}>
+       <div className="add_tag ">
         <span>Add Tag</span>
         <div className="coolinput">
             <label htmlFor="input" className="text">
@@ -43,7 +43,7 @@ function AddTags() {
               className="select"
               onChange={handleOptionChange}
             >
-]              {Tags?.map((option) => (
+              {Tags?.map((option) => (
                 <option key={option.id} value={option.id} >{option.name}</option>
               ))}
             </select>
