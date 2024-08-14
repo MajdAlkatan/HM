@@ -1,6 +1,6 @@
 import './Activities.css'
 import { Statistics4, Statistics2, Statistics3, Statistics1,ActivitesPortfolio } from '../../../Components/index'
-import Head2 from '../../../Components/Head/Head2';
+import Head33 from '../../../Components/Head/Head33';
 import activity_imag from './../../../assets/activities.svg'
 import { useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +26,9 @@ function Activities() {
   const goToTour = (id) => {
     navigate(`/tour/${id}`);
   };
+  const goToSearch=()=>{
+    navigate('/search');
+  }
   console.log(Sites)
   console.log(Tours)
 
@@ -40,14 +43,18 @@ function Activities() {
     return (
     <div className='acitivity'>
     
-    <Head2
+    <Head33
       image={activity_imag}
       Title='Hotels Dashboard' 
       subTitle='Here’s what’s going on at your business right now'
       titleButton1='Add Trip'
       titleButton2='Add Site'
+      titleButton3='Search'
+
       onClickNavigation2={goToAddSite}
       onClickNavigation={goToAddTrip}
+      onClickNavigation3={goToSearch}
+
     />
    
    <span>Sites</span> 

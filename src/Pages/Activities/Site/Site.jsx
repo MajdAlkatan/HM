@@ -1,7 +1,7 @@
 import './Site.css';
 import activity_imag from '../../../assets/activities.svg';
 import { Statistics5 } from '../../../Components/index';
-import Head2 from '../../../Components/Head/Head2';
+import Head33 from '../../../Components/Head/Head33';
 import { useNavigate, useParams } from 'react-router-dom';
 import DetailsPortfolio from '../../../Components/DetailsPortfolio/DetailsPortfolio';
 import { useDispatch } from 'react-redux';
@@ -28,6 +28,9 @@ const params=useParams()
     const goToAddSite = () => {
       navigate(`/Site/${params.id}/EditSite/${params.id}`); 
     };
+    const goToListing = () => {
+        navigate(`/Site/${params.id}/Listing`); 
+      };
     const Data = useSelector(state => state.site.data);
 
     const dispatch = useDispatch();
@@ -37,28 +40,31 @@ const params=useParams()
 
     return (
         <div className='hh'>
-            <Head2
+            <Head33
                 image={activity_imag}
                 Title={Data.name} 
                 subTitle='Here’s what’s going on at your business right now'
                 titleButton1='Delete Site'
                 titleButton2='Edit Site'
+                titleButton3='make Listing'
+
                 onClickNavigation2={goToAddSite}
                 onClickNavigation={handleDelete}
+                onClickNavigation3={goToListing}
             />
             <DetailsPortfolio images={Data} onClickNav={''}/>
             <hr className="hr" />
 
             <div className='Detailses'>
                 <div className='details'>
-                    <span>Name:{Data.name}</span>
-                    <span>description : <span className='g'>{Data.description}</span> </span>
-                    <span>raw :{Data.address?.raw}</span>
-                    <span>street_number :{Data.address?.street_number}</span>
-                    <span>route:{Data.address?.route}</span>
-
+                    <ul>
+                    <li>Name:{Data.name}</li>
+                    <li>description : {Data.description}</li>
+                    <li>raw :{Data.address?.raw}</li>
+                    <li>street_number :{Data.address?.street_number}</li>
+                    <li>route:{Data.address?.route}</li>
+                    </ul>
                 </div>
-                <hr className='hr1' />
                 <Statistics5/>
             </div>
         </div>

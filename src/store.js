@@ -11,6 +11,7 @@ import ServicesSlice from './Pages/Services/ServicesSlice'
 import DeleteSlice from "./Pages/Delete/DeleteSlice";
 import TicketSlice from "./Pages/Ticket/TicketSlice";
 import makediscountReducer from "./Pages/Discount/MakeDiscount/MakediscountSlice"
+import SearchSlice from "./Pages/Search/SearchSlice";
 export default configureStore({
     reducer: {
         site: SiteSlice,
@@ -19,12 +20,13 @@ export default configureStore({
         tours: TourSlice,
         sites: SitesSlice,
         activites: ActivitesSlice,
-        Guid:GuidSlice,
-        event:EventSlice,
+        Guid: GuidSlice,
+        event: EventSlice,
         services: ServicesSlice,
         delete: DeleteSlice,
         ticket: TicketSlice,
-        discount: makediscountReducer
+        discount: makediscountReducer,
+        search: SearchSlice,
     },
 
 

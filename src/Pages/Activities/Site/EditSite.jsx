@@ -80,14 +80,14 @@ function EditSite() {
     <div className='site_container'>
     
         <div className='name_and_image'>
-       <Inputs placeholde={name} placeholder='Enter site name' type='text' onChange={(e)=>setName(e.target.value)}/>
+       <Inputs value={name} placeholder='Enter site name' type='text' onChange={(e)=>setName(e.target.value)}/>
        <ImageInput values={photo} onFilesSelected={(e)=>setPhoto(e.target.files[0])}/>
        </div>
        <div className='inputss'>
-<Inputs type='text' placeholde={description} placeholder='description' onChange={(e)=>setDescription(e.target.value)}/>
-<Inputs type='text' placeholde={address} placeholder='route' onChange={(e)=>setAddress(e.target.value)}/>
-<Inputs type='text' placeholde={route} placeholder='raw' onChange={(e)=>setRoute(e.target.value)}/>
-<Inputs type='text' placeholde={street} placeholder='street number' onChange={(e)=>setStreet(e.target.value)}/>
+<Inputs type='text' value={description} placeholder='description' onChange={(e)=>setDescription(e.target.value)}/>
+<Inputs type='text' value={address} placeholder='raw' onChange={(e)=>setAddress(e.target.value)}/>
+<Inputs type='text' value={route} placeholder='route' onChange={(e)=>setRoute(e.target.value)}/>
+<Inputs type='text' value={street} placeholder='street number' onChange={(e)=>setStreet(e.target.value)}/>
 
 
        </div>

@@ -1,7 +1,7 @@
 import './inputs.css';
 import PropTypes from 'prop-types';
 
-const Inputs = ({ placeholder, type, name, onChange, value }) => {
+const Inputs = ({ placeholder, type, name, onChange, value,placeholde }) => {
   return (
     <div className="coolinput">
       <label htmlFor={name} className="textsc">{placeholder}</label>
@@ -12,6 +12,7 @@ const Inputs = ({ placeholder, type, name, onChange, value }) => {
         onChange={onChange} 
         value={value}
         className="input"
+        placeholder={placeholde}
       />
     </div>
   );
@@ -20,6 +21,8 @@ const Inputs = ({ placeholder, type, name, onChange, value }) => {
 Inputs.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  placeholde: PropTypes.string,
+
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,

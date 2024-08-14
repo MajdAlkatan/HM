@@ -18,23 +18,25 @@ export const SitePage = createAsyncThunk("site/SitePage", async(id) => {
         throw error;
     }
 });
-export const User = createAsyncThunk("user/User", async() => {
-    try {
-        const response = await axios.get(
-            `http://127.0.0.1:8000/profiles/`, {
-                headers: {
-                    Authorization: `JWT ${localStorage.getItem("token")}`,
-                },
-            }
-        );
-        const data = response.data;
-        console.log(data);
-        return data;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        throw error;
-    }
-});
+export const User = createAsyncThunk(
+    "user/User",
+    async() => {
+        try {
+            const response = await axios.get(
+                `http://127.0.0.1:8000/profiles`, {
+                    headers: {
+                        Authorization: `JWT ${localStorage.getItem("token")}`,
+                    },
+                }
+            );
+            const data = response.data;
+            console.log(data);
+            return data;
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            throw error;
+        }
+    });
 export const UpdatePage = createAsyncThunk(
     "update/UpdatePage",
     async({ name, photo, address, description, route, street, id }, thunkAPI) => {
@@ -302,8 +304,7 @@ const SiteSlice = createSlice({
                 state.loading = false;
                 state.error = "Error fetching data";
             })
-            .addCase(User.pending, (state, action) => {
-                console.log(action);
+            .addCase(User.pending, (state) => {
                 state.loading = true;
             })
             .addCase(User.fulfilled, (state, action) => {

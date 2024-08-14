@@ -68,13 +68,24 @@ navigate(`/tour/${params.id}/favourit`)
       <hr className="hr" />
       <div className="Detailses">
         <div className="details">
-          <span>Name:{Data.name}</span>
-          <span>
-            description : <span className="g">{Data.description}</span>{" "}
-          </span>
-          <span>raw :{Data.address?.raw}</span>
-          <span>street_number :{Data.address?.street_number}</span>
-          <span>route:{Data.address?.route}</span>
+          <ul>
+          
+          <li>Name: {Data.name}</li>
+          <li>raw :{Data.address?.raw}</li>
+          <li>street_number :{Data.address?.street_number}</li>
+          <li>route:{Data.address?.route}</li>
+          <li>Average Rating: {Data.avg_rating || 'N/A'}</li>
+          <li>Description: {Data.description}</li>
+          <li>Discount: {Data.discount}%</li>
+          <li>Duration: {Data.duration}</li>
+          <li>End Date: {new Date(Data.end_date).toLocaleDateString()}</li>
+         
+          <li>Number of Ratings: {Data.num_rating}</li>
+          <li>Points Gift: {Data.points_gift}</li>
+          <li>Refund Rate: {Data.refund_rate}%</li>
+          <li>Takeoff Date: {new Date(Data.takeoff_date).toLocaleDateString()}</li>
+          <li>Upfront Rate: {Data.upfront_rate}%</li>
+          </ul>
           <div className="icon-number-container">
             <FontAwesomeIcon
               icon={faHeart}
@@ -83,7 +94,6 @@ navigate(`/tour/${params.id}/favourit`)
             <h1 onClick={goTofav}>{Fav.count}</h1>
           </div>
         </div>
-        <hr className="hr1" />
 
         <Statistics5 />
       </div>

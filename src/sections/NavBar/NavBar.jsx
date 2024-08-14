@@ -1,5 +1,5 @@
 import './NavBar.css';
-import { FaHome, FaCar, FaUsers, FaMapSigns, FaCalendarAlt, FaTags } from 'react-icons/fa';
+import { FaHome, FaCar, FaUsers, FaMapSigns, FaCalendarAlt, FaTags} from 'react-icons/fa';
 import { MdHotel } from 'react-icons/md';
 import { IoSettings, IoLanguageSharp } from 'react-icons/io5';
 import { useState, useEffect } from 'react';
@@ -45,7 +45,8 @@ const NavBar = () => {
     { icon: <IoMdPricetags />, label: t('navbar.services'), onClick: () => navigate('/services') },
     { icon: <FaMapSigns />, label: t('navbar.guid'), onClick: () => navigate('/Guidspage') },
     { icon: <FaCalendarAlt />, label: t('navbar.events'), onClick: () => navigate('/EventDash') },
-    { icon: <FaTags />, label: t('navbar.discount'), onClick: () => navigate('/Discountpage') }
+    { icon: <FaTags />, label: t('navbar.discount'), onClick: () => navigate('/Discountpage') },
+
   ];
 
   return (

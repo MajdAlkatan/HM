@@ -40,6 +40,9 @@ import FavouritPage from './Pages/Activities/Tour/Favourit';
 import Discountpage from './Pages/Discount/Discountpage';
 import MakeDiscount from './Pages/Discount/MakeDiscount/Makedicount';
 import useNotifications from './Pages/Notification/useNotifications';
+import "./App.css";
+import SearchFilters from "./Pages/Search/Search";
+import Listing from './Pages/Activities/Listing/Listings'
 
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
@@ -85,8 +88,14 @@ function App() {
                 <Route path="/tour/:id/addSites" element={<AddSites />} />
                 <Route path="/tour/:id/add-ticket" element={<Ticket />} />
                 <Route path="Site/:id/EditSite/:id" element={<EditSite />} />
-                <Route path="tour/:id/add_tags/:id" element={<AddTags />} />
-                <Route path="tour/:id/favourit" element={<FavouritPage />} />
+                <Route path="tour/:id/add_tags/:id" element={<AddTags/>} />
+                <Route path="tour/:id/favourit" element={<FavouritPage/>} />
+                <Route path="Site/:id/Listing" element={<Listing/>} />
+                <Route path="/search" element={<SearchFilters/>} />
+
+
+
+
                 <Route path="/MakeDiscount" element={<MakeDiscount />} />
                 <Route path="/Discountpage" element={<Discountpage />} />
                 <Route path="/UserProfile" element={<Userpage />} />
