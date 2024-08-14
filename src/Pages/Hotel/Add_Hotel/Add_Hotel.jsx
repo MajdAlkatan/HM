@@ -1,241 +1,200 @@
-import "./Add_Hotel.css";
+import  { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addHotel } from './hotelSlice';
 import Inputs from "../../../Components/input/normalinput/inputs";
-import ImageInput from "../../../Components/input/imageinput/imageinput";
+import MultiImageUpload from "../../../Components/input/imageinput/imageinput2/imageinput2";
 import FormControl from "@mui/material/FormControl";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
-import { useState } from "react";
 import Rating from '@mui/material/Rating';
 import Switch from "@mui/material/Switch";
-import Service from "../../../Components/services-button/service";
-import PropTypes from "prop-types";
-import gym from "./../../../assets/GYM.svg";
-import sauna from "./../../../assets/sauna.svg";
-import massage from "./../../../assets/massage.svg";
-import tv from "./../../../assets/TV.svg";
-import concerts from "./../../../assets/concerts.svg";
-import wifi from "./../../../assets/wi-fi.svg";
-import meals from "./../../../assets/meals.svg";
-import popcorn from "./../../../assets/Popcorn.svg";
-import parking from "./../../../assets/car.svg";
-import roomservice from "./../../../assets/room services.svg";
-import pool from "./../../../assets/pool.svg";
-import halls from "./../../../assets/halls.svg";
+import Footer_Dialog from '../../../Components/Footer_Dialog/Footer_Dialog';
 import { Dialog } from "@mui/material";
-import Footer_Dialog from './../../../Components/Footer_Dialog/Footer_Dialog'
 import { useNavigate } from "react-router-dom";
-
+import './Add_Hotel.css';
 
 const Add_Hotel = () => {
-  const [open, setOpen] = useState(true); 
-  let navigate=useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [open, setOpen] = useState(true);
+  const [value, setValue] = useState(0);
+  const [hotelType, setHotelType] = useState("Hotel");
+  const [design, setDesign] = useState("Modern");
+  const [allowPoints, setAllowPoints] = useState(false);
+  const [allowReview, setAllowReview] = useState(false);
+  const [refundRate, setRefundRate] = useState('');
+  const [upfrontRate, setUpfrontRate] = useState('');
+  const [pointsGift, setPointsGift] = useState('');
+  const [hotelName, setHotelName] = useState('');
+  const [hotelDescription, setHotelDescription] = useState('');
+  const [address, setAddress] = useState('');
+  const [images, setImages] = useState([]); // State for storing image files
+
   const handleClose = () => {
     setOpen(false);
-    navigate('/hotel-dashboad')
-  };
-  const icons = [
-    { key: "1", icon: gym, text: "GYM" },
-    { key: "2", icon: tv, text: "TV" },
-    { key: "3", icon: popcorn, text: "Cinema" },
-    { key: "4", icon: meals, text: "Meals" },
-    { key: "5", icon: parking, text: "Parking" },
-    { key: "6", icon: wifi, text: "Wi Fi" },
-    { key: "7", icon: concerts, text: "Concerts" },
-    { key: "8", icon: sauna, text: "Sauna" },
-    { key: "9", icon: massage, text: "Massage" },
-    { key: "10", icon: halls, text: "Hall" },
-    { key: "11", icon: roomservice, text: "Room services" },
-    { key: "12", icon: pool, text: "Pool" },
-  ];
-  const [gender, setGender] = useState("female");
-  const [design, setDesign] = useState("traditional");
-  const [selectedValue, setSelectedValue] = useState("");
-  const [reviewOptions, setReviewOptions] = useState([]);
-  const [refundEnabled, setRefundEnabled] = useState(false);
-
-  const handleChange = (event) => {
-    setGender(event.target.value);
+    navigate('/hotel-dashboard');
   };
 
-  const handleDesignChange = (event) => {
-    setDesign(event.target.value);
-  };
-  const handleCheckboxChange = (event) => {
-    if (event.target.checked) {
-      setReviewOptions([...reviewOptions, event.target.value]);
-    } else {
-      setReviewOptions(
-        reviewOptions.filter((option) => option !== event.target.value)
-      );
-    }
+  const handleImageChange = (selectedImages) => {
+    setImages(selectedImages);
   };
 
-  const handleToggleChange = (event) => {
-    setRefundEnabled(event.target.checked);
+  const handleSubmit = () => {
+    const hotelData = {
+      name: hotelName,
+      description: hotelDescription,
+      type: hotelType,
+      design,
+      refund_rate: refundRate,
+      upfront_rate: upfrontRate,
+      points_gift: pointsGift,
+      allow_points: allowPoints,
+      allow_review: allowReview,
+      stars: value,
+      address: {
+        raw: address,
+      },
+      images, // Include image files in the form data
+    };
+
+    dispatch(addHotel(hotelData))
+      .unwrap()
+      .then(() => {
+        navigate('/hotel-dashboard');
+      })
+      .catch((error) => {
+        console.error('Failed to add hotel:', error);
+      });
   };
-  const [value, setValue] = useState(0);
 
   return (
-    <Dialog open={open}   className="dialog">
-    <div className="add-hotel-container">
-      <div className="hotel-form">
-        <div className="name_hotel">
-        <Inputs  type="text"  placeholder="Enter Hotel Name" />
-        </div>
-        <ImageInput className="upload_image" />
-      </div>
-
-      <span className="tag">Tags</span>
-      
-      <div className="tags">
-      <div className="rate">
-       <span className="number-of-star"><p>number of stars :</p></span>
-      <Rating 
-      color="yellow"
-        name="simple-controlled"
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
-      </div>
-        <div className="radio-buttons-container">
-          <span className="place">
-            <p>Place :</p>
-          </span>
-          <FormControl component="fieldset">
-            <RadioGroup
-              row
-              aria-label="gender"
-              name="row-radio-buttons-group"
-              value={gender}
-              onChange={handleChange}
-            >
-              <FormControlLabel
-                value="Mountain"
-                control={<Radio />}
-                label="Mountain"
-              />
-              <FormControlLabel value="Sea" control={<Radio />} label="Sea" />
-              <FormControlLabel
-                value="Down town"
-                control={<Radio />}
-                label="Down Town"
-              />
-            </RadioGroup>
-          </FormControl>
-        </div>
-
-        <div className="radio-buttons-container">
-          <span className="place">Design :</span>
-          <FormControl component="fieldset">
-            <RadioGroup
-              row
-              aria-label="design"
-              name="design-radio-group"
-              value={design}
-              onChange={handleDesignChange}
-            >
-              <FormControlLabel
-                value="traditional"
-                control={<Radio />}
-                label="Traditional"
-              />
-              <FormControlLabel
-                value="modern"
-                control={<Radio />}
-                label="Modern"
-              />
-            </RadioGroup>
-          </FormControl>
-        </div>
-      </div>
-      <span className="tag">Location</span>
-      <div className="location">
-        <select
-          className="containerm"
-          value={selectedValue}
-          onChange={(e) => setSelectedValue(e.target.value)}
-        >
-          <option value="option1">Syria</option>
-          <option value="option2">Eygept</option>
-          <option value="option3">Iraq</option>
-        </select>
-        <select
-          className="containerm"
-          value={selectedValue}
-          onChange={(e) => setSelectedValue(e.target.value)}
-        >
-          <option value="option1">suwayda</option>
-          <option value="option2">Cairo</option>
-          <option value="option3">Bagdad</option>
-        </select>
-        <select
-          className="containerm"
-          value={selectedValue}
-          onChange={(e) => setSelectedValue(e.target.value)}
-        >
-          <option value="option1">Kanawat </option>
-          <option value="option2">Al khodor</option>
-          <option value="option3">Al thowra</option>
-        </select>
-      </div>
-      <div className="reviews">
-        <span className="tag">Reviews :</span>
-
-        <label>
-          <input
-            className="inputs"
-            type="checkbox"
-            value="Option 1"
-            onChange={handleCheckboxChange}
-          />{" "}
-          Rating
-        </label>
-        <label>
-          <input
-            className="inputs"
-            type="checkbox"
-            value="Option 2"
-            onChange={handleCheckboxChange}
-          />{" "}
-          Comments
-        </label>
-      </div>
-      <div className="refunding">
-        <span className="tag">Refunding :</span>
-
-        <Switch checked={refundEnabled} onChange={handleToggleChange} />
-      </div>
-      <div className="services">
-        <span className="tag">The free services we provide :</span>
-        <div className="services-grid">
-          {icons.map((service) => (
-            <Service
-              key={service.key}
-              icon={service.icon}
-              text={service.text}
+    <Dialog open={open} className="dialog">
+      <div className="add-hotel-container">
+        <div className="hotel-form">
+          <div className="name_hotel">
+            <Inputs
+              type="text"
+              placeholder="Enter Hotel Name"
+              value={hotelName}
+              onChange={(e) => setHotelName(e.target.value)}
             />
-          ))}
+          </div>
+          <div className="description_hotel">
+            <Inputs
+              type="text"
+              placeholder="Enter Hotel Description"
+              value={hotelDescription}
+              onChange={(e) => setHotelDescription(e.target.value)}
+            />
+          </div>
+          <MultiImageUpload onImagesChange={handleImageChange} /> {/* Pass image handler to the component */}
+        </div>
+
+        <span className="tag">Tags</span>
+
+        <div className="tags">
+          <div className="rate">
+            <span className="number-of-star"><p>Number of Stars :</p></span>
+            <Rating 
+              name="simple-controlled"
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+            />
+          </div>
+          <div className="radio-buttons-container">
+            <span className="place">Type:</span>
+            <FormControl component="fieldset">
+              <RadioGroup
+                row
+                aria-label="hotel-type"
+                name="hotel-type-group"
+                value={hotelType}
+                onChange={(e) => setHotelType(e.target.value)}
+              >
+                <FormControlLabel value="Hotel" control={<Radio />} label="Hotel" />
+                <FormControlLabel value="Apartment" control={<Radio />} label="Apartment" />
+                <FormControlLabel value="Chalet" control={<Radio />} label="Chalet" />
+              </RadioGroup>
+            </FormControl>
+          </div>
+
+          <div className="radio-buttons-container">
+            <span className="place">Design :</span>
+            <FormControl component="fieldset">
+              <RadioGroup
+                row
+                aria-label="design"
+                name="design-radio-group"
+                value={design}
+                onChange={(e) => setDesign(e.target.value)}
+              >
+                <FormControlLabel value="Modern" control={<Radio />} label="Modern" />
+                <FormControlLabel value="Old" control={<Radio />} label="Old" />
+              </RadioGroup>
+            </FormControl>
+          </div>
+        </div>
+
+        <div className="rates">
+          <div className="rate-input">
+            <Inputs
+              type="number"
+              placeholder="Refund Rate"
+              value={refundRate}
+              onChange={(e) => setRefundRate(e.target.value)}
+            />
+          </div>
+          <div className="rate-input">
+            <Inputs
+              type="number"
+              placeholder="Upfront Rate"
+              value={upfrontRate}
+              onChange={(e) => setUpfrontRate(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="rate-input">
+          <Inputs
+            type="number"
+            placeholder="Points Gift"
+            value={pointsGift}
+            onChange={(e) => setPointsGift(e.target.value)}
+          />
+        </div>
+        
+        <span className="tag">Location</span>
+        <div className="address">
+          <Inputs
+            type="text"
+            placeholder="Full Address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </div>
+
+        <span className="tag">Options</span>
+        <div className="services">
+          <FormControlLabel
+            control={<Switch checked={allowPoints} onChange={() => setAllowPoints(!allowPoints)} />}
+            label="Allow Points"
+          />
+          <FormControlLabel
+            control={<Switch checked={allowReview} onChange={() => setAllowReview(!allowReview)} />}
+            label="Allow Review"
+          />
+        </div>
+        
+        <div className='footer_dialog2'>
+          <Footer_Dialog onClick2={handleSubmit} onClick1={handleClose}/>
         </div>
       </div>
-      <div className='footer_dialog2'>
-       <Footer_Dialog onClick1={handleClose}/>
-        </div>
-    </div>
     </Dialog>
   );
 };
-Add_Hotel.propTypes = {
-  isLoading: PropTypes.bool,
-  handleLoadingChange: PropTypes.func,
-};
-Service.propTypes = {
-  icon: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-};
-Inputs.propTypes = {
-  placeholder: PropTypes.string.isRequired,
-};
+
 export default Add_Hotel;

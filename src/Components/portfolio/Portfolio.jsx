@@ -39,12 +39,12 @@ function Portfolio({ images, onClickNav }) {
   return (
     <div className="portfolio">
       <Slider {...settings} className="imgs-container">
-        {images.map((image) => (
-          <div key={image.id} className="box" onClick={onClickNav}>
-            <img src={image.photo} alt={''} />
+        {images.map((image, index) => (
+          <div key={index} className="box" onClick={() => onClickNav(index)}>
+            <img src={image.photos[0]?.image} alt={image.name} />
             <div className="caption">
-              <h4>{''}</h4>
-              <p>Album ID: {''}</p>
+              <h4>{image.name}</h4>
+              <p>{image.description}</p>
             </div>
           </div>
         ))}
@@ -56,12 +56,13 @@ function Portfolio({ images, onClickNav }) {
 
 Portfolio.propTypes = {
   images: PropTypes.arrayOf(PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    albumId: PropTypes.number.isRequired,
+    photos: PropTypes.arrayOf(PropTypes.shape({
+      image: PropTypes.string.isRequired,
+    })).isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
   })).isRequired,
   onClickNav: PropTypes.func.isRequired,
 };
-
 
 export default Portfolio;

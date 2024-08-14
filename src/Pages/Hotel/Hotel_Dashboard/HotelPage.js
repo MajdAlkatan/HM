@@ -1,55 +1,68 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from 'axios';
 
+// Action Types
+const FETCH_HOTELS_REQUEST = 'FETCH_HOTELS_REQUEST';
+const FETCH_HOTELS_SUCCESS = 'FETCH_HOTELS_SUCCESS';
+const FETCH_HOTELS_FAILURE = 'FETCH_HOTELS_FAILURE';
 
-export const HotelPage = createAsyncThunk(
-    'hotel/HotelPage',
-    async() => {
-        try {
-            const response = await axios.get("http://localhost:8000/services/activities/sites/", {
-                headers: {
-                    Authorization: `JWT ${localStorage.getItem('token')}`,
-                }
-            });
-            const data = response.data;
-            console.log(data)
-            return data;
+// Initial State
+const initialState = {
+  loading: false,
+  data: [],
+  error: '',
+};
 
-
-
-        } catch (error) {
-            console.error("Error fetching data:", error);
-            throw error;
-        }
-
-    }
-);
-
-const HotelSlice = createSlice({
-    name: "hotel",
-    initialState: {
+// Reducer
+const hotelReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_HOTELS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_HOTELS_SUCCESS:
+      return {
+        loading: false,
+        data: action.payload,
+        error: '',
+      };
+    case FETCH_HOTELS_FAILURE:
+      return {
+        loading: false,
         data: [],
-        loading: false
-    },
-    reducers: {
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(HotelPage.pending, (state, action) => {
-                console.log(action);
-                state.loading = true;
-            })
-            .addCase(HotelPage.fulfilled, (state, action) => {
-                state.loading = false;
-                state.data = action.payload;
-            })
-            .addCase(HotelPage.rejected, (state) => {
-                state.loading = false;
-                state.error = "Error fetching data";
-            });
-    },
+// Action Creators
+const fetchHotelsRequest = () => ({
+  type: FETCH_HOTELS_REQUEST,
 });
 
+const fetchHotelsSuccess = (hotels) => ({
+  type: FETCH_HOTELS_SUCCESS,
+  payload: hotels,
+});
 
-export default HotelSlice.reducer;
+const fetchHotelsFailure = (error) => ({
+  type: FETCH_HOTELS_FAILURE,
+  payload: error,
+});
+
+// Async Thunk Action (using Redux Thunk)
+export const fetchHotels = () => {
+  return async (dispatch) => {
+    dispatch(fetchHotelsRequest());
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/services/properties/');
+      dispatch(fetchHotelsSuccess(response.data.results));
+    } catch (error) {
+      dispatch(fetchHotelsFailure(error.message));
+    }
+  };
+};
+
+export default hotelReducer;

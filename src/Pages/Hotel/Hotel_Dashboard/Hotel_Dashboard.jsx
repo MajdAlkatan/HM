@@ -1,31 +1,33 @@
+import  { useEffect } from 'react';
 import './Hotel_Dashboard.css';
-import s2 from './../../../assets/hotel-dashboard.svg';
-import Head2 from './../../../Components/Head/Head2';
-import { useNavigate } from 'react-router-dom'; 
-import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from './../../../Components/index';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {HotelPage} from './HotelPage';
-import { useEffect } from 'react';
+import { fetchHotels } from './HotelPage';
+import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from '../../../Components';
+import s2 from '../../../assets/hotel-dashboard.svg';
+import Head1 from '../../../Components/Head/Head1';
+
 const Hotel_Dashboard = () => {                            
   const navigate = useNavigate();
-  const dispatch=useDispatch();
- 
-  const hotelsData=useSelector((state) => state.hotel.data);
-   console.log(hotelsData)
-  const goToAddHotel = () => {
-  navigate('/add-hotel');
-};
+  const dispatch = useDispatch();
 
-  const goToHotelpage = () => {
-    navigate("/Hotel-Page");
-  };  
+  const hotelsData = useSelector((state) => state.hotel.data);
+
   useEffect(() => {
-    dispatch(HotelPage());
+    dispatch(fetchHotels()); // Dispatch the action to fetch hotels
   }, [dispatch]);
+
+  const goToAddHotel = () => {
+    navigate('/add-hotel');
+  };
+
+  const goToHotelPage = (id) => {
+    navigate(`/hotel-page/${id}`);
+  };  
   
   return (
     <div>
-      <Head2
+      <Head1
         image={s2}
         Title="Hotels Dashboard"
         subTitle="Here’s what’s going on at your business right now"
@@ -33,7 +35,14 @@ const Hotel_Dashboard = () => {
         titleButton2="Delete Hotel"
         onClickNavigation={goToAddHotel}
       />
-      {<Portfolio images={hotelsData} onClickNav={goToHotelpage} />}
+      <Portfolio 
+        images={hotelsData.map(hotel => ({
+          name: hotel.name,
+          description: hotel.description,
+          photos: hotel.photos,
+        }))}
+        onClickNav={(index) => goToHotelPage(hotelsData[index].id)} 
+      />
       <div className="statistics">
         <Statistics1
           series1={10}
@@ -58,7 +67,7 @@ const Hotel_Dashboard = () => {
           label2={"Group B"}
           label3={"Group C"}
           label4={"Group D"}
-        />{" "}
+        />
         <Statistics3
           a1={2}
           a2={3}
