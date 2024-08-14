@@ -57,14 +57,14 @@ const params=useParams()
 
             <div className='Detailses'>
                 <div className='details'>
-                    <span>Name:{Data.name}</span>
-                    <span>description : <span className='g'>{Data.description}</span> </span>
-                    <span>raw :{Data.address?.raw}</span>
-                    <span>street_number :{Data.address?.street_number}</span>
-                    <span>route:{Data.address?.route}</span>
-
+                    <ul>
+                    <li>Name:{Data.name}</li>
+                    <li>description : {Data.description}</li>
+                    <li>raw :{Data.address?.raw}</li>
+                    <li>street_number :{Data.address?.street_number}</li>
+                    <li>route:{Data.address?.route}</li>
+                    </ul>
                 </div>
-                <hr className='hr1' />
                 <Statistics5/>
             </div>
         </div>

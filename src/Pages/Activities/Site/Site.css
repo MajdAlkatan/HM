@@ -8,9 +8,10 @@
 
 .Detailses {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     padding: 10%;
+    gap: 80px;
 }
 
 .hr1 {
