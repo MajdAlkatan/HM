@@ -2,7 +2,6 @@
     background-color: #141824;
     width: 15%;
     min-height: 100%;
-    overflow: auto;
     border: 1px solid #31374A;
     display: flex;
     flex-direction: column;
@@ -23,15 +22,22 @@
     align-items: center;
     gap: 10px;
     color: white;
-    font-size: 20px;
     padding: 10px;
     cursor: pointer;
     justify-content: center;
+    position: relative;
+    transition: background-color 0.3s;
+    border-radius: 20px;
+
 }
 
 .NavBar ul li:hover {
     background-color: #8e8e8e;
     border-radius: 20px;
+}
+
+.NavBar ul li.logoutm:hover {
+    background-color: transparent !important;
 }
 
 hr {
@@ -42,26 +48,32 @@ hr {
     margin-top: 40px;
 }
 
-.NavBar .language {
-    padding-left: 30%;
+.language-dropdown {
+    position: relative;
 }
 
-.NavBar .language:hover {
-    background-color: transparent;
+.language-dropdown .dropdown-content {
+    display: none; /* Hide the dropdown by default */
+    position: absolute; /* Position relative to the parent */
+    top: 100%; /* Below the parent */
+    left: 0;
+    background-color: #141824;
+    color: white;
+    font-size: 16px;
+    border: 1px solid #31374A;
+    padding: 5px;
+    width: 100%;
+    z-index: 10;
 }
 
-.NavBar .language-dropdown {
-    padding-left: 50%;
-    border: none;
+.language-dropdown.show .dropdown-content {
+    display: block; /* Show dropdown when .show class is applied */
 }
 
-.NavBar .language-dropdown:hover {
-    background-color: transparent;
-}
-
-.NavBar .language-dropdown select {
+.language-dropdown select {
     border: none;
     background-color: #141824;
     color: white;
     font-size: 16px;
+    width: 100%;
 }

@@ -6,7 +6,7 @@ import Guid from '../../assets/guid.svg';
 import PieChartWithCenterLabel from '../../Components/Statistics6/Statistics6'; // Import the chart component
 import Inputs from '../../Components/input/normalinput/inputs'; // Import input components
 import { Bio } from '../../Components/index'; // Import bio component
-
+import Spiner from "../../Components/Spiner_loding/Spiner"
 function GuidsDetailse() {
   const { id } = useParams(); // Extract the guide ID from the URL
   const [guideDetails, setGuideDetails] = useState(null);
@@ -98,7 +98,7 @@ function GuidsDetailse() {
   };
 
   if (!guideDetails) {
-    return <div>Loading...</div>; // Show a loading indicator
+    return <div className=' spiner_cntainer_s'><Spiner/></div>; // Show a loading indicator
   }
 
   return (

@@ -1,14 +1,17 @@
-import './Footer.css'
-import imagefooter from './../../assets/footer.svg'
+// src/components/Footer.js
+import './Footer.css';
+import imagefooter from './../../assets/footer.svg';
+import { t } from '../../../translationUtility'; // Make sure the path is correct
+
 const Footer = () => {
   return (
     <div className='footer'>
-      <span>Copyright©2024 Pingoway Company All rights reserved.</span>
-     <div className='imagee'>
-         <img src={imagefooter} alt="" />
-     </div>
+      <span>{t('navbar.footer')}</span>
+      <div className='imagee'>
+        <img src={imagefooter} alt="Footer" />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

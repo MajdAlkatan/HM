@@ -1,8 +1,8 @@
 /* src/pages/UserDetailPage.css */
 
-.user-detail-page {
+.user-detail-pages {
     padding: 20px;
-    background-color: #121212; /* Dark background for contrast */
+    /* background-color: #121212; Dark background for contrast */
     color: #e0e0e0;
     min-height: 100vh;
     display: flex;
@@ -12,7 +12,7 @@
     animation: fadeIn 0.5s ease-in-out;
   }
   
-  .avatar-container {
+  .avatar-containers {
     margin-bottom: 30px;
     position: relative;
     display: inline-block;
@@ -23,22 +23,21 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    border: 3px solid #00bcd4; /* Light cyan border for avatars */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Soft shadow for avatar */
+    border: 3px solid #00bcd4; 
     transition: transform 0.3s, box-shadow 0.3s;
   }
   
   .avatars:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
+    transform: scale(1.05); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); 
   }
   
   .user-info {
     text-align: center;
-    background: #1e1e1e; /* Darker background for the info section */
+    background: #1e1e1e; 
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Deep shadow for more depth */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
     position: relative;
     max-width: 600px;
     margin: 20px;
@@ -87,20 +86,23 @@
   }
   
   .user-info p:hover {
-    color: #00bcd4; /* Light cyan color on hover */
+    color: #00bcd4;
   }
   
   .user-info strong {
-    color: #00bcd4; /* Light cyan color for labels */
+    color: #00bcd4; 
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 2px solid #00bcd4; /* Underline for emphasis */
+    border-bottom: 2px solid #00bcd4; 
     transition: color 0.3s, border-color 0.3s;
   }
   
   .user-info strong:hover {
-    color: #80deea; /* Slightly lighter cyan on hover */
-    border-color: #80deea; /* Lighter underline on hover */
+    color: #80deea; 
+    border-color: #80deea; 
+  }
+  .spiner{
+    margin-top: 25%;
   }
   
   @keyframes fadeIn {
