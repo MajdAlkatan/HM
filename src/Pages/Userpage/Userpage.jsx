@@ -39,9 +39,9 @@ function UserPage() {
   const defaultImage = a;
 
   // Transform profiles data to match the props expected by UserProfile
-  const images = profiles.map(profile => profile.avatars || defaultImage);
-  const names = profiles.map(profile => profile.user_names);
-  const ids = profiles.map(profile => profile.users); // Ensure this matches your API response
+  const images = profiles.map(profile => profile.avatar || defaultImage);
+  const names = profiles.map(profile => profile.user_name);
+  const ids = profiles.map(profile => profile.user); // Ensure this matches your API response
 
   // Function to navigate to the profile page
   const handleNavigate = (id) => {

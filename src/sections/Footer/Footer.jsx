@@ -6,7 +6,7 @@ import { t } from '../../../translationUtility'; // Make sure the path is correc
 const Footer = () => {
   return (
     <div className='footer'>
-      <span>{t('navbar.footer')}</span>
+      <span>{t('navbar.foote')}</span>
       <div className='imagee'>
         <img src={imagefooter} alt="Footer" />
       </div>
