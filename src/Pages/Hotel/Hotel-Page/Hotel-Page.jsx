@@ -35,7 +35,9 @@ const Hotel_Page = ({ hotels = [] }) => {
     }
     return stars;
   };
-
+  const gotoaddroom = () => {
+    navigate('/add-room');
+  };
   return (
     <div className="hotel-page">
       <Head2
@@ -44,6 +46,7 @@ const Hotel_Page = ({ hotels = [] }) => {
         subTitle={hotel.description}
         titleButton1="Add Room"
         titleButton2={""}
+        onClickNavigation={gotoaddroom}
       />
       
       <div className="hotel-info">

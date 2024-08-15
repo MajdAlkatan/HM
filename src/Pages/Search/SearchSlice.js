@@ -7,7 +7,7 @@ export const Search = createAsyncThunk(
     async({ type, search, tickets__price__range, tour__duration__range, tour__takeoff_date__range, tour__takeoff_date, tickets__price, tour__duration }, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `http://localhost:8000/services/activities/?tour__duration=${tour__duration}&tickets__price=${tickets__price}&tour__takeoff_date=${tour__takeoff_date}&tour__takeoff_date__range=${tour__takeoff_date__range}&tour__duration__range=${tour__duration__range}&tickets__price__range=${tickets__price__range}&type=${type}tour&search=${search}`, {}, {
+                `http://localhost:8000/services/activities/?tour__duration=${tour__duration}&tickets__price=${tickets__price}&tour__takeoff_date=${tour__takeoff_date}&tour__takeoff_date__range=${tour__takeoff_date__range}&tour__duration__range=${tour__duration__range}&tickets__price__range=${tickets__price__range}&type=${type}&search=${search}`, {}, {
                     headers: {
                         Authorization: localStorage.getItem('token'),
                     },

@@ -1,57 +1,61 @@
 import { useEffect, useState } from 'react';
-import '../../Components/Statistics3/Statistics3.css'; // Ensure this file includes styles for `.filter-button` and `.filters`
+import '../../Components/Statistics3/Statistics3.css'; 
 import './Search.css';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Search } from './SearchSlice';
 import { useNavigate } from 'react-router-dom';
+
 const SearchFilters = () => {
   const [search, setSearch] = useState('');
   const [tour__duration, setTourDuration] = useState('');
   const [tickets__price, setTicketPrice] = useState('');
   const [tour__takeoff_date, setTourTakeoffDate] = useState('');
-  const [tour__takeoff_date__range, setTourTakeoffDateRange] = useState('');
-  const [tour__duration__range, setTourDurationRange] = useState('00');
-  const [tickets__price__range, setTicketPriceRange] = useState('00');
+  const [tour__takeoff_date__range, setTourTakeoffDateRange] = useState("");
+  const [tour__duration__range, setTourDurationRange] = useState("");
+  const [tickets__price__range, setTicketPriceRange] = useState('');
   const [type, setType] = useState('');
-console.log(tickets__price__range)
-console.log(tour__duration__range)
 
-const dispatch=useDispatch();
-const navigate=useNavigate()
-const goToTourPage=(id)=>{
-navigate(`/tour/${id}`)
-}
-const Data=useSelector(state=>{return state.search?.searcha.results})
-const isLoading = useSelector(state => state.search?.loading); // Assuming your state has an isLoading flag
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-const handleSubmit=()=>{   
-     dispatch(Search({
-        search,
-        tickets__price__range,
-        tour__duration__range,
-        tour__takeoff_date__range,
-        tour__takeoff_date,
-        tickets__price,
-        tour__duration,
-        type}));
-}
-useEffect(()=>{    
-     console.log(Data)
-},[Data])
+  const goToTourPage = (id) => {
+    navigate(`/tour/${id}`);
+  }
+
+  const Data = useSelector(state => state.search?.searcha.results);
+  const isLoading = useSelector(state => state.search?.loading);
+
+  const handleSubmit = () => {   
+    dispatch(Search({
+      search,
+      tickets__price__range,
+      tour__duration__range,
+      tour__takeoff_date__range,
+      tour__takeoff_date,
+      tickets__price,
+      tour__duration,
+      type
+    }));
+  }
+
+  useEffect(() => {    
+    console.log(Data);
+  }, [Data]);
+
   if (isLoading) {
     return <div>Loading...</div>; 
   }
+
   return (
     <div>
-    <div className="search-filters">
-      <div className="search-bar">
-        <input type="text" placeholder="Search tours..." onChange={(e) => setSearch(e.target.value)}/>
-        <button className="filter-button" onClick={handleSubmit}>
-          <i className="fa fa-search" aria-hidden="true"></i>
-        </button>
-      </div>
-      
+      <div className="search-filters">
+        <div className="search-bar">
+          <input type="text" placeholder="Search tours..." onChange={(e) => setSearch(e.target.value)} />
+          <button className="filter-button" onClick={handleSubmit}>
+            <i className="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+        
         <div className="filters">
           <div className="filter-item">
             <label>Type</label>
@@ -63,9 +67,16 @@ useEffect(()=>{
           </div>
           <div className="filter-item">
             <label>Duration (Range)</label>
-            <input type="range" min="0" max="100" value={tour__duration__range[1]} onChange={(e) => setTourDurationRange([0, e.target.value])} />
-            <span style={{color:"black"}}>{`${tour__duration__range[0]} - ${tour__duration__range[1]}`}</span>
-
+            <input 
+              type="range" 
+              min="0" 
+              max="100" 
+              value={tour__duration__range ? tour__duration__range[1] : ''} 
+              onChange={(e) => setTourDurationRange([0, e.target.value])} 
+            />
+            <span style={{color:"black"}}>
+              {tour__duration__range ? `${tour__duration__range[0]} - ${tour__duration__range[1]}` : 'Select Range'}
+            </span>
           </div>
           <div className="filter-item">
             <label>Price (Exact)</label>
@@ -73,26 +84,49 @@ useEffect(()=>{
           </div>
           <div className="filter-item">
             <label>Price (Range)</label>
-            <input type="range" min="0" max="1000" value={tickets__price__range[1]} onChange={(e) => setTicketPriceRange([0, e.target.value])} />
-            <span style={{color:"black"}}>{`${tickets__price__range[0]} - ${tickets__price__range[1]}`}</span>
-            </div>
+            <input 
+              type="range" 
+              min="0" 
+              max="1000" 
+              value={tickets__price__range ? tickets__price__range[1] : null} 
+              onChange={(e) => setTicketPriceRange([0, e.target.value])} 
+            />
+            <span style={{color:"black"}}>
+              {tickets__price__range ? `${tickets__price__range[0]} - ${tickets__price__range[1]}` : 'Select Range'}
+            </span>
+          </div>
           <div className="filter-item">
             <label>Date (Exact)</label>
             <input type="date" value={tour__takeoff_date} onChange={(e) => setTourTakeoffDate(e.target.value)} />
           </div>
           <div className="filter-item">
             <label>Date (Range)</label>
-            <input type="date" value={tour__takeoff_date__range[0]} onChange={(e) => setTourTakeoffDateRange([e.target.value, tour__duration__range[1]])} />
-            <input type="date" value={tour__takeoff_date__range[1]} onChange={(e) => setTourTakeoffDateRange([tour__takeoff_date__range[0], e.target.value])} />
+            <input 
+              type="date" 
+              value={tour__takeoff_date__range ? tour__takeoff_date__range[0] : null} 
+              onChange={(e) => setTourTakeoffDateRange([e.target.value, tour__takeoff_date__range ? tour__takeoff_date__range[1] : ''])} 
+            />
+            <input 
+              type="date" 
+              value={tour__takeoff_date__range ? tour__takeoff_date__range[1] : null} 
+              onChange={(e) => setTourTakeoffDateRange([tour__takeoff_date__range ? tour__takeoff_date__range[0] : '', e.target.value])} 
+            />
           </div>
         </div>
+      </div>
       
+      <div>  
+      {Data?.map((item) => (
+        <div className="data" onClick={() => goToTourPage(item.id)} key={item.id}>
+          <img src={item.photos[0].image || 'https://via.placeholder.com/80'} alt={item.name} />
+          <div className="data-content">
+            <h2>{item.name}</h2>
+            <p>{item.description || 'No description available.'}</p>
+          </div>
+        </div>
+      ))}
     </div>
-          <div >  
-               {Data?.map((item) => (
-          <div className='data' onClick={()=>goToTourPage(item.id)} key={item.id}>{item.name}</div>
-        ))}</div>
-</div>
+    </div>
   );
 };
 
