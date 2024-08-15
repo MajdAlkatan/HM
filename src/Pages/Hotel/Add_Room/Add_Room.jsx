@@ -37,13 +37,11 @@ const Add_Room = () => {
   });
 
   useEffect(() => {
-    // Fetch property data and set properties
     const fetchPropertyData = async () => {
       try {
         const response = await fetch('http://127.0.0.1:8000/services/properties/');
         
         if (!response.ok) {
-          // Log detailed error information
           const errorText = await response.text();
           console.error('Error fetching property data:', response.status, errorText);
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -68,7 +66,6 @@ const Add_Room = () => {
     const selectedId = e.target.value;
     setSelectedPropertyId(selectedId);
     setRoomData(prev => ({ ...prev, property_id: selectedId }));
-    console.log('Selected Property ID:', selectedId); // Print selected property ID to console
   };
 
   const handleChange = (e) => {
@@ -110,12 +107,12 @@ const Add_Room = () => {
 
   const handleClose = () => {
     setOpen(false);
-    navigate('/hotel-Page');
+    navigate(`/hotel-page/${selectedPropertyId}`);
   };
 
   if (success) {
     dispatch(resetState());
-    navigate('/hotel-Page');
+    navigate(`/hotel-page/${selectedPropertyId}`);
   }
 
   return (
@@ -125,7 +122,6 @@ const Add_Room = () => {
           <MultiImageUpload onImagesChange={handleImageChange} />
         </div>
         <div className="inputs1">
-          {/* Property selection dropdown */}
           <div className="coolinput">
             <label htmlFor="property" className="text">Select Property</label>
             <select
@@ -137,7 +133,7 @@ const Add_Room = () => {
               <option value="">Select Property</option>
               {properties.map(property => (
                 <option key={property.id} value={property.id}>
-                  {property.name} {/* Assuming property has a name */}
+                  {property.name}
                 </option>
               ))}
             </select>

@@ -13,6 +13,9 @@ import TicketSlice from "./Pages/Ticket/TicketSlice";
 import makediscountReducer from "./Pages/Discount/MakeDiscount/MakediscountSlice"
 import SearchSlice from "./Pages/Search/SearchSlice";
 import roomsReducer from "./Pages/Hotel/Add_Room/Add_Room_Slice"
+import addroomreducer from "./Pages/Hotel/Add_Room/Add_Room_Slice"
+import deletehotel from "./Pages/Hotel/Hotel-Page/hoteldelete"
+import addhotel from "./Pages/Hotel/Add_Hotel/hotelSlice"
 export default configureStore({
     reducer: {
         site: SiteSlice,
@@ -28,7 +31,10 @@ export default configureStore({
         ticket: TicketSlice,
         discount: makediscountReducer,
         search: SearchSlice,
-        rooms: roomsReducer
+        rooms: roomsReducer,
+        addroom:addroomreducer,
+        deletehotel:deletehotel,
+        addhotel:addhotel
     },
 
 

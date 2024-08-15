@@ -34,7 +34,7 @@ const Add_Hotel = () => {
 
   const handleClose = () => {
     setOpen(false);
-    navigate('/hotel-dashboard');
+    navigate('/hotel-dashboad');
   };
 
   const handleImageChange = (selectedImages) => {
