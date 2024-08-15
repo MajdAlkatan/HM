@@ -97,11 +97,7 @@ const Hotel_Page = ({ hotels = [] }) => {
         </div>
         <Delete onClick={handleDelete} />
         <Portfolio 
-          images={[{
-            name: hotel.name,
-            description: hotel.description,
-            photos: hotel.photos
-          }]} 
+          
           onClickNav={() => {}} 
         />
 
