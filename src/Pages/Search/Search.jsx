@@ -1,32 +1,59 @@
 import { useEffect, useState } from 'react';
-import '../../Components/Statistics3/Statistics3.css'; 
+import '../../Components/Statistics3/Statistics3.css'; // Ensure this file includes styles for `.filter-button` and `.filters`
 import './Search.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Search } from './SearchSlice';
 import { useNavigate } from 'react-router-dom';
-
-const SearchFilters = () => {
+import { Calendar } from 'primereact/calendar'
+function valuetext(value) {
+  return `${value}°C`;
+}
+import Slider from '@mui/material/Slider';const SearchFilters = () => {
   const [search, setSearch] = useState('');
   const [tour__duration, setTourDuration] = useState('');
   const [tickets__price, setTicketPrice] = useState('');
   const [tour__takeoff_date, setTourTakeoffDate] = useState('');
-  const [tour__takeoff_date__range, setTourTakeoffDateRange] = useState("");
-  const [tour__duration__range, setTourDurationRange] = useState("");
-  const [tickets__price__range, setTicketPriceRange] = useState('');
+  const [tour__takeoff_date__range, setTourTakeoffDateRange] = useState([]);
+
+  const [tour__duration__range, setTourDurationRange] = useState([20,270]);
+  const [tickets__price__range, setTicketPriceRange] = useState([100,10000]);
   const [type, setType] = useState('');
+console.log(tickets__price__range)
+console.log(tour__duration__range)
+const handleCalendarChange = (e) => {
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const goToTourPage = (id) => {
-    navigate(`/tour/${id}`);
-  }
 
-  const Data = useSelector(state => state.search?.searcha.results);
-  const isLoading = useSelector(state => state.search?.loading);
+  setTourTakeoffDateRange(e.value);
+};
 
-  const handleSubmit = () => {   
-    dispatch(Search({
+
+
+const handleChange = (event, newValue) => {
+  setTourDurationRange(newValue);
+};
+const handleChange2 = (event, newValue) => {
+  setTicketPriceRange(newValue);
+};
+const dispatch=useDispatch();
+const navigate=useNavigate()
+const goToTourPage=(id)=>{
+  if(type=='tour'){
+navigate(`/tour/${id}`)}
+else {
+  navigate(`/site/${id}`)
+}
+
+}
+
+const Data=useSelector(state=>{return state.search?.searcha.results})
+const isLoading = useSelector(state => state.search?.loading); // Assuming your state has an isLoading flag
+
+const handleSubmit=()=>{   
+
+console.log(tour__takeoff_date__range)
+     dispatch(Search({
       search,
       tickets__price__range,
       tour__duration__range,
@@ -34,28 +61,25 @@ const SearchFilters = () => {
       tour__takeoff_date,
       tickets__price,
       tour__duration,
-      type
+      type,
     }));
-  }
-
-  useEffect(() => {    
-    console.log(Data);
-  }, [Data]);
-
+}
+useEffect(()=>{    
+     console.log(Data)
+},[Data])
   if (isLoading) {
     return <div>Loading...</div>; 
   }
-
   return (
     <div>
-      <div className="search-filters">
-        <div className="search-bar">
-          <input type="text" placeholder="Search tours..." onChange={(e) => setSearch(e.target.value)} />
-          <button className="filter-button" onClick={handleSubmit}>
-            <i className="fa fa-search" aria-hidden="true"></i>
-          </button>
-        </div>
-        
+    <div className="search-filters">
+      <div className="search-bar">
+        <input type="text" placeholder="Search tours..." onChange={(e) => setSearch(e.target.value)}/>
+        <button className="filter-button" onClick={handleSubmit}>
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+      
         <div className="filters">
           <div className="filter-item">
             <label>Type</label>
@@ -67,16 +91,16 @@ const SearchFilters = () => {
           </div>
           <div className="filter-item">
             <label>Duration (Range)</label>
-            <input 
-              type="range" 
-              min="0" 
-              max="100" 
-              value={tour__duration__range ? tour__duration__range[1] : ''} 
-              onChange={(e) => setTourDurationRange([0, e.target.value])} 
-            />
-            <span style={{color:"black"}}>
-              {tour__duration__range ? `${tour__duration__range[0]} - ${tour__duration__range[1]}` : 'Select Range'}
-            </span>
+            <Slider
+        getAriaLabel={() => 'Temperature range'}
+        value={tour__duration__range}
+        onChange={handleChange}
+        valueLabelDisplay="auto"
+        getAriaValueText={valuetext}
+        min={0}
+        max={20000}
+      />            <span style={{color:"black"}}>{`${tour__duration__range[0]} - ${tour__duration__range[1]}`}</span>
+
           </div>
           <div className="filter-item">
             <label>Price (Exact)</label>
@@ -84,50 +108,37 @@ const SearchFilters = () => {
           </div>
           <div className="filter-item">
             <label>Price (Range)</label>
-            <input 
-              type="range" 
-              min="0" 
-              max="1000" 
-              value={tickets__price__range ? tickets__price__range[1] : null} 
-              onChange={(e) => setTicketPriceRange([0, e.target.value])} 
-            />
-            <span style={{color:"black"}}>
-              {tickets__price__range ? `${tickets__price__range[0]} - ${tickets__price__range[1]}` : 'Select Range'}
-            </span>
-          </div>
+      <Slider
+        getAriaLabel={() => 'Temperature range'}
+        value={tickets__price__range}
+        onChange={handleChange2}
+        valueLabelDisplay="auto"
+        getAriaValueText={valuetext}
+        min={0}
+        max={20000}
+      />
+               <span style={{color:"black"}}>{`${tickets__price__range[0]} - ${tickets__price__range[1]}`}</span>
+            </div>
           <div className="filter-item">
             <label>Date (Exact)</label>
             <input type="date" value={tour__takeoff_date} onChange={(e) => setTourTakeoffDate(e.target.value)} />
           </div>
           <div className="filter-item">
             <label>Date (Range)</label>
-            <input 
-              type="date" 
-              value={tour__takeoff_date__range ? tour__takeoff_date__range[0] : null} 
-              onChange={(e) => setTourTakeoffDateRange([e.target.value, tour__takeoff_date__range ? tour__takeoff_date__range[1] : ''])} 
+            <Calendar selectionMode='range' value={tour__takeoff_date__range} onChange={handleCalendarChange}
             />
-            <input 
-              type="date" 
-              value={tour__takeoff_date__range ? tour__takeoff_date__range[1] : null} 
-              onChange={(e) => setTourTakeoffDateRange([tour__takeoff_date__range ? tour__takeoff_date__range[0] : '', e.target.value])} 
-            />
+
           </div>
         </div>
-      </div>
       
-      <div>  
-      {Data?.map((item) => (
-        <div className="data" onClick={() => goToTourPage(item.id)} key={item.id}>
-          <img src={item.photos[0].image || 'https://via.placeholder.com/80'} alt={item.name} />
-          <div className="data-content">
-            <h2>{item.name}</h2>
-            <p>{item.description || 'No description available.'}</p>
-          </div>
-        </div>
-      ))}
     </div>
-    </div>
+          <div >  
+               {Data?.map((item) => (
+          <div className='data' onClick={()=>goToTourPage(item.id)} key={item.id}>{item.name}</div>
+        ))}</div>
+</div>
   );
 };
 
 export default SearchFilters;
+

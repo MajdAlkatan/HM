@@ -88,3 +88,12 @@
         margin-right: 10px;
         border-radius: 50%;
     }
+    
+    .my-custom-dialog {
+        overflow-y: hidden !important;
+        position: static !important;
+    }
+    
+    .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+        position: static !important;
+    }
