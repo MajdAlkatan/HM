@@ -1,28 +1,42 @@
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Hotel-Page.css';
-import { useParams, useNavigate  } from 'react-router-dom';
 import Head2 from '../../../Components/Head/Head2';
 import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from '../../../Components';
 import s3 from '../../../assets/hotel-dashboard.svg';
-import { useDispatch } from 'react-redux';
-import { deleteHotel } from './hoteldelete'; // Update path as necessary
+import { deleteHotel } from './hoteldelete';
 import { Delete } from "../../../Components/index";
 
 const Hotel_Page = ({ hotels = [] }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-    const hotel = hotels.find(hotel => hotel.id === parseInt(id));
+  const [rooms, setRooms] = useState([]);
+
+  const hotel = hotels.find(hotel => hotel.id === parseInt(id));
+
+  useEffect(() => {
+    if (hotel) {
+      fetch(`http://127.0.0.1:8000/services/properties/sup-properties/?property_id=${hotel.id}`)
+        .then(response => response.json())
+        .then(data => setRooms(data.results))
+        .catch(error => console.error('Error fetching rooms:', error));
+    }
+  }, [hotel]);
 
   if (!hotel) {
     return <div>Hotel not found</div>;
   }
+
   const handleDelete = () => {
     if (window.confirm(`Are you sure you want to delete the hotel ${hotel.name}?`)) {
       dispatch(deleteHotel(hotel.id));
-      navigate('/hotels'); // Redirect to another page after deletion
+      navigate('/hotels');
     }
   };
+
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -35,9 +49,11 @@ const Hotel_Page = ({ hotels = [] }) => {
     }
     return stars;
   };
+
   const gotoaddroom = () => {
     navigate('/add-room');
   };
+
   return (
     <div className="hotel-page">
       <Head2
@@ -95,10 +111,16 @@ const Hotel_Page = ({ hotels = [] }) => {
             </div>
           </div>
         </div>
-        <Delete onClick={handleDelete} />
+
         <Portfolio 
-          
-          onClickNav={() => {}} 
+          images={rooms.map(room => ({
+            name: room.name,
+            description: room.description,
+            photos: room.photos,
+          }))}
+          onClickNav={(index) => {
+            navigate(`/room/${rooms[index].id}`);
+          }} 
         />
 
         <div className="statistics">
@@ -153,6 +175,8 @@ const Hotel_Page = ({ hotels = [] }) => {
             uv7={31.47}
           />
         </div>
+
+        <Delete onClick={handleDelete} />
       </div>
     </div>
   );
