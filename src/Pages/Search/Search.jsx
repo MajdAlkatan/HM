@@ -5,36 +5,64 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Search } from './SearchSlice';
 import { useNavigate } from 'react-router-dom';
-const SearchFilters = () => {
+import { Calendar } from 'primereact/calendar'
+function valuetext(value) {
+  return `${value}°C`;
+}
+import Slider from '@mui/material/Slider';const SearchFilters = () => {
   const [search, setSearch] = useState('');
   const [tour__duration, setTourDuration] = useState('');
   const [tickets__price, setTicketPrice] = useState('');
   const [tour__takeoff_date, setTourTakeoffDate] = useState('');
-  const [tour__takeoff_date__range, setTourTakeoffDateRange] = useState('');
-  const [tour__duration__range, setTourDurationRange] = useState('00');
-  const [tickets__price__range, setTicketPriceRange] = useState('00');
+  const [tour__takeoff_date__range, setTourTakeoffDateRange] = useState([]);
+
+  const [tour__duration__range, setTourDurationRange] = useState([20,270]);
+  const [tickets__price__range, setTicketPriceRange] = useState([100,10000]);
   const [type, setType] = useState('');
 console.log(tickets__price__range)
 console.log(tour__duration__range)
+const handleCalendarChange = (e) => {
 
+
+
+  setTourTakeoffDateRange(e.value);
+};
+
+
+
+const handleChange = (event, newValue) => {
+  setTourDurationRange(newValue);
+};
+const handleChange2 = (event, newValue) => {
+  setTicketPriceRange(newValue);
+};
 const dispatch=useDispatch();
 const navigate=useNavigate()
 const goToTourPage=(id)=>{
-navigate(`/tour/${id}`)
+  if(type=='tour'){
+navigate(`/tour/${id}`)}
+else {
+  navigate(`/site/${id}`)
 }
+
+}
+
 const Data=useSelector(state=>{return state.search?.searcha.results})
 const isLoading = useSelector(state => state.search?.loading); // Assuming your state has an isLoading flag
 
 const handleSubmit=()=>{   
+
+console.log(tour__takeoff_date__range)
      dispatch(Search({
-        search,
-        tickets__price__range,
-        tour__duration__range,
-        tour__takeoff_date__range,
-        tour__takeoff_date,
-        tickets__price,
-        tour__duration,
-        type}));
+      search,
+      tickets__price__range,
+      tour__duration__range,
+      tour__takeoff_date__range,
+      tour__takeoff_date,
+      tickets__price,
+      tour__duration,
+      type,
+    }));
 }
 useEffect(()=>{    
      console.log(Data)
@@ -63,8 +91,15 @@ useEffect(()=>{
           </div>
           <div className="filter-item">
             <label>Duration (Range)</label>
-            <input type="range" min="0" max="100" value={tour__duration__range[1]} onChange={(e) => setTourDurationRange([0, e.target.value])} />
-            <span style={{color:"black"}}>{`${tour__duration__range[0]} - ${tour__duration__range[1]}`}</span>
+            <Slider
+        getAriaLabel={() => 'Temperature range'}
+        value={tour__duration__range}
+        onChange={handleChange}
+        valueLabelDisplay="auto"
+        getAriaValueText={valuetext}
+        min={0}
+        max={20000}
+      />            <span style={{color:"black"}}>{`${tour__duration__range[0]} - ${tour__duration__range[1]}`}</span>
 
           </div>
           <div className="filter-item">
@@ -73,8 +108,16 @@ useEffect(()=>{
           </div>
           <div className="filter-item">
             <label>Price (Range)</label>
-            <input type="range" min="0" max="1000" value={tickets__price__range[1]} onChange={(e) => setTicketPriceRange([0, e.target.value])} />
-            <span style={{color:"black"}}>{`${tickets__price__range[0]} - ${tickets__price__range[1]}`}</span>
+      <Slider
+        getAriaLabel={() => 'Temperature range'}
+        value={tickets__price__range}
+        onChange={handleChange2}
+        valueLabelDisplay="auto"
+        getAriaValueText={valuetext}
+        min={0}
+        max={20000}
+      />
+               <span style={{color:"black"}}>{`${tickets__price__range[0]} - ${tickets__price__range[1]}`}</span>
             </div>
           <div className="filter-item">
             <label>Date (Exact)</label>
@@ -82,8 +125,9 @@ useEffect(()=>{
           </div>
           <div className="filter-item">
             <label>Date (Range)</label>
-            <input type="date" value={tour__takeoff_date__range[0]} onChange={(e) => setTourTakeoffDateRange([e.target.value, tour__duration__range[1]])} />
-            <input type="date" value={tour__takeoff_date__range[1]} onChange={(e) => setTourTakeoffDateRange([tour__takeoff_date__range[0], e.target.value])} />
+            <Calendar selectionMode='range' value={tour__takeoff_date__range} onChange={handleCalendarChange}
+            />
+
           </div>
         </div>
       
@@ -97,3 +141,4 @@ useEffect(()=>{
 };
 
 export default SearchFilters;
+
