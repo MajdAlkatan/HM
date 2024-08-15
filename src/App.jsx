@@ -92,10 +92,6 @@ function App() {
                 <Route path="tour/:id/favourit" element={<FavouritPage/>} />
                 <Route path="Site/:id/Listing" element={<Listing/>} />
                 <Route path="/search" element={<SearchFilters/>} />
-
-
-
-
                 <Route path="/MakeDiscount" element={<MakeDiscount />} />
                 <Route path="/Discountpage" element={<Discountpage />} />
                 <Route path="/UserProfile" element={<Userpage />} />

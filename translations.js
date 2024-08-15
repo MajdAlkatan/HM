@@ -12,7 +12,7 @@ export const translations = {
             settings: "Settings",
             select: "Select",
             language: "Language",
-            footer: "Copyright©2024 Pingoway Company All rights reserved.",
+            foote: "Copyright©2024 Pingoway Company All rights reserved.",
 
             Search: "Search",
         },
@@ -31,7 +31,7 @@ export const translations = {
             settings: "الإعدادات",
             select: "اختر",
             language: "اللغة",
-            footer: "حقوق النشر © 2024 شركة Pingoway جميع الحقوق محفوظة.",
+            foote: "حقوق النشر © 2024 شركة Pingoway جميع الحقوق محفوظة.",
             Search: "بحث"
 
         },
@@ -50,7 +50,7 @@ export const translations = {
             settings: "Paramètres",
             select: "Sélectionner",
             language: "Langue",
-            footer: "Droit d'auteur © 2024 Pingoway Company Tous droits réservés."
+            foote: "Droit d'auteur © 2024 Pingoway Company Tous droits réservés."
         },
 
     },
@@ -67,7 +67,7 @@ export const translations = {
             settings: "Setări",
             select: "Selectați",
             language: "Limbă",
-            footer: "Copyright©2024 Pingoway Company Toate drepturile rezervate."
+            foote: "Copyright©2024 Pingoway Company Toate drepturile rezervate."
         },
 
     },
@@ -84,7 +84,7 @@ export const translations = {
             settings: "Instellingen",
             select: "Selecteer",
             language: "Taal",
-            footer: "Auteursrecht © 2024 Pingoway Company Alle rechten voorbehouden."
+            foote: "Auteursrecht © 2024 Pingoway Company Alle rechten voorbehouden."
 
         },
 

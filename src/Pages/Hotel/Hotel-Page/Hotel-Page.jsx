@@ -1,18 +1,28 @@
 import PropTypes from 'prop-types';
 import './Hotel-Page.css';
-import { useParams } from 'react-router-dom';
-import Head1 from '../../../Components/Head/Head1';
+import { useParams, useNavigate  } from 'react-router-dom';
+import Head2 from '../../../Components/Head/Head2';
 import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from '../../../Components';
 import s3 from '../../../assets/hotel-dashboard.svg';
+import { useDispatch } from 'react-redux';
+import { deleteHotel } from './hoteldelete'; // Update path as necessary
+import { Delete } from "../../../Components/index";
 
 const Hotel_Page = ({ hotels = [] }) => {
   const { id } = useParams();
-  const hotel = hotels.find(hotel => hotel.id === parseInt(id));
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+    const hotel = hotels.find(hotel => hotel.id === parseInt(id));
 
   if (!hotel) {
     return <div>Hotel not found</div>;
   }
-
+  const handleDelete = () => {
+    if (window.confirm(`Are you sure you want to delete the hotel ${hotel.name}?`)) {
+      dispatch(deleteHotel(hotel.id));
+      navigate('/hotels'); // Redirect to another page after deletion
+    }
+  };
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -25,14 +35,18 @@ const Hotel_Page = ({ hotels = [] }) => {
     }
     return stars;
   };
-
+  const gotoaddroom = () => {
+    navigate('/add-room');
+  };
   return (
     <div className="hotel-page">
-      <Head1
+      <Head2
         image={s3}
         Title={hotel.name}
         subTitle={hotel.description}
         titleButton1="Add Room"
+        titleButton2={""}
+        onClickNavigation={gotoaddroom}
       />
       
       <div className="hotel-info">
@@ -81,7 +95,7 @@ const Hotel_Page = ({ hotels = [] }) => {
             </div>
           </div>
         </div>
-        
+        <Delete onClick={handleDelete} />
         <Portfolio 
           images={[{
             name: hotel.name,
