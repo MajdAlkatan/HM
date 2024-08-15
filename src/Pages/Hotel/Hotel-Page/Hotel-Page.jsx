@@ -13,10 +13,36 @@ const Hotel_Page = ({ hotels = [] }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [hotel, setHotel] = useState(null);
   const [rooms, setRooms] = useState([]);
 
-  const hotel = hotels.find(hotel => hotel.id === parseInt(id));
+  // Fetch the hotel from the prop or API
+  useEffect(() => {
+    const fetchHotel = async () => {
+      // Try to find the hotel from the passed hotels prop
+      let foundHotel = hotels.find(hotel => hotel.id === parseInt(id));
+      
+      if (!foundHotel) {
+        try {
+          const response = await fetch(`http://127.0.0.1:8000/services/properties/${id}/`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          foundHotel = await response.json();
+        } catch (error) {
+          console.error('Error fetching hotel data:', error);
+        }
+      }
 
+      if (foundHotel) {
+        setHotel(foundHotel);
+      }
+    };
+
+    fetchHotel();
+  }, [id, hotels]);
+
+  // Fetch the rooms associated with the hotel
   useEffect(() => {
     if (hotel) {
       fetch(`http://127.0.0.1:8000/services/properties/sup-properties/?property_id=${hotel.id}`)
