@@ -158,47 +158,4 @@
     color: #f0f0f0;
 }
 
-@media (prefers-color-scheme: light) {
-    .room-page {
-        color: #333;
-        background: linear-gradient(135deg, #ffffff, #f5f5f5);
-    }
 
-    .image-grid {
-        gap: 20px;
-    }
-
-    .grid-item {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .details-section {
-        background: #ffffff;
-        color: #333;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .details-card {
-        background: #f9f9f9;
-        color: #333;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .details-card h4 {
-        color: #333;
-        border-bottom: 2px solid #ddd;
-    }
-
-    .details-card p {
-        color: #666;
-    }
-
-    .details-card ul li {
-        background: #f9f9f9;
-        color: #333;
-    }
-
-    .details-card ul li:hover {
-        background: #e0e0e0;
-    }
-}

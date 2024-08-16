@@ -16,10 +16,13 @@
      display: flex;
      flex-direction: column;
      justify-content: space-between;
+     width: 100%;
+     margin-bottom: 50px;
  }
  
  hr {
      width: 90%;
+     
  }
  
  .title {
@@ -36,7 +39,7 @@
  
  .button {
      height: 100%;
-     width: 40%;
+     width: 15%;
  }
  
  .button button {
