@@ -23,7 +23,7 @@
 
 .portfolio .imgs-container {
     margin-top: 60px;
-    gap: 2%;
+    
 }
 
 .portfolio .imgs-container .box {
@@ -31,21 +31,21 @@
     position: relative;
     border-radius: 25px;
     padding: 5px;
-}
-
-.portfolio .imgs-container .box:hover .caption {
-    bottom: 0;
-}
-
-.portfolio .imgs-container .box:hover img {
-    transform: rotate(3deg) scale(1.1);
+    width: 100%;
+    min-width: 300px; 
+    height: 250px; 
 }
 
 .portfolio .imgs-container .box img {
     width: 100%;
-    transition: 0.3s;
-    padding: 2px;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.3s;
     border-radius: 25px;
+}
+
+.portfolio .imgs-container .box:hover img {
+    transform: rotate(3deg) scale(1.1);
 }
 
 .portfolio .imgs-container .box .caption {
@@ -54,8 +54,13 @@
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.455);
     width: 100%;
-    transition: 0.3s;
+    transition: bottom 0.3s;
     bottom: -100%;
+    text-align: center;
+}
+
+.portfolio .imgs-container .box:hover .caption {
+    bottom: 0;
 }
 
 .portfolio .imgs-container .box .caption h4 {
@@ -77,12 +82,13 @@
     text-decoration: none;
     text-transform: uppercase;
 }
-.slick-next{
-    right: 0px!important;
+
+.slick-next {
+    right: 0px !important;
     z-index: 1;
 }
-.slick-prev{
-    left: 0px!important;
-    z-index: 1;
 
+.slick-prev {
+    left: 0px !important;
+    z-index: 1;
 }

@@ -1,6 +1,7 @@
  .title h1,
  h2 {
      color: white;
+     /* position: relative; */
  }
  
  .head {
@@ -17,7 +18,6 @@
      flex-direction: column;
      justify-content: space-between;
      width: 100%;
-     margin-bottom: 50px;
  }
  
  hr {
