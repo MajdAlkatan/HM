@@ -1,4 +1,3 @@
-// RoomPage.js
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +10,7 @@ function RoomPage() {
   const { id } = useParams(); // Get the room ID from the URL
   const [room, setRoom] = useState(null);
   const [hotelId, setHotelId] = useState(null); // State to store the hotel ID
-  const navigate = useNavigate(); // For navigation after deletion
+  const navigate = useNavigate(); // For navigation after deletion and for Add Bed
 
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`)
@@ -38,6 +37,14 @@ function RoomPage() {
       });
   };
 
+  const handleAddBed = () => {
+    navigate(`/add-bed/${id}`); // Navigate to the Add Bed page with room ID
+  };
+
+  const handleUpdateRoom = () => {
+    navigate(`/update-room/${id}`); // Navigate to the Update Room page
+  };
+
   if (!room) {
     return <div>Loading...</div>;
   }
@@ -49,8 +56,8 @@ function RoomPage() {
         subTitle={room.description}
         titleButton1="Add Bed"
         titleButton2="Update Room"
-        onClickNavigation={() => {}}
-        onClickNavigation2={() => {}}
+        onClickNavigation={handleAddBed}  // Navigate to Add Bed page
+        onClickNavigation2={handleUpdateRoom}  // Navigate to Update Room page
         image={Room}  // Optionally provide a default image or leave blank
       />
 

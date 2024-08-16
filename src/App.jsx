@@ -46,7 +46,7 @@ import Listing from './Pages/Activities/Listing/Listings'
 import Roompage from  "./Pages/Hotel/Room/RoomPage/Roompage"
 import AddTagPage from "./Pages/Hotel/Add_Tag/AddTagDialog"
 import Update_Hotel from './Pages/Hotel/Update_Hotel/Update_hotel';
-
+import Add_Bed from "./Pages/Hotel/Room/BedPage/Add_Bed"
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
   const hotelsData = useSelector((state) => state.hotel.data); // Assuming hotelsData is stored in the Redux state
@@ -75,7 +75,7 @@ function App() {
                 <Route path="/room_page/:id" element={<Roompage />}/>
                 <Route path="/add-hotel" element={<Add_Hotel />} />
                 <Route path="/update-hotel/:id" element={<Update_Hotel />} />
-
+                <Route path="/add-bed/:id" element={<Add_Bed />} />
 
                 <Route path="/hotel-page/:id" element={<Hotel_Page hotels={hotelsData} />} />
                 <Route path="/add-room" element={<Add_Room />} />
