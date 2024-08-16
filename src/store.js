@@ -14,7 +14,7 @@ import makediscountReducer from "./Pages/Discount/MakeDiscount/MakediscountSlice
 import SearchSlice from "./Pages/Search/SearchSlice";
 import roomsReducer from "./Pages/Hotel/Add_Room/Add_Room_Slice"
 import addroomreducer from "./Pages/Hotel/Add_Room/Add_Room_Slice"
-import deletehotel from "./Pages/Hotel/Hotel-Page/hoteldelete"
+import hotelDeleteSlice from "./Pages/Hotel/Hotel-Page/hoteldelete"
 import addhotel from "./Pages/Hotel/Add_Hotel/hotelSlice"
 export default configureStore({
     reducer: {
@@ -32,9 +32,9 @@ export default configureStore({
         discount: makediscountReducer,
         search: SearchSlice,
         rooms: roomsReducer,
-        addroom:addroomreducer,
-        deletehotel:deletehotel,
-        addhotel:addhotel
+        addroom: addroomreducer,
+        deletehotel: hotelDeleteSlice,
+        addhotel: addhotel
     },
 
 

@@ -43,6 +43,7 @@ import useNotifications from './Pages/Notification/useNotifications';
 import "./App.css";
 import SearchFilters from "./Pages/Search/Search";
 import Listing from './Pages/Activities/Listing/Listings'
+import Update_Hotel from './Pages/Hotel/Update_Hotel/Update_hotel';
 
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
@@ -70,6 +71,9 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/hotel-dashboad" element={<Hotel_Dashboard />} />
                 <Route path="/add-hotel" element={<Add_Hotel />} />
+                <Route path="/update-hotel/:id" element={<Update_Hotel />} />
+
+
                 <Route path="/hotel-page/:id" element={<Hotel_Page hotels={hotelsData} />} />
                 <Route path="/add-room" element={<Add_Room />} />
                 <Route path="/activities" element={<Activities />} />
