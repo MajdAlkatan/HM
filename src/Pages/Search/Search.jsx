@@ -22,9 +22,6 @@ import Slider from '@mui/material/Slider';const SearchFilters = () => {
 console.log(tickets__price__range)
 console.log(tour__duration__range)
 const handleCalendarChange = (e) => {
-
-
-
   setTourTakeoffDateRange(e.value);
 };
 

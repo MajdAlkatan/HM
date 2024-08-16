@@ -9,14 +9,14 @@ import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from '.
 import s3 from '../../../assets/hotel-dashboard.svg';
 import { deleteHotel } from './hoteldelete';
 import { Delete } from "../../../Components/index";
-
 const Hotel_Page = ({ hotels = [] }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [hotel, setHotel] = useState(null);
   const [rooms, setRooms] = useState([]);
-
+const params=useParams()
+  // Fetch the hotel from the prop or API
   useEffect(() => {
     const fetchHotel = async () => {
       let foundHotel = hotels.find(hotel => hotel.id === parseInt(id));
@@ -73,6 +73,10 @@ const Hotel_Page = ({ hotels = [] }) => {
   const gotoaddroom = () => {
     navigate('/add-room');
   };
+   const gotoupdateHotel=()=>{
+    navigate(`/update-hotel/${params.id}`);
+
+   }
 
   return (
     <div >
@@ -81,8 +85,11 @@ const Hotel_Page = ({ hotels = [] }) => {
         Title={hotel.name}
         subTitle={hotel.description}
         titleButton1="Add Room"
-        titleButton2=""
+        titleButton2="Update hotel"
+
         onClickNavigation={gotoaddroom}
+        onClickNavigation2={gotoupdateHotel}
+
       />
       
       <div className="hotel-info">
