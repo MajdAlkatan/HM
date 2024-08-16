@@ -1,13 +1,14 @@
-import  { useEffect } from 'react';
+// src/pages/Hotel_Dashboard.js
+import { useEffect } from 'react';
 import './Hotel_Dashboard.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchHotels } from './HotelPage';
-import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from '../../../Components';
+import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from '../../../Components/index';
 import s2 from '../../../assets/hotel-dashboard.svg';
-import Head1 from '../../../Components/Head/Head1';
+import Head2 from '../../../Components/Head/Head2';
 
-const Hotel_Dashboard = () => {                            
+const Hotel_Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,19 +22,24 @@ const Hotel_Dashboard = () => {
     navigate('/add-hotel');
   };
 
+  const goToAddTag = () => {
+    navigate('/add-tag'); // Navigate to the AddTagPage
+  };
+
   const goToHotelPage = (id) => {
     navigate(`/hotel-page/${id}`);
-  };  
-  
+  };
+
   return (
     <div>
-      <Head1
+      <Head2
         image={s2}
         Title="Hotels Dashboard"
         subTitle="Here’s what’s going on at your business right now"
         titleButton1="Add Hotel"
-        titleButton2="Delete Hotel"
+        titleButton2="Add Tag"
         onClickNavigation={goToAddHotel}
+        onClickNavigation2={goToAddTag} // Change this to goToAddTag
       />
       <Portfolio 
         images={hotelsData.map(hotel => ({

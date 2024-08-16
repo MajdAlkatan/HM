@@ -43,7 +43,8 @@ import useNotifications from './Pages/Notification/useNotifications';
 import "./App.css";
 import SearchFilters from "./Pages/Search/Search";
 import Listing from './Pages/Activities/Listing/Listings'
-
+import Roompage from  "./Pages/Hotel/Room/RoomPage/Roompage"
+import AddTagPage from "./Pages/Hotel/Add_Tag/AddTagDialog"
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
   const hotelsData = useSelector((state) => state.hotel.data); // Assuming hotelsData is stored in the Redux state
@@ -69,6 +70,7 @@ function App() {
                 <Route path="/home-Page" element={<Home />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/hotel-dashboad" element={<Hotel_Dashboard />} />
+                <Route path="/room_page/:id" element={<Roompage />}/>
                 <Route path="/add-hotel" element={<Add_Hotel />} />
                 <Route path="/hotel-page/:id" element={<Hotel_Page hotels={hotelsData} />} />
                 <Route path="/add-room" element={<Add_Room />} />
@@ -101,6 +103,7 @@ function App() {
                 <Route path="/Add_Event" element={<AddEvent />} />
                 <Route path="*" element={<Navigate to="/home-Page" />} />
                 <Route path="/user/:id" element={<UserDetailPage />} />
+                <Route path="/add-tag" element={<AddTagPage />} />
               </Routes>
             </Container2>
           </Container>

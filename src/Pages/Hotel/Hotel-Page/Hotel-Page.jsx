@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import './Hotel-Page.css';
 import Head2 from '../../../Components/Head/Head2';
 import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from '../../../Components';
@@ -16,19 +17,14 @@ const Hotel_Page = ({ hotels = [] }) => {
   const [hotel, setHotel] = useState(null);
   const [rooms, setRooms] = useState([]);
 
-  // Fetch the hotel from the prop or API
   useEffect(() => {
     const fetchHotel = async () => {
-      // Try to find the hotel from the passed hotels prop
       let foundHotel = hotels.find(hotel => hotel.id === parseInt(id));
       
       if (!foundHotel) {
         try {
-          const response = await fetch(`http://127.0.0.1:8000/services/properties/${id}/`);
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          foundHotel = await response.json();
+          const response = await axios.get(`http://127.0.0.1:8000/services/properties/${id}/`);
+          foundHotel = response.data;
         } catch (error) {
           console.error('Error fetching hotel data:', error);
         }
@@ -42,12 +38,10 @@ const Hotel_Page = ({ hotels = [] }) => {
     fetchHotel();
   }, [id, hotels]);
 
-  // Fetch the rooms associated with the hotel
   useEffect(() => {
     if (hotel) {
-      fetch(`http://127.0.0.1:8000/services/properties/sup-properties/?property_id=${hotel.id}`)
-        .then(response => response.json())
-        .then(data => setRooms(data.results))
+      axios.get(`http://127.0.0.1:8000/services/properties/sup-properties/?property_id=${hotel.id}`)
+        .then(response => setRooms(response.data.results))
         .catch(error => console.error('Error fetching rooms:', error));
     }
   }, [hotel]);
@@ -81,13 +75,13 @@ const Hotel_Page = ({ hotels = [] }) => {
   };
 
   return (
-    <div className="hotel-page">
+    <div >
       <Head2
         image={s3}
         Title={hotel.name}
         subTitle={hotel.description}
         titleButton1="Add Room"
-        titleButton2={""}
+        titleButton2=""
         onClickNavigation={gotoaddroom}
       />
       
@@ -145,7 +139,7 @@ const Hotel_Page = ({ hotels = [] }) => {
             photos: room.photos,
           }))}
           onClickNav={(index) => {
-            navigate(`/room/${rooms[index].id}`);
+            navigate(`/room_page/${rooms[index].id}`);
           }} 
         />
 
