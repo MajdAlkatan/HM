@@ -179,9 +179,13 @@ const ServicesSlice = createSlice({
         loading: false,
         error: null,
         token: null,
+        success: false,
 
     },
     reducers: {
+        resetSuccess: (state) => {
+            state.success = false;
+        },
 
     },
     extraReducers: (builder) => {
@@ -201,42 +205,60 @@ const ServicesSlice = createSlice({
             .addCase(TagsPage.pending, (state, action) => {
                 console.log(action);
                 state.loading = true;
+
             })
             .addCase(TagsPage.fulfilled, (state, action) => {
                 state.loading = false;
                 state.tagsData = action.payload;
+
             })
             .addCase(TagsPage.rejected, (state) => {
                 state.loading = false;
                 state.error = "Error fetching data";
+
+
             })
             .addCase(CategoryPage.pending, (state, action) => {
                 console.log(action)
                 state.loading = true;
+                state.success = false
             })
-            .addCase(CategoryPage.fulfilled, (state, action) => {
-                state.loading = false;
-                state.token = localStorage.getItem('token');
 
-                state.category.push(action.payload);
+        .addCase(CategoryPage.fulfilled, (state, action) => {
+                state.loading = false;
+
+                state.category = action.payload;
+
+                state.success = true;
+
             })
-            .addCase(CategoryPage.rejected, (state) => {
+            .addCase(CategoryPage.rejected, (state, action) => {
                 state.loading = false;
                 state.error = "Error fetching data";
+                state.success = false;
+                state.error = action.payload.error;
+
+
             })
-            .addCase(AddTagsPage.pending, (state, action) => {
+
+        .addCase(AddTagsPage.pending, (state, action) => {
                 console.log(action)
                 state.loading = true;
+                state.success = false;
+
             })
             .addCase(AddTagsPage.fulfilled, (state, action) => {
                 state.loading = false;
-                state.token = localStorage.getItem('token');
+                state.success = true;
 
-                state.tags.push(action.payload);
+
+                state.tags = action.payload;
             })
             .addCase(AddTagsPage.rejected, (state) => {
                 state.loading = false;
                 state.error = "Error fetching data";
+                state.success = false;
+
             })
             .addCase(DeleteCategory.pending, (state, action) => {
                 console.log(action)
@@ -245,7 +267,6 @@ const ServicesSlice = createSlice({
             .addCase(DeleteCategory.fulfilled, (state, action) => {
                 state.loading = false;
                 state.token = localStorage.getItem('token');
-
                 state.Deletecat.push(action.payload);
             })
             .addCase(DeleteCategory.rejected, (state) => {
@@ -255,6 +276,9 @@ const ServicesSlice = createSlice({
 
     },
 });
+
+export const { setcategory } = ServicesSlice.actions;
+export const { resetSuccess } = ServicesSlice.actions;
 
 
 export default ServicesSlice.reducer;

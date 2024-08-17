@@ -24,6 +24,7 @@ export default configureStore({
         hotel: HotelSlice,
         tours: TourSlice,
         sites: SitesSlice,
+
         activites: ActivitesSlice,
         Guid: GuidSlice,
         event: EventSlice,
@@ -33,11 +34,12 @@ export default configureStore({
         discount: makediscountReducer,
         search: SearchSlice,
         rooms: roomsReducer,
-        addroom:addroomreducer,
-        deletehotel:hotelDeleteSlice,
-        addhotel:addhotel,
-        tags:tagsSlice
+        addroom: addroomreducer,
+        deletehotel: hotelDeleteSlice,
+        addhotel: addhotel,
+        tags: tagsSlice
     },
+
 
 
 });

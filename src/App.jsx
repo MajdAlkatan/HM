@@ -46,6 +46,9 @@ import Listing from './Pages/Activities/Listing/Listings'
 import Roompage from  "./Pages/Hotel/Room/RoomPage/Roompage"
 import AddTagPage from "./Pages/Hotel/Add_Tag/AddTagDialog"
 import Update_Hotel from './Pages/Hotel/Update_Hotel/Update_hotel';
+import AddTagsRoom from './Pages/Hotel/Room/RoomPage/AddTagsRomm';
+import Notification from './Pages/Notification/notification';
+import ForgetPassowrd from './Pages/Login/ForgetPassowrd';
 
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
@@ -75,8 +78,6 @@ function App() {
                 <Route path="/room_page/:id" element={<Roompage />}/>
                 <Route path="/add-hotel" element={<Add_Hotel />} />
                 <Route path="/update-hotel/:id" element={<Update_Hotel />} />
-
-
                 <Route path="/hotel-page/:id" element={<Hotel_Page hotels={hotelsData} />} />
                 <Route path="/add-room" element={<Add_Room />} />
                 <Route path="/activities" element={<Activities />} />
@@ -109,6 +110,9 @@ function App() {
                 <Route path="*" element={<Navigate to="/home-Page" />} />
                 <Route path="/user/:id" element={<UserDetailPage />} />
                 <Route path="/add-tag" element={<AddTagPage />} />
+                <Route path="/add_tag_room/:id" element={<AddTagsRoom />} />
+                <Route path="/not" element={<Notification/>} />
+
               </Routes>
             </Container2>
           </Container>
@@ -118,6 +122,8 @@ function App() {
         <Routes>
           <Route path="*" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/change-passowrd" element={<ForgetPassowrd />} />
+
         </Routes>
       )}
     </Router>

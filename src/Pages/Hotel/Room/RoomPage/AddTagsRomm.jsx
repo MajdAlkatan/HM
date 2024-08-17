@@ -1,14 +1,13 @@
 import { Dialog } from '@mui/material'
-import './Tours.css'
-import Footer_Dialog from '../../../Components/Footer_Dialog/Footer_Dialog'
+import '../../../Activities/Tour/Tours.css'
+import Footer_Dialog from '../../../../Components/Footer_Dialog/Footer_Dialog'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { addTags } from '../Site/Site_Page';
+import {  addTagsRoom } from '../../../Activities/Site/Site_Page';
 import { useDispatch } from 'react-redux';
-import { TagsPage } from '../../Services/ServicesSlice';
-import { ServicesPage } from '../../Services/ServicesSlice';
-function AddTags() {
+import { TagsPage } from '../../../Services/ServicesSlice';
+function AddTagsRoom() {
     const dispatch=useDispatch();
     useEffect(()=>{
         dispatch(TagsPage())
@@ -20,16 +19,9 @@ function AddTags() {
     const goToTourPage=()=>{
         navigate(-1)
     }
-
-    useEffect(() => {
-      dispatch(ServicesPage());
-    
-      dispatch(TagsPage());
-    }, [dispatch]);
-
     const handlesubmit=()=>{
         console.log(tag_id)
-     dispatch(addTags({tag_id,id:params.id}))
+     dispatch(addTagsRoom({tag_id,id:params.id}))
     }
     const handleOptionChange = (event) => {
 
@@ -38,7 +30,7 @@ function AddTags() {
         setTag_Id(tag_id);
         console.log(tag_id); 
       };
-      const Tags=useSelector(state=>state.services.servicesData.results?.filter(tag => tag.type === 'activity'))
+      const Tags=useSelector(state=>state.services.tagsData.results?.filter(tag => tag.category === 2))
       return (
     <Dialog open={open} classes={{ paper: 'my-custom-dialog' }}>
        <div className="add_tag ">
@@ -65,4 +57,4 @@ function AddTags() {
   )
 }
 
-export default AddTags
+export default AddTagsRoom

@@ -150,11 +150,13 @@ const TourSlice = createSlice({
         listing: [],
         isAuthenticated: false,
         token: null,
+        success: false,
     },
     reducers: {
         setTour: (state, action) => {
             state.tours = action.payload;
             state.isAuthenticated = true;
+            state.success = false
         },
 
     },
@@ -162,16 +164,22 @@ const TourSlice = createSlice({
         builder
             .addCase(addTour.pending, (state) => {
                 state.loading = true;
+                state.success = false
+
             })
             .addCase(addTour.fulfilled, (state, action) => {
                 state.loading = false;
                 state.isAuthenticated = true;
                 state.token = localStorage.getItem('token');
-                state.tours.push(action.payload);
+                state.tours = action.payload;
+                state.success = true
+
             })
             .addCase(addTour.rejected, (state, action) => {
                 state.loading = false;
                 console.error('Failed to add tour:', action.error.message);
+                state.success = false
+
 
             });
     },

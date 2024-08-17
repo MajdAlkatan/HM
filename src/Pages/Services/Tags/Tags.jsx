@@ -7,8 +7,16 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { AddTagsPage } from '../ServicesSlice'
 import { useState } from 'react'
+import {resetSuccess}  from '../../Services/ServicesSlice'; 
+import { useEffect } from 'react'
+import i from '../../../assets/Green-check-mark-icon.png'
+
 function Tags() {
   const cat_id=useSelector(state=>state.services.servicesData?.results)
+  const success = useSelector((state) => state.services?.success);
+  console.log(success)
+  const dispatch=useDispatch();
+
   console.log(cat_id)
     const navigate=useNavigate()
     const goToServicesPage=()=>{
@@ -17,13 +25,19 @@ function Tags() {
     const [name, setName] = useState("");
     const [contenttype, setContenttype] = useState("");
     const [category, setCategory] = useState("");
+    const [istrue,setTrue] = useState(false);
+    useEffect(() => {
+      if (success) {
+        setTrue(true);
+        dispatch(resetSuccess());
+      }
+    }, [success,dispatch]);
 
-    const dispatch=useDispatch();
     const handlesubmit=()=>{
       dispatch(AddTagsPage({name,contenttype,category}))
 
     }
-  
+ 
     const handleOptionChange = (event) => {
 
       const idAndName = event.target.value.split(' '); 
@@ -34,10 +48,11 @@ function Tags() {
   return (
 
    <Dialog open={open}>
-    <div className='add_tag '>
+    {!istrue ? (
+    <div className='add_tagg'>
         <span>Add Tag</span>
     <Inputs placeholder='name' type="text" value={name} onChange={(e)=>setName(e.target.value)}/>
-    <Inputs placeholder='description' type="text" value={contenttype} onChange={(e)=>setContenttype(e.target.value)}/>
+    <Inputs placeholder='contenttype' type="text" value={contenttype} onChange={(e)=>setContenttype(e.target.value)}/>
     <div className='option'>
     <div className="coolinput">
             <label htmlFor="input" className="text">
@@ -47,6 +62,7 @@ function Tags() {
               className="select"
               onChange={handleOptionChange}
             >
+              <option>{""}</option>
             {cat_id?.map((option) => (
                 <option key={option.id} value={option.id} >{option.name}</option>
               ))}
@@ -61,7 +77,17 @@ function Tags() {
 
     
     </div>
-   
+    ):(      
+    <div className="add_category ">
+      <img src={i} alt="" />
+      <div className="button">
+      <button onClick={goToServicesPage}>close</button>    
+      </div>
+
+</div>
+
+    )
+}
    </Dialog>
   )
 }

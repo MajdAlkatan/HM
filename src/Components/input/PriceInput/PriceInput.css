@@ -86,8 +86,6 @@
     font-weight: 700;
     position: relative;
     left: 0;
-    padding: 0.4em;
-    margin-left: 1.3em;
     top: 0.5em;
     pointer-events: none;
     transition: all 0.3s ease;

@@ -6,13 +6,15 @@ import './Roompage.css';
 import Head2 from '../../../../Components/Head/Head2';
 import Room from '../../../../assets/roomsvg.svg';
 import DeleteButton3 from '../../../../Components/DetleteButton/Deletebutton3/Deletebutton3'; // Adjust the import path if needed
-
 function RoomPage() {
   const { id } = useParams(); // Get the room ID from the URL
   const [room, setRoom] = useState(null);
   const [hotelId, setHotelId] = useState(null); // State to store the hotel ID
-  const navigate = useNavigate(); // For navigation after deletion
-
+  const navigate = useNavigate(); 
+  const params=useParams() // For navigation after deletion
+const goToaddTag=()=>{
+  navigate(`/add_tag_room/${params.id}`)
+}
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`)
       .then(response => {
@@ -48,9 +50,9 @@ function RoomPage() {
         Title={room.name}
         subTitle={room.description}
         titleButton1="Add Bed"
-        titleButton2="Update Room"
+        titleButton2="Add Tag "
         onClickNavigation={() => {}}
-        onClickNavigation2={() => {}}
+        onClickNavigation2={goToaddTag}
         image={Room}  // Optionally provide a default image or leave blank
       />
 

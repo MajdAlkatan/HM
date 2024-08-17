@@ -5,7 +5,7 @@ import axios from 'axios';
 import { fetchHotels } from '../Hotel_Dashboard/HotelPage';
 import { addOrUpdateTag } from './tagsSlice'; // Import the addOrUpdateTag thunk
 import './AddTagDialog.css'; // Create a CSS file for styling if needed
-
+import { ServicesPage } from '../../Services/ServicesSlice';
 const AddTagPage = () => {
   const [selectedProperty, setSelectedProperty] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
@@ -13,10 +13,16 @@ const AddTagPage = () => {
 
   const dispatch = useDispatch();
   const hotelsData = useSelector((state) => state.hotel.data);
+  const Data=useSelector(state=>state.services.servicesData?.results)
 
+  useEffect(() => {
+    dispatch(ServicesPage());
+  
+  }, [dispatch]);
   useEffect(() => {
     dispatch(fetchHotels()); // Fetch hotels data
   }, [dispatch]);
+  const Dataa=Data?.filter(tag => tag.type === "Activity")
 
   useEffect(() => {
     // Fetch all tags data when the component mounts
@@ -90,7 +96,7 @@ const AddTagPage = () => {
           onChange={(e) => setSelectedTag(e.target.value)}
         >
           <option value="">-- Select Tag --</option>
-          {tagsData.length > 0 && tagsData.map((tag) => (
+          {Dataa.length > 0 && tagsData.map((tag) => (
             <option key={tag.id} value={tag.id}>
               {tag.name} {/* Display the tag name */}
             </option>

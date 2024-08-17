@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
 .room-page {
     font-family: 'Roboto', sans-serif;
     color: #e0e0e0;
@@ -21,7 +20,8 @@
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
     transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
-    background: #0F111A; /* Dark background for contrast */
+    background: #0F111A;
+    /* Dark background for contrast */
     cursor: pointer;
 }
 
@@ -45,7 +45,8 @@
     padding: 30px;
     border-radius: 16px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    background: #141824; /* Slightly lighter dark background */
+    background: #141824;
+    /* Slightly lighter dark background */
     color: #e0e0e0;
     position: relative;
     overflow: hidden;
@@ -69,7 +70,8 @@
 .details-card {
     border-radius: 12px;
     padding: 20px;
-    background: #1e1e1e; /* Slightly lighter than the section background */
+    background: #1e1e1e;
+    /* Slightly lighter than the section background */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
@@ -158,47 +160,38 @@
     color: #f0f0f0;
 }
 
-@media (prefers-color-scheme: light) {
-    .room-page {
-        color: #333;
-        background: linear-gradient(135deg, #ffffff, #f5f5f5);
-    }
+.image-grid {
+    gap: 20px;
+}
 
-    .image-grid {
-        gap: 20px;
-    }
+.grid-item {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
-    .grid-item {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
+.details-section {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
-    .details-section {
-        background: #ffffff;
-        color: #333;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
+.details-card {
+    background: #f9f9f9;
+    color: #333;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
 
-    .details-card {
-        background: #f9f9f9;
-        color: #333;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    }
+.details-card h4 {
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
 
-    .details-card h4 {
-        color: #333;
-        border-bottom: 2px solid #ddd;
-    }
+.details-card p {
+    color: #666;
+}
 
-    .details-card p {
-        color: #666;
-    }
+.details-card ul li {
+    background: #f9f9f9;
+    color: #333;
+}
 
-    .details-card ul li {
-        background: #f9f9f9;
-        color: #333;
-    }
-
-    .details-card ul li:hover {
-        background: #e0e0e0;
-    }
+.details-card ul li:hover {
+    background: #e0e0e0;
 }

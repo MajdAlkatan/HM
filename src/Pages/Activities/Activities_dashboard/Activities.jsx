@@ -45,9 +45,9 @@ function Activities() {
     
     <Head33
       image={activity_imag}
-      Title='Hotels Dashboard' 
+      Title='Activities Dashboard' 
       subTitle='Here’s what’s going on at your business right now'
-      titleButton1='Add Trip'
+      titleButton1='Add Tour'
       titleButton2='Add Site'
       titleButton3='Search'
 

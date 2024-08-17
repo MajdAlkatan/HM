@@ -6,9 +6,11 @@ import { useState } from "react";
 import Footer_Dialog from "./../../../Components/Footer_Dialog/Footer_Dialog";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTour } from "./Add_TripSlice";
 import { Calendar } from 'primereact/calendar'
+import i from '../../../assets/Green-check-mark-icon.png'
+import { setTour } from "./Add_TripSlice";
 
 function Add_Trip() {
   const [name, setName] = useState("");
@@ -22,6 +24,8 @@ function Add_Trip() {
   const [allow_points, setAllowPoints] = useState("");
   const [photos, setPhotos] = useState("");
   const [points_gift, setPointGift] = useState("");
+  const [istrue,setTrue] = useState(false);
+
 
   
   const [open, setOpen] = useState(true);
@@ -32,12 +36,14 @@ function Add_Trip() {
       .then((response) => response.json())
       .then((data) => setOptionsData(data.results));
   }, []);
-
+  const goToServicesPage=()=>{
+    navigate('/activities')
+}
   const handleClose = () => {
     setOpen(false);
     navigate("/activities");
   };
-
+const Data=useSelector(state=>state.tours?.success)
   const handleOptionChange = (event) => {
     
     const idAndName = event.target.value.split(' '); 
@@ -45,7 +51,12 @@ function Add_Trip() {
     setGuid_Id(guidId);
     console.log(guidId); 
   };
-  
+  useEffect(() => {
+    if (Data) {
+      setTrue(true);
+      dispatch(setTour());
+    }
+  }, [Data,dispatch]);
   const handleName = (event) => {
     setName(event.target.value);
     console.log(event.target.value);
@@ -104,6 +115,7 @@ function Add_Trip() {
 
   return (
     <Dialog open={open} scroll="paper">
+      {istrue?(
       <div className="trip_container">
         <div className="name_and_image">
           <Inputs
@@ -171,7 +183,16 @@ function Add_Trip() {
             <Footer_Dialog onClick1={handleClose} onClick2={handleSubmit} />
           </div>
        
+      </div>):(
+        <div className="trip_container">
+          <div className="ggg">
+                <img src={i} alt="" />
+      <div className="button">
+      <button onClick={goToServicesPage}>close</button>    
       </div>
+      </div>
+        </div>
+      )}
     </Dialog>
   );
 }
