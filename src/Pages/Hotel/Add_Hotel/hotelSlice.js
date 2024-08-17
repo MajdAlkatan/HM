@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Asynchronous thunk action for posting hotel data
-export const addHotel = createAsyncThunk('hotel/addHotel', async (hotelData, { rejectWithValue }) => {
+// Function to get the current language from the store
+const getCurrentLanguage = (state) => state.language.currentLanguage;
+
+export const addHotel = createAsyncThunk('hotel/addHotel', async (hotelData, { rejectWithValue, getState }) => {
   try {
+    const state = getState();
+    const currentLanguage = getCurrentLanguage(state); // Get the current language
+ 
     // Create a FormData object to handle the multipart form data
     const formData = new FormData();
     formData.append('name', hotelData.name);
@@ -26,9 +31,10 @@ export const addHotel = createAsyncThunk('hotel/addHotel', async (hotelData, { r
     const response = await axios.post('http://127.0.0.1:8000/services/properties/', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
+        'Accept-Language': currentLanguage, // Use the current language from the store
       },
     });
-    
+
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data);

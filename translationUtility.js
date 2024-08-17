@@ -1,19 +1,21 @@
-import { translations } from './translations';
+// src/translationUtils.js
+import { useContext } from 'react';
+import { LanguageContext } from './src/LanguageContext'; // Adjust the path if necessary
+import { translations } from './translations'; // Import translations
 
-let currentLanguage = 'en'; // Default language
+export const useTranslation = () => {
+  const { language } = useContext(LanguageContext);
 
-export function setLanguage(lang) {
-  currentLanguage = lang;
-}
+  const t = (key) => {
+    const keys = key.split('.');
+    let translation = translations[language];
 
-export function t(key) {
-  const keys = key.split('.');
-  let result = translations[currentLanguage];
+    keys.forEach(k => {
+      translation = translation ? translation[k] : '';
+    });
 
-  for (let k of keys) {
-    result = result[k];
-    if (!result) return key; // Return key if translation is missing
-  }
+    return translation || key; // Return the key if translation not found
+  };
 
-  return result;
-}
+  return { t };
+};

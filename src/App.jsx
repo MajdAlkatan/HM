@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Header from './sections/Header/Header';
@@ -45,33 +44,16 @@ import Roompage from './Pages/Hotel/Room/RoomPage/Roompage';
 import AddTagPage from './Pages/Hotel/Add_Tag/AddTagDialog';
 import Update_Hotel from './Pages/Hotel/Update_Hotel/Update_hotel';
 import Add_Bed from './Pages/Hotel/Room/BedPage/Add_Bed';
-import { requestPermission, onMessageListener } from './firebase';
+import   useNotifications  from './Pages/Notification/useNotifications';
 
 import './App.css';
-
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
   const hotelsData = useSelector((state) => state.hotel.data);
 
-  useEffect(() => {
-    const initializeNotifications = async () => {
-      // Request permission and get the token
-      await requestPermission();
-
-      // Handle foreground messages
-      const unsubscribe = onMessageListener((payload) => {
-        console.log('Message received: ', payload);
-        new Notification(payload.notification.title, {
-          body: payload.notification.body,
-          icon: payload.notification.icon,
-        });
-      });
-
-      return () => unsubscribe();
-    };
-
-    initializeNotifications();
-  }, []);
+  
+    useNotifications();
+ 
 
   return (
     <Router>

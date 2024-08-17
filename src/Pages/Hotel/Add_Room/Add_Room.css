@@ -1,13 +1,11 @@
-/* Styling for the dialog container */
 .dialog {
-    max-width: 100vw!important;
+    max-width: 100vw !important;
     max-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Main container for the Add Room dialog */
 .add-room-container {
     width: 650px;
     height: 1000px;
@@ -22,12 +20,15 @@
     color: white;
 }
 
-/* Section for image upload */
 .upload-image {
     padding: 20px 30px;
 }
 
-/* Flex container for form inputs */
+.upload-imageqw img {
+    width: 100%;
+    max-width: 100%;
+}
+
 .inputs1, .inputs2 {
     display: flex;
     flex-direction: column;
@@ -36,7 +37,6 @@
     align-items: center;
 }
 
-/* Styling for input fields and select dropdown */
 .inputs1 input, .inputs2 input, .inputs1 select, .inputs2 select {
     padding: 11px 10px;
     font-size: 0.75rem;
@@ -47,53 +47,74 @@
     width: 100%;
 }
 
-/* Additional styling for select dropdown */
 .select {
-    /* Ensures select dropdowns fit the design */
     background: #0F111A;
     color: white;
 }
 
-/* Calendar container styling */
-.calendar-container {
+.beds-container {
     padding: 5%;
+    color: white;
 }
 
-.calendar-border-label {
-    display: block;
+.bed-entry select {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    border: 1px solid #7796A9;
+    border-radius: 5px;
+    background: #1B1E29;
+    color: white;
+    width: 100%;
     margin-bottom: 10px;
-    color: #fff; /* Ensures the label is visible against dark background */
 }
 
-/* Styling for tags */
-.add-room-container .tag {
-    display: block;
-    padding-left: 5%;
+.bed-entry button {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    border: 1px solid #7796A9;
+    border-radius: 5px;
+    background-color: #3A3F51;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.bed-entry button:hover {
+    background-color: #575D70;
+}
+
+.AddBed {
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    border: 1px solid #7796A9;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
     margin-top: 20px;
-    font-weight: bold;
-    color: #fff;
+    transition: background-color 0.3s ease;
 }
 
-/* Icon styling (if needed) */
-.iconCalender {
-    position: relative;
-    right: 10%;
-    padding-left: 1%;
+.AddBed:hover {
+    background-color: #45A049;
 }
 
-/* Footer dialog styling */
 .footer_dialog2 {
     padding: 10px;
     text-align: center;
 }
 
-/* Ensure images fit within the container */
-.upload-imageqw img {
-    width: 100%;
-    max-width: 100%;
+.error-message {
+    color: #ff4d4f;
+    background-color: #2d2d2d;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ff4d4f;
+    border-radius: 5px;
+    text-align: center;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .add-room-container {
         width: 90%;
@@ -106,6 +127,7 @@
         gap: 10px;
     }
 }
-.css-1t1j96h-MuiPaper-root-MuiDialog-paper{
-    position: static!important;
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    position: static !important;
 }

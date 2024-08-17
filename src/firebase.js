@@ -1,8 +1,9 @@
-// src/firebase.js
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/messaging';
+// src/firebase.jsx
 
-// Your web app's Firebase configuration
+import { useEffect } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+
 const firebaseConfig = {
   apiKey: "AIzaSyDFnw8fVUGZ1Y-vuO2UPCY4r7koy8Ik-H8",
   authDomain: "pingoway-ed8c0.firebaseapp.com",
@@ -14,45 +15,35 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const messaging = getMessaging(app);
 
-// Retrieve Firebase Messaging object
-const messaging = firebase.messaging();
-
-// Request permission to show notifications
-export const requestPermission = async () => {
+export const requestPermissionAndGetToken = async () => {
   try {
-    const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
-      console.log('Notification permission granted.');
-      const token = await messaging.getToken({
-        vapidKey: 'BI00OZf2muuzp3OF8GsOk67qqGxVgvAktCSpJSHVRpjBEyWV8NWqDzP7_-siM9q7gT37-BiSQP7pJKR05l8dFio'
-      });
+    console.log('Requesting permission...');
+    const token = await getToken(messaging, {
+      vapidKey: 'BI00OZf2muuzp3OF8GsOk67qqGxVgvAktCSpJSHVRpjBEyWV8NWqDzP7_-siM9q7gT37-BiSQP7pJKR05l8dFio'
+    });
+    if (token) {
       console.log('FCM Token:', token);
-      // Send the token to your backend
-      await fetch('http://127.0.0.1:8000/fcm/devices/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `JWT ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify({ registration_id: token, type: 'web' })
-      });
-      return token;
+      // Optionally send this token to your backend
     } else {
-      console.log('Unable to get permission to notify.');
+      console.log('No registration token available. Request permission to generate one.');
     }
   } catch (error) {
-    console.error('An error occurred while requesting permission:', error);
+    console.error('An error occurred while retrieving the token:', error);
   }
 };
 
-// Handle incoming messages
-export const onMessageListener = (callback) => {
-  messaging.onMessage((payload) => {
-    console.log('Message received: ', payload);
-    callback(payload);
-  });
-};
+export const useNotificationListener = (callback) => {
+  useEffect(() => {
+    const unsubscribe = onMessage(messaging, (payload) => {
+      console.log('Message received in foreground: ', payload);
+      callback(payload);
+    });
 
-export default messaging;
+    return () => {
+      unsubscribe();
+    };
+  }, [callback]);
+};

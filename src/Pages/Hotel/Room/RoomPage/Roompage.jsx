@@ -5,24 +5,34 @@ import './Roompage.css';
 import Head2 from '../../../../Components/Head/Head2';
 import Room from '../../../../assets/roomsvg.svg';
 import DeleteButton3 from '../../../../Components/DetleteButton/Deletebutton3/Deletebutton3'; // Adjust the import path if needed
+import { useSelector } from 'react-redux'; // Import useSelector if using Redux
 
 function RoomPage() {
   const { id } = useParams(); // Get the room ID from the URL
   const [room, setRoom] = useState(null);
   const [hotelId, setHotelId] = useState(null); // State to store the hotel ID
   const navigate = useNavigate(); // For navigation after deletion and for Add Bed
+  const currentLanguage = useSelector((state) => state.language.currentLanguage); // Get current language from Redux state
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`)
+    axios.get(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`, {
+      headers: {
+        'Accept-Language': currentLanguage, // Include current language in the request
+      },
+    })
       .then(response => {
         setRoom(response.data);
         setHotelId(response.data.property_id); // Assuming `hotel_id` is returned in the response
       })
       .catch(error => console.error('Error fetching room details:', error));
-  }, [id]);
+  }, [id, currentLanguage]); // Add currentLanguage to the dependency array
 
   const handleDelete = () => {
-    axios.delete(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`)
+    axios.delete(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`, {
+      headers: {
+        'Accept-Language': currentLanguage, // Include current language in the request
+      },
+    })
       .then(() => {
         alert('Room deleted successfully');
         if (hotelId) {

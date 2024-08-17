@@ -15,11 +15,11 @@ import { useNavigate } from 'react-router-dom';
 const Add_Room = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { success } = useSelector((state) => state.rooms);
+  const { success, error } = useSelector((state) => state.rooms);
 
   const [open, setOpen] = useState(true);
   const [properties, setProperties] = useState([]);
-  const [selectedPropertyId, setSelectedPropertyId] = useState('');
+  const [selectedPropertyId, setSelectedPropertyId] = useState('');  // Default to empty string
   const [roomData, setRoomData] = useState({
     property_id: '', // Will be set automatically
     name: '',
@@ -33,7 +33,7 @@ const Add_Room = () => {
     points_discount_price: '',
     points_discount: '',
     photos: [],
-    beds: [{ number: '', type: '' }, { number: '', type: '' }],
+    beds: [{ number: '', type: '' }],
   });
 
   useEffect(() => {
@@ -50,9 +50,6 @@ const Add_Room = () => {
         const data = await response.json();
         if (data.results && data.results.length > 0) {
           setProperties(data.results);
-          const firstPropertyId = data.results[0].id;
-          setRoomData(prev => ({ ...prev, property_id: firstPropertyId }));
-          setSelectedPropertyId(firstPropertyId);
         }
       } catch (error) {
         console.error('Error fetching property data:', error.message);
@@ -102,18 +99,33 @@ const Add_Room = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(addRoom(roomData));
+    if (selectedPropertyId) {
+      dispatch(addRoom(roomData));
+    } else {
+      // Handle case where no property is selected
+      console.log('Please select a property before submitting.');
+    }
   };
 
   const handleClose = () => {
     setOpen(false);
-    navigate(`/hotel-page/${selectedPropertyId}`);
+    if (selectedPropertyId) {
+      navigate(`/hotel-page/${selectedPropertyId}`);
+    } else {
+      navigate(`/hotel-page/${selectedPropertyId}`); // Redirect to a different page if no property is selected
+    }
   };
 
-  if (success) {
-    dispatch(resetState());
-    navigate(`/hotel-page/${selectedPropertyId}`);
-  }
+  useEffect(() => {
+    if (success) {
+      dispatch(resetState());
+      if (selectedPropertyId) {
+        navigate(`/hotel-page/${selectedPropertyId}`);
+      } else {
+        navigate('/'); // Redirect to a different page if no property is selected
+      }
+    }
+  }, [success, navigate, dispatch, selectedPropertyId]);
 
   return (
     <Dialog open={open} onClose={handleClose} className="dialog">
@@ -125,6 +137,7 @@ const Add_Room = () => {
           <div className="coolinput">
             <label htmlFor="property" className="text">Select Property</label>
             <select
+              id="property"
               name="property"
               className="select"
               value={selectedPropertyId}
@@ -133,7 +146,7 @@ const Add_Room = () => {
               <option value="">Select Property</option>
               {properties.map(property => (
                 <option key={property.id} value={property.id}>
-                  {property.name}
+                  {property.id} - {property.name}
                 </option>
               ))}
             </select>
@@ -149,6 +162,7 @@ const Add_Room = () => {
           <div className="coolinput">
             <label htmlFor="type" className="text">Room Type</label>
             <select
+              id="type"
               name="type"
               className="select"
               value={roomData.type}
@@ -235,21 +249,27 @@ const Add_Room = () => {
                 value={bed.number}
                 onChange={(e) => handleBedChange(index, 'number', e.target.value)}
               />
-              <Inputs
-                type="text"
-                name={`bed_type_${index}`}
-                placeholder="Bed Type"
+              <select
+                name={`beds${index}type`}
                 value={bed.type}
                 onChange={(e) => handleBedChange(index, 'type', e.target.value)}
-              />
+              >
+                <option value="">Select Bed Type</option>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="King">King</option>
+                <option value="Cheldren">Children</option>
+                <option value="DoubleChildren">Double Children</option>
+              </select>
               <button type="button" onClick={() => handleRemoveBed(index)}>Remove Bed</button>
             </div>
           ))}
-          <button type="button" onClick={handleAddBed}>Add Bed</button>
+          <button className='AddBed' type="button" onClick={handleAddBed}>Add Bed</button>
         </div>
         <div className="footer_dialog2">
           <Footer_Dialog onClick2={handleSubmit} onClick1={handleClose} />
         </div>
+        {error && <div className="error-message">{error}</div>}
       </div>
     </Dialog>
   );

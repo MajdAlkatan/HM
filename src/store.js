@@ -18,6 +18,7 @@ import hotelDeleteSlice from "./Pages/Hotel/Hotel-Page/hoteldelete"
 import addhotel from "./Pages/Hotel/Add_Hotel/hotelSlice"
 import tagsSlice from "./Pages/Hotel/Add_Tag/tagsSlice"
 import AddBedSlice from  "./Pages/Hotel/Room/BedPage/AddBedSlice"
+import languageReducer from "./languageSlice"
 export default configureStore({
     reducer: {
         site: SiteSlice,
@@ -38,6 +39,7 @@ export default configureStore({
         deletehotel:hotelDeleteSlice,
         addhotel:addhotel,
         tags:tagsSlice,
+        language: languageReducer,
         addBed:AddBedSlice
     },
 

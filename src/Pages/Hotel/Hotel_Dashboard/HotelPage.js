@@ -54,10 +54,18 @@ const fetchHotelsFailure = (error) => ({
 
 // Async Thunk Action (using Redux Thunk)
 export const fetchHotels = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     dispatch(fetchHotelsRequest());
     try {
-      const response = await axios.get('http://127.0.0.1:8000/services/properties/');
+      const state = getState();
+      const currentLanguage = state.language.currentLanguage; // Adjust according to your state structure
+
+      const response = await axios.get('http://127.0.0.1:8000/services/properties/', {
+        headers: {
+          'Accept-Language': currentLanguage, // Use the correct header name
+          'Authorization': `Bearer ${localStorage.getItem('authToken')}` // Example for authorization header
+        },
+      });
       dispatch(fetchHotelsSuccess(response.data.results));
     } catch (error) {
       dispatch(fetchHotelsFailure(error.message));

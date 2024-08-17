@@ -1,24 +1,23 @@
+// src/components/NavBar.jsx
 import './NavBar.css';
-import { FaHome, FaCar, FaUsers, FaMapSigns, FaCalendarAlt, FaTags} from 'react-icons/fa';
+import { FaHome, FaCar, FaUsers, FaMapSigns, FaCalendarAlt, FaTags } from 'react-icons/fa';
 import { MdHotel } from 'react-icons/md';
 import { IoSettings, IoLanguageSharp } from 'react-icons/io5';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../Pages/Login/LoginSlice';
 import Logout from '../../Components/logout/logout';
-import { t, setLanguage } from '../../../translationUtility';
-import { IoMdPricetags } from "react-icons/io";
+import { IoMdPricetags } from 'react-icons/io';
+import { setLanguage } from '../../languageSlice'; // Import the action
+import { useTranslation } from '../../../translationUtility'; // Import the translation hook
 
 const NavBar = () => {
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState('en');
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setLanguage(currentLanguage);
-  }, [currentLanguage]);
+  const { t } = useTranslation(); // Use translation hook
+  const currentLanguage = useSelector((state) => state.language.currentLanguage); // Get language from Redux store
 
   const toggleLanguageDropdown = () => {
     setShowLanguageDropdown(!showLanguageDropdown);
@@ -26,8 +25,9 @@ const NavBar = () => {
 
   const changeLanguage = (event) => {
     const selectedLanguage = event.target.value.toLowerCase();
-    setCurrentLanguage(selectedLanguage);
-    setLanguage(selectedLanguage);
+    dispatch(setLanguage(selectedLanguage)); // Update Redux store
+    localStorage.setItem('currentLanguage', selectedLanguage); // Persist to localStorage
+    window.location.reload(); // Refresh the page
   };
 
   const handleLogout = () => {
@@ -46,7 +46,6 @@ const NavBar = () => {
     { icon: <FaMapSigns />, label: t('navbar.guid'), onClick: () => navigate('/Guidspage') },
     { icon: <FaCalendarAlt />, label: t('navbar.events'), onClick: () => navigate('/EventDash') },
     { icon: <FaTags />, label: t('navbar.discount'), onClick: () => navigate('/Discountpage') },
-
   ];
 
   return (
@@ -65,7 +64,7 @@ const NavBar = () => {
           <li className="language-dropdown">
             <IoLanguageSharp className="nav-icon" /> {t('navbar.language')}
             <select onChange={changeLanguage} value={currentLanguage}>
-              <option >{t('navbar.select')}</option>
+              <option value="">{t('navbar.select')}</option>
               <option value="en">English</option>
               <option value="ar">العربية</option>
               <option value="fr">Français</option>

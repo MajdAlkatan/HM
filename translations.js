@@ -13,10 +13,25 @@ export const translations = {
             select: "Select",
             language: "Language",
             foote: "Copyright©2024 Pingoway Company All rights reserved.",
-
             Search: "Search",
+            policies: "Hotel Policies",
+            refundRate: "Refund Rate",
+            upfrontRate: "Upfront Rate",
+            guestExperience: "Guest Experience",
+            pointsRedemption: "Points Redemption",
+            reviews: "Reviews",
+            noRatings: "No ratings yet",
+            discounts: "Discounts",
+            addRoom: "Add Room",
+            updateHotel: "Update Hotel",
+            confirmDelete: "Are you sure you want to delete the hotel {{name}}?",
+            hotelNotFound: "Hotel not found",
+            groupA: "Group A",
+            groupB: "Group B",
+            groupC: "Group C",
+            groupD: "Group D"
         },
-
+      
     },
     ar: {
         navbar: {
@@ -32,10 +47,27 @@ export const translations = {
             select: "اختر",
             language: "اللغة",
             foote: "حقوق النشر © 2024 شركة Pingoway جميع الحقوق محفوظة.",
-            Search: "بحث"
-
+            Search: "بحث",
+            policies: "سياسات الفندق",
+            refundRate: "معدل الاسترداد",
+            upfrontRate: "معدل الدفع المسبق",
+            guestExperience: "تجربة الضيف",
+            pointsRedemption: "استرداد النقاط",
+            reviews: "المراجعات",
+            noRatings: "لا توجد تقييمات بعد",
+            discounts: "الخصومات",
+            addRoom: "إضافة غرفة",
+            updateHotel: "تحديث الفندق",
+            confirmDelete: "هل أنت متأكد أنك تريد حذف الفندق {{name}}؟",
+            hotelNotFound: "الفندق غير موجود",
+            groupA: "المجموعة أ",
+            groupB: "المجموعة ب",
+            groupC: "المجموعة ج",
+            groupD: "المجموعة د"
+        
         },
-
+       
+       
     },
     fr: {
         navbar: {
@@ -50,9 +82,25 @@ export const translations = {
             settings: "Paramètres",
             select: "Sélectionner",
             language: "Langue",
-            foote: "Droit d'auteur © 2024 Pingoway Company Tous droits réservés."
+            foote: "Droit d'auteur © 2024 Pingoway Company Tous droits réservés.",
+            policies: "Politiques de l'hôtel",
+            refundRate: "Taux de remboursement",
+            upfrontRate: "Taux de paiement initial",
+            guestExperience: "Expérience client",
+            pointsRedemption: "Remboursement des points",
+            reviews: "Avis",
+            noRatings: "Aucun avis pour l'instant",
+            discounts: "Réductions",
+            addRoom: "Ajouter une chambre",
+            updateHotel: "Mettre à jour l'hôtel",
+            confirmDelete: "Êtes-vous sûr de vouloir supprimer l'hôtel {{name}} ?",
+            hotelNotFound: "Hôtel non trouvé",
+            groupA: "Groupe A",
+            groupB: "Groupe B",
+            groupC: "Groupe C",
+            groupD: "Groupe D"
         },
-
+   
     },
     ro: {
         navbar: {
@@ -67,9 +115,26 @@ export const translations = {
             settings: "Setări",
             select: "Selectați",
             language: "Limbă",
-            foote: "Copyright©2024 Pingoway Company Toate drepturile rezervate."
+            foote: "Copyright©2024 Pingoway Company Toate drepturile rezervate.",
+            policies: "Politici ale hotelului",
+            refundRate: "Rata de rambursare",
+            upfrontRate: "Rata de plată în avans",
+            guestExperience: "Experiența oaspeților",
+            pointsRedemption: "Răscumpărarea punctelor",
+            reviews: "Recenzii",
+            noRatings: "Nici o evaluare încă",
+            discounts: "Reduceri",
+            addRoom: "Adaugă cameră",
+            updateHotel: "Actualizează hotelul",
+            confirmDelete: "Ești sigur că dorești să ștergi hotelul {{name}}?",
+            hotelNotFound: "Hotelul nu a fost găsit",
+            groupA: "Grupa A",
+            groupB: "Grupa B",
+            groupC: "Grupa C",
+            groupD: "Grupa D"
         },
-
+         
+       
     },
     nl: {
         navbar: {
@@ -84,9 +149,24 @@ export const translations = {
             settings: "Instellingen",
             select: "Selecteer",
             language: "Taal",
-            foote: "Auteursrecht © 2024 Pingoway Company Alle rechten voorbehouden."
-
+            foote: "Auteursrecht © 2024 Pingoway Company Alle rechten voorbehouden.",
+            policies: "Hotelbeleid",
+            refundRate: "Terugbetalingspercentage",
+            upfrontRate: "Aanbetalingspercentage",
+            guestExperience: "Gastenervaring",
+            pointsRedemption: "Punteninwisseling",
+            reviews: "Recensies",
+            noRatings: "Nog geen beoordelingen",
+            discounts: "Kortingen",
+            addRoom: "Voeg kamer toe",
+            updateHotel: "Hotel bijwerken",
+            confirmDelete: "Weet je zeker dat je het hotel {{name}} wilt verwijderen?",
+            hotelNotFound: "Hotel niet gevonden",
+            groupA: "Groep A",
+            groupB: "Groep B",
+            groupC: "Groep C",
+            groupD: "Groep D"
         },
-
+     
     }
 };
