@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './GuidsDetailse.css'; // Import the CSS file
 import Head1 from '../../Components/Head/Head1';
-import Guid from '../../assets/guid.svg';
 import PieChartWithCenterLabel from '../../Components/Statistics6/Statistics6'; // Import the chart component
 import Inputs from '../../Components/input/normalinput/inputs'; // Import input components
 import { Bio } from '../../Components/index'; // Import bio component
 import Spiner from "../../Components/Spiner_loding/Spiner"
+import { baseurl } from '../../App';
+
 function GuidsDetailse() {
   const { id } = useParams(); // Extract the guide ID from the URL
   const [guideDetails, setGuideDetails] = useState(null);
@@ -33,7 +34,7 @@ function GuidsDetailse() {
         };
 
         const response = await fetch(
-          `http://127.0.0.1:8000/services/activities/guides/${id}/`,
+          `${baseurl}/services/activities/guides/${id}/`,
           options
         );
 
@@ -79,7 +80,7 @@ function GuidsDetailse() {
       };
 
       const response = await fetch(
-        `http://127.0.0.1:8000/services/activities/guides/${id}/`,
+        `${baseurl}/services/activities/guides/${id}/`,
         options
       );
 
@@ -108,7 +109,7 @@ function GuidsDetailse() {
         subTitle="Here’s what’s going on at your business right now"
         titleButton1='Update Details'
         onClickNavigation={() => setIsEditing(true)}
-        image={Guid}
+        image={''}
       />
       <div className='guid-details-container'>
         <div className='guid-details-avatar'>

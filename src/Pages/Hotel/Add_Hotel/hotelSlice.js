@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseurl } from '../../../App';
 
 // Function to get the current language from the store
 const getCurrentLanguage = (state) => state.language.currentLanguage;
@@ -28,7 +29,7 @@ export const addHotel = createAsyncThunk('hotel/addHotel', async (hotelData, { r
       formData.append(`photos[${index}]image`, image);
     });
 
-    const response = await axios.post('http://127.0.0.1:8000/services/properties/', formData, {
+    const response = await axios.post(`${baseurl}/services/properties/`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Accept-Language': currentLanguage, // Use the current language from the store

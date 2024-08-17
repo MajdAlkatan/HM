@@ -28,14 +28,26 @@ useEffect(() => {
   dispatch(TagsPage());
 }, [dispatch]);
 const handleDelete = (event) => {
-  const categoryId = event.target.dataset.id; 
+  const categoryId = event.target.dataset.id;
+
+  // Confirm deletion
+  if (window.confirm("Are you sure you want to delete this category?")) {
     dispatch(DeleteCategory(categoryId));
-  };
-  const handleDeleteTag = (event) => {
-    const categoryId = event.target.dataset.id; 
-      dispatch(DeleteTag(categoryId));
-    };
-  
+  }
+};
+const handleDeleteTag = (event) => {
+  // Ensure we're using currentTarget to get the correct id
+  const tagId = event.currentTarget.dataset.id;
+
+  // Log the tagId to debug
+  console.log("Deleting tag with ID:", tagId);
+
+  // Confirm deletion
+  if (window.confirm(`Are you sure you want to delete tag with ID ${tagId}?`)) {
+    dispatch(DeleteTag(tagId));
+  }
+};
+
 
 
   const navigate = useNavigate();

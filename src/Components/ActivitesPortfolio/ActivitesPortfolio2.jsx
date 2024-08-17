@@ -46,7 +46,8 @@ function ActivitesPortfolio2({ activities, onClickNav }) {
             )}
             <div className="caption">
               <h4>{activity.name}</h4>
-              <p>{activity.description}</p>
+              {/* Truncate the description to the first 10 words */}
+              <p>{activity.description.split(/\s+/).slice(0, 7).join(' ') + '...'}</p>
             </div>
           </div>
         ))}

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import DiscountDetails from '../../Components/DiscountDetails/DiscountDetails';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { baseurl } from '../../App';
 
 function Discountpage() {
     const [discountData, setDiscountData] = useState(null);
@@ -26,9 +27,9 @@ function Discountpage() {
                 };
 
                 const [discountResponse, servicesResponse, eventsResponse] = await Promise.all([
-                    axios.get('http://127.0.0.1:8000/services/service-discounts/', { headers }),
-                    axios.get('http://127.0.0.1:8000/services/activities/listings/'),
-                    axios.get('http://127.0.0.1:8000/events/')
+                    axios.get(`${baseurl}/services/service-discounts/`, { headers }),
+                    axios.get(`${baseurl}/services/activities/listings/`),
+                    axios.get(`${baseurl}/events/`)
                 ]);
 
                 setDiscountData(discountResponse.data);
@@ -49,7 +50,7 @@ function Discountpage() {
                 Authorization: `JWT ${token}`,
             };
             // Make an API call to delete the discount
-            await axios.delete(`http://127.0.0.1:8000/services/service-discounts/${discountId}/`, { headers });
+            await axios.delete(`${baseurl}/services/service-discounts/${discountId}/`, { headers });
             // Update the local state to remove the deleted discount
             setDiscountData(prevData => ({
                 ...prevData,

@@ -1,24 +1,18 @@
 import './Site.css';
 import activity_imag from '../../../assets/activities.svg';
 import { Statistics5 } from '../../../Components/index';
-import Head33 from '../../../Components/Head/Head33';
+import Head2 from '../../../Components/Head/Head2';
 import { useNavigate, useParams } from 'react-router-dom';
 import DetailsPortfolio from '../../../Components/DetailsPortfolio/DetailsPortfolio';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { SitePage } from './Site_Page';
 import { useEffect } from 'react';
-import { Delete, Refund } from '../../Delete/DeleteSlice';
-import { Cancel } from '../../Delete/DeleteSlice';
+
 
 function Site() {
   
-    const handleDelete = () => {
-        
-            dispatch(Delete());
-            dispatch(Cancel());
-            dispatch(Refund());
-        }   ;
+  
     let navigate = useNavigate();
 const params=useParams()
 
@@ -40,17 +34,15 @@ const params=useParams()
 
     return (
         <div className='hh'>
-            <Head33
+            <Head2
                 image={activity_imag}
                 Title={Data.name} 
                 subTitle='Here’s what’s going on at your business right now'
-                titleButton1='Delete Site'
                 titleButton2='Edit Site'
-                titleButton3='make Listing'
+                titleButton1='make Listing'
 
                 onClickNavigation2={goToAddSite}
-                onClickNavigation={handleDelete}
-                onClickNavigation3={goToListing}
+                onClickNavigation={goToListing}
             />
             <DetailsPortfolio images={Data} onClickNav={''}/>
             <hr className="hr" />

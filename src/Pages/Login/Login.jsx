@@ -2,11 +2,10 @@ import './Login.css';
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/fontawesome-free-solid';
-import videoFile from '../../assets/vid.mp4';
+import background from '../../assets/Screenshot (48) 1.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from './LoginSlice';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -18,7 +17,9 @@ const Login = () => {
   const handleLogin = () => {
     dispatch(loginUser({ email, password }));
   };
-
+const goToForgetPassowrd=()=>{
+  navigate('/change-passowrd')
+}
   useEffect(() => {
     if (isAuthenticated) {
       navigate('/home-Page');
@@ -27,9 +28,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <video autoPlay loop muted className="vid">
-        <source src={videoFile} type="video/mp4" />
-      </video>
+   <img src={background} alt="" />
       <div className="container">
         <div className="image">
           <span className="PingoWay">Pingoway</span>
@@ -46,7 +45,10 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <FontAwesomeIcon className="icon-user" icon={faUser} />
+            <span className="icon-user">
+            <FontAwesomeIcon  icon={faUser} />
+
+            </span>
             <input
               className="password"
               type="password"
@@ -55,9 +57,9 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <FontAwesomeIcon className="icon-password" icon={faLock} />
-            <Link to="/" className="forget-password">
+            <span onClick={goToForgetPassowrd} className="forget-password">
               Forget your password?
-            </Link>
+            </span>
           </div>
           <button className="login-button" onClick={handleLogin}>
             Login

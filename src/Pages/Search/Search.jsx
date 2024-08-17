@@ -10,20 +10,29 @@ function valuetext(value) {
   return `${value}°C`;
 }
 import Slider from '@mui/material/Slider';const SearchFilters = () => {
-  const [search, setSearch] = useState('');
-  const [tour__duration, setTourDuration] = useState('');
-  const [tickets__price, setTicketPrice] = useState('');
-  const [tour__takeoff_date, setTourTakeoffDate] = useState('');
+ 
+  const [search, setSearch] = useState("");
+  const [tour__duration, setTourDuration] = useState("");
+  const [tickets__price, setTicketPrice] = useState("");
+  const [tour__takeoff_date, setTourTakeoffDate] = useState("");
   const [tour__takeoff_date__range, setTourTakeoffDateRange] = useState([]);
-
-  const [tour__duration__range, setTourDurationRange] = useState([20,270]);
-  const [tickets__price__range, setTicketPriceRange] = useState([100,10000]);
-  const [type, setType] = useState('');
+  
+  const [tour__duration__range, setTourDurationRange] = useState(["0","300"]);
+  const [tickets__price__range, setTicketPriceRange] = useState(['0','200'])
+  const [type, setType] = useState("");
 console.log(tickets__price__range)
 console.log(tour__duration__range)
+
+
 const handleCalendarChange = (e) => {
+  
   setTourTakeoffDateRange(e.value);
 };
+
+
+  
+
+
 
 
 
@@ -43,24 +52,41 @@ else {
 }
 
 }
+const formatDateForSubmission = (date) => {
+  // Create a new Date object
+  const d = new Date(date);
+  // Format the date in "YYYY-MM-DD" format
+  const formattedDate = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  return formattedDate;
+};
+
+
 
 const Data=useSelector(state=>{return state.search?.searcha.results})
 const isLoading = useSelector(state => state.search?.loading); // Assuming your state has an isLoading flag
+const handleSubmit = () => {
+  // Prepare the payload with explicit checks for empty strings and undefined values
+  const payload = {
+    search: search || '', // Ensure search is never undefined or empty
+    tickets__price__range: tickets__price__range.length ? tickets__price__range : [], // Convert empty array to []
+    tour__duration__range: tour__duration__range.length ? tour__duration__range : [], // Convert empty array to []
+    tour__takeoff_date__range: tour__takeoff_date__range.map(date => formatDateForSubmission(date)).length ? tour__takeoff_date__range.map(date => formatDateForSubmission(date)) : [], // Convert empty array to []
+    tour__takeoff_date: tour__takeoff_date || '', // Ensure date is never undefined or empty
+    tickets__price: tickets__price || '', // Ensure price is never undefined or empty
+    tour__duration: tour__duration || '', // Ensure duration is never undefined or empty
+    type: type || '', // Ensure type is never undefined or empty
+  };
 
-const handleSubmit=()=>{   
+  // Dispatch the action with the cleaned-up payload
+  dispatch(Search(payload));
+};
 
-console.log(tour__takeoff_date__range)
-     dispatch(Search({
-      search,
-      tickets__price__range,
-      tour__duration__range,
-      tour__takeoff_date__range,
-      tour__takeoff_date,
-      tickets__price,
-      tour__duration,
-      type,
-    }));
-}
+
+
+
+
+
+
 useEffect(()=>{    
      console.log(Data)
 },[Data])
@@ -84,7 +110,7 @@ useEffect(()=>{
           </div>
           <div className="filter-item">
             <label>Duration (Exact)</label>
-            <input type="number" value={tour__duration} onChange={(e) => setTourDuration(e.target.value)} />
+            <input type="number"  onChange={(e) => setTourDuration(e.target.value)} />
           </div>
           <div className="filter-item">
             <label>Duration (Range)</label>

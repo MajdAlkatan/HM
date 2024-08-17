@@ -3,13 +3,14 @@ import Head1 from "../../Components/Head/Head1";
 import { useNavigate } from 'react-router-dom';
 import { UserProfile } from '../../Components/index';
 import Guid from "../../assets/guid.svg";
+import { baseurl } from '../../App';
 
 function Guidspage() {
   const navigate = useNavigate(); // Use navigate here
   const [guidesData, setGuidesData] = useState([]);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/services/activities/guides/')
+    fetch(`${baseurl}/services/activities/guides/`)
       .then(response => response.json())
       .then(data => {
         setGuidesData(data.results);

@@ -231,7 +231,7 @@ a:hover {
   color: #666;
 }
 
-button {
+.b {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
   background-color: #007bff;
@@ -241,7 +241,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.b:hover {
   background-color: #0056b3;
 }
 

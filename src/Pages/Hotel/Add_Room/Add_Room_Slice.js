@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseurl } from '../../../App';
 
 export const addRoom = createAsyncThunk(
   'rooms/addRoom',
@@ -39,7 +40,7 @@ export const addRoom = createAsyncThunk(
       });
 
       const response = await axios.post(
-        'http://127.0.0.1:8000/services/properties/sup-properties/',
+        `${baseurl}/services/properties/sup-properties/`,
         formData,
         {
           headers: {

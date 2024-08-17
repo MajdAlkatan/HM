@@ -5,6 +5,7 @@ import axios from 'axios';
 import { addBed, resetState } from './AddBedSlice';
 import DeleteButton from '../../../../Components/DetleteButton/DeleteButton2/DeleteButton2'; // Import the DeleteButton component
 import './Add_Bed.css';
+import { baseurl } from '../../../../App';
 
 function Add_Bed() {
     const { id } = useParams();
@@ -17,7 +18,7 @@ function Add_Bed() {
     useEffect(() => {
         const fetchBeds = async () => {
             try {
-                const response = await axios.get(`http://127.0.0.1:8000/services/properties/sup-property-beds/?supProperty=${id}`);
+                const response = await axios.get(`${baseurl}/services/properties/sup-property-beds/?supProperty=${id}`);
                 setBeds(response.data.results);
             } catch (error) {
                 console.error('Error fetching beds:', error);
@@ -34,7 +35,7 @@ function Add_Bed() {
 
     const handleDelete = async (bedId) => {
         try {
-            await axios.delete(`http://127.0.0.1:8000/services/properties/sup-property-beds/${bedId}/`);
+            await axios.delete(`${baseurl}/services/properties/sup-property-beds/${bedId}/`);
             // Remove the deleted bed from the state
             setBeds(beds.filter(b => b.id !== bedId));
         } catch (error) {

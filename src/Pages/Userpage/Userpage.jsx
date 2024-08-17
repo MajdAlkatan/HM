@@ -5,6 +5,7 @@ import axios from 'axios';
 import { UserProfile } from '../../Components/index';
 import a from '../../assets/m.jpg'; // Default image if needed
 import { useNavigate } from 'react-router-dom';
+import { baseurl } from '../../App';
 
 function UserPage() {
   const [profiles, setProfiles] = useState([]);
@@ -16,7 +17,7 @@ function UserPage() {
     const fetchProfiles = async () => {
       const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
       try {
-        const response = await axios.get('http://127.0.0.1:8000/profiles', {
+        const response = await axios.get(`${baseurl}/profiles`, {
           headers: {
             Authorization: `JWT ${token}`,
           },

@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseurl } from '../../../../App';
 
 // Async thunk to handle the API request
 export const addBed = createAsyncThunk(
   'addBed',
   async ({ supPropertyId, bedType, number }, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/services/properties/sup-property-beds/', {
+      const response = await axios.post(`${baseurl}/services/properties/sup-property-beds/`, {
         supproperty: supPropertyId,  // Room ID (ensure the field name matches what the API expects)
         type: bedType,                // Bed Type
         number: number                // Number of beds

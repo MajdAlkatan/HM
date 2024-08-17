@@ -8,6 +8,7 @@ import Inputs from "../../../Components/input/normalinput/inputs";
 import { Bio } from "../../../Components/index";
 import { useDispatch } from "react-redux";
 import { addguid } from "./guidSlice";
+// const baseurl="http://192.168.73.195:8000"
 
 function Guid() {
   const [avatar, setAvatar] = useState(null);

@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faCloudSun, faCloudRain, faSnowflake, faMoon } from '@fortawesome/free-solid-svg-icons';
 import CurrencyStockTrends from './CurrencyStockTrends';
+import { baseurl } from '../../App';
 
 const Home = () => {
   const [weatherData, setWeatherData] = useState({ current: [], forecast: null });
@@ -52,7 +53,7 @@ const Home = () => {
 
     const fetchNews = async () => {
       try {
-        const response = await fetch('https://newsapi.org/v2/everything?q=tesla&from=2024-07-16&sortBy=publishedAt&apiKey=c279d2b33786459f87fc4ac95083c250');
+        const response = await fetch('http://newsapi.org/v2/everything?q=tesla&from=2024-07-16&sortBy=publishedAt&apiKey=c279d2b33786459f87fc4ac95083c250');
         const data = await response.json();
         setNewsData(data.articles.slice(0, 20));
         setNewsImages(data.articles.slice(0, 20).map(article => article.urlToImage));
@@ -63,9 +64,9 @@ const Home = () => {
 
     const fetchLastServices = async () => {
       try {
-        const response1 = await fetch('http://localhost:8000/services/activities/listings/');
+        const response1 = await fetch(`${baseurl}/services/activities/listings/`);
         const data1 = await response1.json();
-        const response2 = await fetch('http://127.0.0.1:8000/services/properties/');
+        const response2 = await fetch(`${baseurl}/services/properties`);
         const data2 = await response2.json();
         const combinedResults = [...data1.results, ...data2.results];
         const latestService = combinedResults.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0];
@@ -146,7 +147,7 @@ const Home = () => {
                   <p>Refund Rate: {service.refund_rate}%</p>
                   <p>Points Gift: {service.points_gift}</p>
                   <p>Opening Hours: {service.opens_at} - {service.closes_at}</p>
-                  <button onClick={() => viewMoreDetails(service.id)}>View More Details</button>
+                  <button  className='b' onClick={() => viewMoreDetails(service.id)}>View More Details</button>
                 </div>
               </li>
             ))}

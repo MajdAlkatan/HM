@@ -14,6 +14,7 @@ import '../Add_Hotel/Add_Hotel.css';
 import  {HotelPage}  from '../Hotel-Page/hoteldelete';
 import { useParams } from 'react-router-dom';
 import {UpdateHot} from '../Hotel-Page/hoteldelete'
+
 const Update_Hotel = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -26,6 +26,7 @@ export default configureStore({
         hotel: HotelSlice,
         tours: TourSlice,
         sites: SitesSlice,
+
         activites: ActivitesSlice,
         Guid: GuidSlice,
         event: EventSlice,
@@ -40,8 +41,9 @@ export default configureStore({
         addhotel:addhotel,
         tags:tagsSlice,
         language: languageReducer,
-        addBed:AddBedSlice
+        addBed:AddBedSlice,
     },
+
 
 
 });

@@ -2,6 +2,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseurl } from '../../../App';
 
 // Define an asynchronous thunk action
 export const createDiscount = createAsyncThunk(
@@ -16,7 +17,7 @@ export const createDiscount = createAsyncThunk(
       // Retrieve JWT token from local storage
       const token = localStorage.getItem('token');
       
-      const response = await axios.post('http://127.0.0.1:8000/services/service-discounts/', {
+      const response = await axios.post(`${baseurl}/services/service-discounts/`, {
         service,
         event,
         percent,

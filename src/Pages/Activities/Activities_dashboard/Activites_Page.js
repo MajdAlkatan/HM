@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { baseurl } from '../../../App';
 
 export const ActivitesPage = createAsyncThunk(
     'activites/ActivitesPage',
     async() => {
         try {
-            const response = await axios.get("http://localhost:8000/services/activities/sites/", {
+            const response = await axios.get(`${baseurl}/services/activities/sites/`, {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem('token')}`,
                 }
@@ -24,7 +24,7 @@ export const ToursPage = createAsyncThunk(
     'tours/ToursPage',
     async() => {
         try {
-            const response = await axios.get("http://localhost:8000/services/activities/tours/", {
+            const response = await axios.get("http://192.168.73.195:8000/services/activities/tours/", {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem('token')}`,
                 }

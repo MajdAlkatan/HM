@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseurl } from '../../../App';
 
 export const addTour = createAsyncThunk(
     "tours/addTour",
@@ -33,7 +34,7 @@ export const addTour = createAsyncThunk(
         }
         try {
             const res = await axios.post(
-                "http://localhost:8000/services/activities/tours/",
+                `${baseurl}/services/activities/tours/`,
                 formData, {
                     headers: {
                         Authorization: `JWT ${localStorage.getItem('token')}`,
@@ -110,7 +111,7 @@ export const Listing = createAsyncThunk(
         }
         try {
             const res = await axios.post(
-                "http://localhost:8000/services/activities/listings/",
+                `http://192.168.73.195:8000/services/activities/listings/`,
                 formData, {
                     headers: {
                         Authorization: `JWT ${localStorage.getItem('token')}`,
@@ -150,11 +151,13 @@ const TourSlice = createSlice({
         listing: [],
         isAuthenticated: false,
         token: null,
+        success: false,
     },
     reducers: {
         setTour: (state, action) => {
             state.tours = action.payload;
             state.isAuthenticated = true;
+            state.success = false
         },
 
     },
@@ -162,16 +165,22 @@ const TourSlice = createSlice({
         builder
             .addCase(addTour.pending, (state) => {
                 state.loading = true;
+                state.success = false
+
             })
             .addCase(addTour.fulfilled, (state, action) => {
                 state.loading = false;
                 state.isAuthenticated = true;
                 state.token = localStorage.getItem('token');
-                state.tours.push(action.payload);
+                state.tours = action.payload;
+                state.success = true
+
             })
             .addCase(addTour.rejected, (state, action) => {
                 state.loading = false;
                 console.error('Failed to add tour:', action.error.message);
+                state.success = false
+
 
             });
     },

@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseurl } from '../../App';
 
 export const addTicket = createAsyncThunk(
     "ticket/addTicket",
@@ -31,7 +32,7 @@ export const addTicket = createAsyncThunk(
 
         try {
             const res = await axios.post(
-                `http://localhost:8000/services/activities/${id}/tickets/`,
+                `${baseurl}/services/activities/${id}/tickets/`,
                 formData, {
                     headers: {
                         Authorization: `JWT ${localStorage.getItem("token")}`,
@@ -68,7 +69,7 @@ export const CurrencyPage = createAsyncThunk(
     'currency/CurrencyPage',
     async() => {
         try {
-            const response = await axios.get('http://localhost:8000/exchange_rates/', {
+            const response = await axios.get(`${baseurl}/exchange_rates/`, {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem('token')}`,
                 }

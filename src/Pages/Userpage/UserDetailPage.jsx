@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import './UserDetailPage.css'; // Updated CSS file
 import Spiner from "../../Components/Spiner_loding/Spiner"
+
 function UserDetailPage() {
   const { id } = useParams();
   const location = useLocation();

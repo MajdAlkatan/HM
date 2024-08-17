@@ -7,6 +7,7 @@ import { createDiscount } from './MakediscountSlice';
 import TabBar from '../../../Components/TabBar/Tab_Bar';
 import axios from 'axios';
 import './Makediscount.css'; // Import your custom CSS file
+import { baseurl } from '../../../App';
 
 function Makediscount() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function Makediscount() {
   useEffect(() => {
     const fetchSites = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/services/activities/listings/');
+        const response = await axios.get(`${baseurl}/services/activities/listings/`);
         if (response.status === 200) {
           if (response.data && Array.isArray(response.data.results)) {
             setSites(response.data.results);
@@ -44,7 +45,7 @@ function Makediscount() {
 
     const fetchHotels = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/services/properties/');
+        const response = await axios.get(`${baseurl}/services/properties/`);
         if (response.status === 200) {
           if (response.data && Array.isArray(response.data.results)) {
             setHotels(response.data.results);
@@ -63,7 +64,7 @@ function Makediscount() {
 
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/events/');
+        const response = await axios.get(`${baseurl}/events/`);
         if (response.status === 200) {
           if (response.data && Array.isArray(response.data.results)) {
             const categorizedEvents = categorizeEvents(response.data.results);
@@ -83,7 +84,7 @@ function Makediscount() {
 
     const fetchTours = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/services/activities/tours');
+        const response = await axios.get(`${baseurl}/services/activities/tours`);
         if (response.status === 200) {
           if (response.data && Array.isArray(response.data.results)) {
             setTours(response.data.results);

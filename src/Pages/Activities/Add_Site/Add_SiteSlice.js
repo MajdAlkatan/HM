@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseurl } from '../../../App';
 
 export const addSite = createAsyncThunk(
     "sites/addSite",
@@ -21,7 +22,7 @@ export const addSite = createAsyncThunk(
         }
         try {
             const res = await axios.post(
-                "http://localhost:8000/services/activities/sites/",
+                `${baseurl}/services/activities/sites/`,
                 formData, {
                     headers: {
                         Authorization: `JWT ${localStorage.getItem("token")}`,

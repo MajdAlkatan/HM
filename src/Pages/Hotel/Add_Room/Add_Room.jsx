@@ -11,6 +11,7 @@ import PriceInput from '../../../Components/input/PriceInput/PriceInput';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRoom, resetState } from './Add_Room_Slice';
 import { useNavigate } from 'react-router-dom';
+import { baseurl } from '../../../App';
 
 const Add_Room = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Add_Room = () => {
   useEffect(() => {
     const fetchPropertyData = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/services/properties/');
+        const response = await fetch(`${baseurl}/services/properties/`);
         
         if (!response.ok) {
           const errorText = await response.text();

@@ -1,11 +1,12 @@
 // src/store/tagsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseurl } from '../../../App';
 
 // Fetch tags from the API
 export const fetchTags = createAsyncThunk('tags/fetchTags', async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/services/properties/property-tags/', {
+    const response = await axios.get('${baseurl}/services/properties/property-tags/', {
       headers: {
         Authorization: `JWT ${localStorage.getItem('token')}`,
       }
@@ -20,7 +21,7 @@ export const fetchTags = createAsyncThunk('tags/fetchTags', async () => {
 // Add or update a tag
 export const addOrUpdateTag = createAsyncThunk('tags/addOrUpdateTag', async ({ propertyId, tagId }, { rejectWithValue }) => {
   try {
-    const response = await axios.post('http://127.0.0.1:8000/services/properties/property-tags/', {
+    const response = await axios.post(`${baseurl}/services/properties/property-tags/`, {
       property: propertyId,
       tag: tagId
     }, {

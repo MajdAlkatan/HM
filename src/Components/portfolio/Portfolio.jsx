@@ -5,6 +5,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Portfolio({ images, onClickNav }) {
+
+  // Function to truncate text to a specific number of words
+  const truncateText = (text, wordLimit) => {
+    const words = text.split(' ');
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(' ') + '...';
+    }
+    return text;
+  };
+
   if (!Array.isArray(images)) {
     console.error('Expected images prop to be an array', images);
     return null; 
@@ -44,7 +54,8 @@ function Portfolio({ images, onClickNav }) {
             <img src={image.photos[0]?.image} alt={image.name} />
             <div className="caption">
               <h4>{image.name}</h4>
-              <p>{image.description}</p>
+              {/* Truncate the description to 15 words */}
+              <p>{truncateText(image.description, 10)}</p>
             </div>
           </div>
         ))}

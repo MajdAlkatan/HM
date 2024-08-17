@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { baseurl } from '../../../App';
 
 // Async thunk for deleting a hotel
 export const deleteHotel = createAsyncThunk(
     'hotels/deleteHotel',
     async(hotelId, { rejectWithValue }) => {
         try {
-            await axios.delete(`http://127.0.0.1:8000/services/properties/${hotelId}/`);
+            await axios.delete(`${baseurl}/services/properties/${hotelId}/`);
             return hotelId; // Return the hotelId to remove it from the state
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -18,7 +19,7 @@ export const HotelPage = createAsyncThunk(
     async(id) => {
         try {
             const response = await axios.get(
-                `http://127.0.0.1:8000/services/properties/${id}`, {
+                `${baseurl}/services/properties/${id}`, {
                     headers: {
                         Authorization: `JWT ${localStorage.getItem("token")}`,
                     },
@@ -65,7 +66,7 @@ export const UpdateHot = createAsyncThunk(
 
         try {
             const res = await axios.patch(
-                `http://127.0.0.1:8000/services/properties/${id}/`,
+                `${baseurl}/services/properties/${id}/`,
                 formData, {
                     headers: {
                         Authorization: `JWT ${localStorage.getItem("token")}`,

@@ -1,6 +1,8 @@
 // LoginSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseurl } from '../../App';
+
 
 export const Search = createAsyncThunk(
     "search/Search",
@@ -8,7 +10,7 @@ export const Search = createAsyncThunk(
         try {
             console.log(localStorage.getItem('token'))
             const response = await axios.get(
-                `http://localhost:8000/services/activities/?tour__duration=${tour__duration}&tickets__price=${tickets__price}&tour__takeoff_date=${tour__takeoff_date}&tour__takeoff_date__range=${tour__takeoff_date__range}&tour__duration__range=${tour__duration__range}&tickets__price__range=${tickets__price__range}&type=${type}&search=${search}`, {}, {
+                `${baseurl}/services/activities/?tour__duration=${tour__duration}&tickets__price=${tickets__price}&tour__takeoff_date=${tour__takeoff_date}&tour__takeoff_date__range=${tour__takeoff_date__range}&tour__duration__range=${tour__duration__range}&tickets__price__range=${tickets__price__range}&type=${type}&search=${search}`, {}, {
                     headers: {
                         Authorization: localStorage.getItem('token'),
                     },

@@ -2,20 +2,27 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Roompage.css';
-import Head2 from '../../../../Components/Head/Head2';
+import Head33 from '../../../../Components/Head/Head33';
 import Room from '../../../../assets/roomsvg.svg';
 import DeleteButton3 from '../../../../Components/DetleteButton/Deletebutton3/Deletebutton3'; // Adjust the import path if needed
-import { useSelector } from 'react-redux'; // Import useSelector if using Redux
+import { useSelector } from 'react-redux'; 
+import { baseurl } from '../../../../App';
+
+// const baseurl="${baseurl}"
 
 function RoomPage() {
   const { id } = useParams(); // Get the room ID from the URL
   const [room, setRoom] = useState(null);
   const [hotelId, setHotelId] = useState(null); // State to store the hotel ID
-  const navigate = useNavigate(); // For navigation after deletion and for Add Bed
+  const navigate = useNavigate(); 
+  const params=useParams() // For navigation after deletion
+const goToaddTag=()=>{
+  navigate(`/add_tag_room/${params.id}`)
+}
   const currentLanguage = useSelector((state) => state.language.currentLanguage); // Get current language from Redux state
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`, {
+    axios.get(`${baseurl}/services/properties/sup-properties/${id}/`, {
       headers: {
         'Accept-Language': currentLanguage, // Include current language in the request
       },
@@ -28,7 +35,7 @@ function RoomPage() {
   }, [id, currentLanguage]); // Add currentLanguage to the dependency array
 
   const handleDelete = () => {
-    axios.delete(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`, {
+    axios.delete(`${baseurl}/services/properties/sup-properties/${id}/`, {
       headers: {
         'Accept-Language': currentLanguage, // Include current language in the request
       },
@@ -61,13 +68,15 @@ function RoomPage() {
 
   return (
     <div className="room-page">
-      <Head2
+      <Head33
         Title={room.name}
         subTitle={room.description}
         titleButton1="Add Bed"
-        titleButton2="Update Room"
+        titleButton2="Add Tag "
+        onClickNavigation2={goToaddTag}
+        titleButton3="Update Room"
         onClickNavigation={handleAddBed}  // Navigate to Add Bed page
-        onClickNavigation2={handleUpdateRoom}  // Navigate to Update Room page
+        onClickNavigation3={handleUpdateRoom}  // Navigate to Update Room page
         image={Room}  // Optionally provide a default image or leave blank
       />
 

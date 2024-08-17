@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { baseurl } from '../../../App';
 
 // Action Types
 const FETCH_HOTELS_REQUEST = 'FETCH_HOTELS_REQUEST';
@@ -60,7 +61,7 @@ export const fetchHotels = () => {
       const state = getState();
       const currentLanguage = state.language.currentLanguage; // Adjust according to your state structure
 
-      const response = await axios.get('http://127.0.0.1:8000/services/properties/', {
+      const response = await axios.get(`${baseurl}/services/properties/`, {
         headers: {
           'Accept-Language': currentLanguage, // Use the correct header name
           'Authorization': `Bearer ${localStorage.getItem('authToken')}` // Example for authorization header

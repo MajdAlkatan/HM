@@ -10,6 +10,7 @@ import { Portfolio, Statistics1, Statistics2, Statistics3, Statistics4 } from '.
 import s3 from '../../../assets/hotel-dashboard.svg';
 import { deleteHotel } from './hoteldelete';
 import { Delete } from "../../../Components/index";
+import { baseurl } from '../../../App';
 
 const Hotel_Page = ({ hotels = [] }) => {
   const { id } = useParams();
@@ -28,7 +29,7 @@ const Hotel_Page = ({ hotels = [] }) => {
       
       if (!foundHotel) {
         try {
-          const response = await axios.get(`http://127.0.0.1:8000/services/properties/${id}/`, {
+          const response = await axios.get(`${baseurl}/services/properties/${id}/`, {
             headers: {
               'Accept-Language': currentLanguage, // Set Accept-Language header
             },
@@ -49,7 +50,7 @@ const Hotel_Page = ({ hotels = [] }) => {
 
   useEffect(() => {
     if (hotel) {
-      axios.get(`http://127.0.0.1:8000/services/properties/sup-properties/?property_id=${hotel.id}`, {
+      axios.get(`${baseurl}/services/properties/sup-properties/?property_id=${hotel.id}`, {
         headers: {
           'Accept-Language': currentLanguage, // Set Accept-Language header
         },

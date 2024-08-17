@@ -43,8 +43,13 @@ import Listing from './Pages/Activities/Listing/Listings';
 import Roompage from './Pages/Hotel/Room/RoomPage/Roompage';
 import AddTagPage from './Pages/Hotel/Add_Tag/AddTagDialog';
 import Update_Hotel from './Pages/Hotel/Update_Hotel/Update_hotel';
+import AddTagsRoom from './Pages/Hotel/Room/RoomPage/AddTagsRomm';
+import Notification from './Pages/Notification/notification';
+import ForgetPassowrd from './Pages/Login/ForgetPassowrd';
 import Add_Bed from './Pages/Hotel/Room/BedPage/Add_Bed';
 import   useNotifications  from './Pages/Notification/useNotifications';
+// config.js
+export const baseurl = `http://127.0.0.1:8000/`;
 
 import './App.css';
 function App() {
@@ -102,6 +107,9 @@ function App() {
                 <Route path="/Add_Event" element={<AddEvent />} />
                 <Route path="/user/:id" element={<UserDetailPage />} />
                 <Route path="/add-tag" element={<AddTagPage />} />
+                <Route path="/add_tag_room/:id" element={<AddTagsRoom />} />
+                <Route path="/not" element={<Notification/>} />
+
                 <Route path="*" element={<Navigate to="/home-Page" />} />
               </Routes>
             </Container2>
@@ -112,6 +120,8 @@ function App() {
         <Routes>
           <Route path="*" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/change-passowrd" element={<ForgetPassowrd />} />
+
         </Routes>
       )}
     </Router>

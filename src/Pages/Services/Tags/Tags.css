@@ -1,5 +1,6 @@
-    .add_tag {
-        height: 400px;
+    .add_tagg {
+        width: 485px;
+        height: 393px;
         margin: auto;
         margin-top: 4%;
         border: 1px solid #757373;
@@ -22,4 +23,12 @@
     
     .option {
         width: 55%;
+        padding-left: 8px;
+    }
+    
+    .select {
+        background: #0F111A;
+        color: white;
+        height: 36px;
+        border-radius: 5px;
     }

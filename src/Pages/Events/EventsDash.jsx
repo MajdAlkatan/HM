@@ -2,6 +2,8 @@ import Head1 from "../../Components/Head/Head1";
 import Event from "../../assets/Event.svg";
 import { useNavigate } from 'react-router-dom';
 import EventList from "./EventList.jsx"
+import { baseurl } from '../../App.jsx';
+
 function EventsDash() {
   const navigate = useNavigate();
   const goToAddEvent = () => {

@@ -97,3 +97,14 @@
     .css-1t1j96h-MuiPaper-root-MuiDialog-paper {
         position: static !important;
     }
+    
+    .trip_container img {
+        width: 266px;
+        height: 188px;
+        padding-right: 95px;
+    }
+    
+    .ggg {
+        margin-top: 153px;
+        margin-left: 222px;
+    }

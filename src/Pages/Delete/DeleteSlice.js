@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseurl } from '../../App';
 
 export const Cancel = createAsyncThunk(
     "cancel/Cancel",
     async(id) => {
         try {
             const res = await axios.post(
-                `http://localhost:8000/services/activities/${id}/cancel/`, {}, {
+                `${baseurl}/services/activities/${id}/cancel/`, {}, {
                     headers: {
                         Authorization: `JWT ${localStorage.getItem("token")}`,
                     },
@@ -57,7 +58,7 @@ export const Cancel = createAsyncThunk(
 export const Refund = createAsyncThunk("refund/Refund", async(id) => {
     try {
         const res = await axios.post(
-            `http://localhost:8000/services/activities/${id}/refund_all/`, {}, {
+            `${baseurl}/services/activities/${id}/refund_all/`, {}, {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem("token")}`,
                 },
@@ -91,7 +92,7 @@ export const Refund = createAsyncThunk("refund/Refund", async(id) => {
 export const Delete = createAsyncThunk("delete/Delete", async(id) => {
     try {
         const res = await axios.delete(
-            `http://localhost:8000/services/activities/${id}/`, {
+            `${baseurl}/services/activities/${id}/`, {
                 headers: {
                     Authorization: `JWT ${localStorage.getItem("token")}`,
                 },

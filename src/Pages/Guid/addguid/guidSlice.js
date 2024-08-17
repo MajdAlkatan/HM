@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { baseurl } from '../../../App';
 
 export const addguid = createAsyncThunk(
   "Guid/addguid",
@@ -18,7 +19,7 @@ export const addguid = createAsyncThunk(
     }
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/services/activities/guides/",
+        `${baseurl}/services/activities/guides/`,
         formData,
         {
           headers: {

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActivitesPage, ToursPage } from '../Activities_dashboard/Activites_Page';
 import ActivitesPortfolio2 from '../../../Components/ActivitesPortfolio/ActivitesPortfolio2';
+import { baseurl } from '../../../App';
 
 function Activities() {
   const [statisticsData, setStatisticsData] = useState({
@@ -82,7 +83,7 @@ function Activities() {
 
   // Fetch data for Statistics1 using axios
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/reports/monthly_income_last_year', {
+    axios.get(`${baseurl}/reports/monthly_income_last_year`, {
       headers: {
         'Authorization': `JWT ${localStorage.getItem('token')}`, // Replace with your actual token key
         'Content-Type': 'application/json',
@@ -109,7 +110,7 @@ function Activities() {
 
   // Fetch data for Statistics2 using axios
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/reports/yearly_income_by_section', {
+    axios.get(`${baseurl}/reports/yearly_income_by_section`, {
       headers: {
         'Authorization': `JWT ${localStorage.getItem('token')}`, // Replace with your actual token key
         'Content-Type': 'application/json',
@@ -132,7 +133,7 @@ function Activities() {
 
   // Fetch data for Statistics3 using axios
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/reports/yearly_income_by_section_monthly', {
+    axios.get(`${baseurl}/reports/yearly_income_by_section_monthly`, {
       headers: {
         'Authorization': `JWT ${localStorage.getItem('token')}`, // Replace with your actual token key
         'Content-Type': 'application/json',

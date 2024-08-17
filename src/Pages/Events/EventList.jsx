@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import "./EventList.css";
 import { Delete } from "../../Components/index";
+import { baseurl } from '../../App';
 
 const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -11,7 +12,7 @@ const EventList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/events/');
+        const response = await axios.get(`${baseurl}/events/`);
         setEvents(response.data.results);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -24,7 +25,7 @@ const EventList = () => {
   const handleDelete = async (id) => {
     const token = localStorage.getItem('token'); // Retrieve the token from local storage
     try {
-      await axios.delete(`http://127.0.0.1:8000/events/${id}/`, {
+      await axios.delete(`${baseurl}/events/${id}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
