@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Header from './sections/Header/Header';
@@ -39,29 +39,42 @@ import AddTags from './Pages/Activities/Tour/Add_tags';
 import FavouritPage from './Pages/Activities/Tour/Favourit';
 import Discountpage from './Pages/Discount/Discountpage';
 import MakeDiscount from './Pages/Discount/MakeDiscount/Makedicount';
-import useNotifications from './Pages/Notification/useNotifications';
-import "./App.css";
-import SearchFilters from "./Pages/Search/Search";
-import Listing from './Pages/Activities/Listing/Listings'
-import Roompage from  "./Pages/Hotel/Room/RoomPage/Roompage"
-import AddTagPage from "./Pages/Hotel/Add_Tag/AddTagDialog"
+import SearchFilters from './Pages/Search/Search';
+import Listing from './Pages/Activities/Listing/Listings';
+import Roompage from './Pages/Hotel/Room/RoomPage/Roompage';
+import AddTagPage from './Pages/Hotel/Add_Tag/AddTagDialog';
 import Update_Hotel from './Pages/Hotel/Update_Hotel/Update_hotel';
 import AddTagsRoom from './Pages/Hotel/Room/RoomPage/AddTagsRomm';
 import Notification from './Pages/Notification/notification';
 import ForgetPassowrd from './Pages/Login/ForgetPassowrd';
+import Add_Bed from './Pages/Hotel/Room/BedPage/Add_Bed';
+import { requestPermission, onMessageListener } from './firebase';
+
+import './App.css';
 
 function App() {
   const isAuthenticated = useSelector((state) => state.login.isAuthenticated);
-  const hotelsData = useSelector((state) => state.hotel.data); // Assuming hotelsData is stored in the Redux state
-  useNotifications(); // Call the hook to handle notifications
+  const hotelsData = useSelector((state) => state.hotel.data);
 
   useEffect(() => {
-    // Check if user is authenticated and redirect accordingly
-    const pathname = window.location.pathname;
-    if (!isAuthenticated && pathname !== '/login') {
-      window.location.pathname = '/login';
-    }
-  }, [isAuthenticated]);
+    const initializeNotifications = async () => {
+      // Request permission and get the token
+      await requestPermission();
+
+      // Handle foreground messages
+      const unsubscribe = onMessageListener((payload) => {
+        console.log('Message received: ', payload);
+        new Notification(payload.notification.title, {
+          body: payload.notification.body,
+          icon: payload.notification.icon,
+        });
+      });
+
+      return () => unsubscribe();
+    };
+
+    initializeNotifications();
+  }, []);
 
   return (
     <Router>
@@ -75,9 +88,10 @@ function App() {
                 <Route path="/home-Page" element={<Home />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/hotel-dashboad" element={<Hotel_Dashboard />} />
-                <Route path="/room_page/:id" element={<Roompage />}/>
+                <Route path="/room_page/:id" element={<Roompage />} />
                 <Route path="/add-hotel" element={<Add_Hotel />} />
                 <Route path="/update-hotel/:id" element={<Update_Hotel />} />
+                <Route path="/add-bed/:id" element={<Add_Bed />} />
                 <Route path="/hotel-page/:id" element={<Hotel_Page hotels={hotelsData} />} />
                 <Route path="/add-room" element={<Add_Room />} />
                 <Route path="/activities" element={<Activities />} />
@@ -95,11 +109,11 @@ function App() {
                 <Route path="/tour/:id" element={<Tour />} />
                 <Route path="/tour/:id/addSites" element={<AddSites />} />
                 <Route path="/tour/:id/add-ticket" element={<Ticket />} />
-                <Route path="Site/:id/EditSite/:id" element={<EditSite />} />
-                <Route path="tour/:id/add_tags/:id" element={<AddTags/>} />
-                <Route path="tour/:id/favourit" element={<FavouritPage/>} />
-                <Route path="Site/:id/Listing" element={<Listing/>} />
-                <Route path="/search" element={<SearchFilters/>} />
+                <Route path="/Site/:id/EditSite/:id" element={<EditSite />} />
+                <Route path="/tour/:id/add_tags/:id" element={<AddTags />} />
+                <Route path="/tour/:id/favourit" element={<FavouritPage />} />
+                <Route path="/Site/:id/Listing" element={<Listing />} />
+                <Route path="/search" element={<SearchFilters />} />
                 <Route path="/MakeDiscount" element={<MakeDiscount />} />
                 <Route path="/Discountpage" element={<Discountpage />} />
                 <Route path="/UserProfile" element={<Userpage />} />
@@ -107,12 +121,12 @@ function App() {
                 <Route path="/guid/:id" element={<GuidDetailsPage />} />
                 <Route path="/EventDash" element={<EventsDash />} />
                 <Route path="/Add_Event" element={<AddEvent />} />
-                <Route path="*" element={<Navigate to="/home-Page" />} />
                 <Route path="/user/:id" element={<UserDetailPage />} />
                 <Route path="/add-tag" element={<AddTagPage />} />
                 <Route path="/add_tag_room/:id" element={<AddTagsRoom />} />
                 <Route path="/not" element={<Notification/>} />
 
+                <Route path="*" element={<Navigate to="/home-Page" />} />
               </Routes>
             </Container2>
           </Container>

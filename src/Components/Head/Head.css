@@ -1,6 +1,7 @@
  .title h1,
  h2 {
      color: white;
+     /* position: relative; */
  }
  
  .title h1 {
@@ -20,10 +21,12 @@
      display: flex;
      flex-direction: column;
      justify-content: space-between;
+     width: 100%;
  }
  
  hr {
      width: 90%;
+     
  }
  
  .title {
@@ -40,7 +43,7 @@
  
  .button {
      height: 100%;
-     width: 40%;
+     width: 15%;
  }
  
  .button button {

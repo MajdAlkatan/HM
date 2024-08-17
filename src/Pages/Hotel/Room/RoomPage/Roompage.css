@@ -160,6 +160,7 @@
     color: #f0f0f0;
 }
 
+<<<<<<< HEAD
 .image-grid {
     gap: 20px;
 }
@@ -195,3 +196,6 @@
 .details-card ul li:hover {
     background: #e0e0e0;
 }
+=======
+
+>>>>>>> f0238a26f766f6cdbb5b4863cf9f9d42c6aafb6a

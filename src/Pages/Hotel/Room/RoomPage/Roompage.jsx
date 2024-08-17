@@ -1,4 +1,3 @@
-// RoomPage.js
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -10,11 +9,16 @@ function RoomPage() {
   const { id } = useParams(); // Get the room ID from the URL
   const [room, setRoom] = useState(null);
   const [hotelId, setHotelId] = useState(null); // State to store the hotel ID
+<<<<<<< HEAD
   const navigate = useNavigate(); 
   const params=useParams() // For navigation after deletion
 const goToaddTag=()=>{
   navigate(`/add_tag_room/${params.id}`)
 }
+=======
+  const navigate = useNavigate(); // For navigation after deletion and for Add Bed
+
+>>>>>>> f0238a26f766f6cdbb5b4863cf9f9d42c6aafb6a
   useEffect(() => {
     axios.get(`http://127.0.0.1:8000/services/properties/sup-properties/${id}/`)
       .then(response => {
@@ -40,6 +44,14 @@ const goToaddTag=()=>{
       });
   };
 
+  const handleAddBed = () => {
+    navigate(`/add-bed/${id}`); // Navigate to the Add Bed page with room ID
+  };
+
+  const handleUpdateRoom = () => {
+    navigate(`/update-room/${id}`); // Navigate to the Update Room page
+  };
+
   if (!room) {
     return <div>Loading...</div>;
   }
@@ -50,9 +62,15 @@ const goToaddTag=()=>{
         Title={room.name}
         subTitle={room.description}
         titleButton1="Add Bed"
+<<<<<<< HEAD
         titleButton2="Add Tag "
         onClickNavigation={() => {}}
         onClickNavigation2={goToaddTag}
+=======
+        titleButton2="Update Room"
+        onClickNavigation={handleAddBed}  // Navigate to Add Bed page
+        onClickNavigation2={handleUpdateRoom}  // Navigate to Update Room page
+>>>>>>> f0238a26f766f6cdbb5b4863cf9f9d42c6aafb6a
         image={Room}  // Optionally provide a default image or leave blank
       />
 

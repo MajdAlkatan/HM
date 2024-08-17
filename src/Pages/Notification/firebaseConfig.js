@@ -4,12 +4,13 @@ import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "343960876538",
-  appId: "YOUR_APP_ID",
+  apiKey: "AIzaSyDFnw8fVUGZ1Y-vuO2UPCY4r7koy8Ik-H8",
+  authDomain: "pingoway-ed8c0.firebaseapp.com",
+  projectId: "pingoway-ed8c0",
+  storageBucket: "pingoway-ed8c0.appspot.com",
+  messagingSenderId: "526962051313",
+  appId: "1:526962051313:web:dad84497f4eb9dc8bfc150",
+  measurementId: "G-2M2Q2GGP0X"
 };
 
 // Initialize Firebase
